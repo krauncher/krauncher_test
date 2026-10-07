@@ -6,7 +6,9 @@ work on the reference card) and the GPU ladder (each GPU's compute coefficient
 against the reference card), stamped with the UTC time and the analyzer
 `calibration_id`, and compares both with the task's reference values.
 
-Nothing runs on a GPU: the stand only asks the analyzer for a forecast.
+**The stand measures the quality of Krauncher's forecast; it does not execute
+code.** Tasks are never submitted to a GPU: the analyzer reads their source
+code and call arguments, no data is downloaded and no GPU time is spent.
 
 ## How to run the test
 
@@ -52,8 +54,9 @@ All tasks:
 
     for t in tasks/[a-z]*.py; do .venv/bin/python run.py "$(basename "$t" .py)"; done
 
-`resnet152_food101` reads the public Food-101 dataset through a data source
-named `food-101`; `run.py` registers it on your account if it is missing.
+`resnet152_food101` names the public Food-101 dataset through a data source
+`food-101`, from which the analyzer takes the dataset size; `run.py` registers
+it on your account if it is missing.
 
 ### 6. Read the result
 
