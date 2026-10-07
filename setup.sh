@@ -3,7 +3,7 @@
 # Pass a branch, tag or commit to pin the client: ./setup.sh <ref>
 set -e
 cd "$(dirname "$0")"
-REPO=https://github.com/Ilya-a-sergeyev-ger/krauncher.git
+REPO=https://github.com/krauncher/krauncher.git
 [ -d client ] || git clone -q "$REPO" client
 git -C client fetch -q origin
 git -C client checkout -q "${1:-origin/main}"
