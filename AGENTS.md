@@ -179,7 +179,7 @@ reason to rewrite the task.
 `tasks/` holds ten examples with reference values from Krauncher's own
 calibration runs (the data the analyzer is calibrated on, so not an independent
 check): `bert_imdb`, `qwen25_7b_lora_alpaca`, `qwen25_7b_gsm8k`,
-`qwen7b_batched`, `qwen7b_long`, `phi3_inference`, `qwen15_inference`,
+`qwen25_7b_batched`, `qwen25_7b_long`, `phi3_inference`, `qwen15_inference`,
 `bert_batch_inference`, `vit_batch_inference`, `resnet152_food101`. Use them as
 templates.
 

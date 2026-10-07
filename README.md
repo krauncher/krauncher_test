@@ -76,8 +76,8 @@ runs the stand; keep them, or hand them over together with the measurements.
 | `bert_imdb` | BERT fine-tuning on IMDB |
 | `qwen25_7b_lora_alpaca` | Qwen2.5-7B LoRA fine-tuning on Alpaca |
 | `qwen25_7b_gsm8k` | Qwen2.5-7B-Instruct inference on GSM8K |
-| `qwen7b_batched` | Qwen2.5-7B-Instruct batched inference |
-| `qwen7b_long` | Qwen2.5-7B-Instruct long generation |
+| `qwen25_7b_batched` | Qwen2.5-7B-Instruct batched inference |
+| `qwen25_7b_long` | Qwen2.5-7B-Instruct long generation |
 | `phi3_inference` | Phi-3-mini inference on GSM8K |
 | `qwen15_inference` | Qwen2.5-1.5B-Instruct inference on GSM8K |
 | `bert_batch_inference` | BERT batch inference |
