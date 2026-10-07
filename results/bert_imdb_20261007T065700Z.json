@@ -1,0 +1,1319 @@
+{
+  "task": "bert_imdb",
+  "created_utc": "2026-10-07T06:57:00+00:00",
+  "calibration_id": "c-6c518e4b0bbf",
+  "client_commit": "0e2e207275f808b0e86fe9f0d49122ec993fe2d4",
+  "task_options": {
+    "vram_gb": 6,
+    "timeout": 1800,
+    "data_urls": [
+      "hf://datasets/stanfordnlp/imdb",
+      "hf://models/google-bert/bert-base-uncased"
+    ],
+    "dataset_size": 84
+  },
+  "task_kwargs": {
+    "num_epochs": 3,
+    "batch_size": 16,
+    "lr": 2e-05
+  },
+  "assay": {
+    "meta": {
+      "schema_version": "assay/1",
+      "analyzer_version": "0.1.0",
+      "calibration_id": "c-6c518e4b0bbf",
+      "confidence": 0.9
+    },
+    "workload": {
+      "type": "ai_training",
+      "mode": "training",
+      "framework": "pytorch",
+      "model": {
+        "name": "BERT Base",
+        "params_billions": 0.11,
+        "precision": "fp16",
+        "mixed_precision_autocast": false,
+        "gradient_scaler": false,
+        "gradient_checkpointing": false,
+        "peft": null
+      },
+      "runtime": {
+        "inference_engine": null,
+        "optimizer": "adamw",
+        "distributed_training": false
+      },
+      "knobs": {
+        "batch_size": 16,
+        "gradient_accumulation_steps": null,
+        "epochs": 3,
+        "max_steps": null,
+        "dataset_samples": 25000,
+        "image_size": null,
+        "seq_len": null,
+        "input_tokens": null,
+        "dataloader_workers": 2,
+        "dataloader_pin_memory": false
+      },
+      "data": {
+        "dataset_mb": 84.0,
+        "model_download_mb": 220.0
+      },
+      "estimated": {
+        "augmentation_complexity": null,
+        "checkpointing_frequency": null,
+        "file_io_intensity": null
+      }
+    },
+    "requirements": {
+      "min_vram_gb": 6,
+      "vram_breakdown_gb": {
+        "model": 0.22,
+        "gradients": 0.44,
+        "optimizer": 0.88,
+        "activations": 2.57,
+        "total": 7.67
+      },
+      "min_disk_gb": 1,
+      "disk_breakdown_gb": {
+        "weights": 0.22,
+        "dataset": 0.08,
+        "outputs": 0.22,
+        "total": 0.6
+      },
+      "cpu_only": false
+    },
+    "work": {
+      "reference_cu": 141953,
+      "phases_cu": {
+        "compute": 125417,
+        "warmup": 11016,
+        "io": 2520,
+        "setup": 3000
+      },
+      "reference_sec": 142.0,
+      "spread": {
+        "factor": 1.026
+      }
+    },
+    "assay_key": "ak1.BzSn7M3yRU9dslWTfTXAOBbJ3kfrG6PKnbQyNdnibB4oAd088JNhVIywc5JIYLR6fO5pGTCXR8cCE6z46biFBp8b9Ndq-ttyIHkAQAYWsiaucJrfkNEkjCCIREwBQUEwB4hZgGf3STg9Vj1F_FykYf9zFexKDWz67pBTgy2Em2YwfwDyeXIsunnDX008fMgXfC3w3hsB-kjM68gvEkxAUwzXEm33cmqRJYhXX1V7LSOwjkTtFPjfLnylUTB71mWyRcHCbAEY09E_MxRsA7dBC9Nzl3F_mkbqnazQhGWQCm8pqoDt91XKvjdR6MeYrRV31v_jggaREyV7Jgi-Ffjdvjx2adugvEuGgS2kbOsm1V7QP71dNr0dh4pGuk34O21DZaP4iFrL0X1EwVsyduFoHPwTW1GBcq2FZ3et7y3i8I7UQc3l-Sw"
+  },
+  "ladder": {
+    "meta": {
+      "schema_version": "ladder/1",
+      "calibration_id": "c-6c518e4b0bbf",
+      "assay_calibration_id": "c-6c518e4b0bbf"
+    },
+    "reference_sec": 142.0,
+    "rows": [
+      {
+        "gpu_id": "b200",
+        "gpu_name": "B200 SXM",
+        "vram_gb": 192,
+        "estimated_sec": 100.56,
+        "ratio_to_reference": 0.708,
+        "phases_sec": {
+          "compute": 85.02,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "b200_nvl",
+        "gpu_name": "B200 NVL",
+        "vram_gb": 180,
+        "estimated_sec": 100.56,
+        "ratio_to_reference": 0.708,
+        "phases_sec": {
+          "compute": 85.02,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "b100",
+        "gpu_name": "B100",
+        "vram_gb": 192,
+        "estimated_sec": 113.09,
+        "ratio_to_reference": 0.796,
+        "phases_sec": {
+          "compute": 97.56,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "mi300x",
+        "gpu_name": "AMD MI300X",
+        "vram_gb": 192,
+        "estimated_sec": 121.22,
+        "ratio_to_reference": 0.854,
+        "phases_sec": {
+          "compute": 105.69,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "mi325x",
+        "gpu_name": "AMD MI325X",
+        "vram_gb": 256,
+        "estimated_sec": 121.22,
+        "ratio_to_reference": 0.854,
+        "phases_sec": {
+          "compute": 105.69,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "gh200",
+        "gpu_name": "GH200",
+        "vram_gb": 96,
+        "estimated_sec": 130.0,
+        "ratio_to_reference": 0.915,
+        "phases_sec": {
+          "compute": 114.46,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "h200",
+        "gpu_name": "H200 SXM",
+        "vram_gb": 141,
+        "estimated_sec": 130.0,
+        "ratio_to_reference": 0.915,
+        "phases_sec": {
+          "compute": 114.46,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "h100_nvl",
+        "gpu_name": "H100 NVL",
+        "vram_gb": 94,
+        "estimated_sec": 136.15,
+        "ratio_to_reference": 0.959,
+        "phases_sec": {
+          "compute": 120.62,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "h200_nvl",
+        "gpu_name": "H200 NVL",
+        "vram_gb": 141,
+        "estimated_sec": 136.15,
+        "ratio_to_reference": 0.959,
+        "phases_sec": {
+          "compute": 120.62,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "h800",
+        "gpu_name": "H800",
+        "vram_gb": 80,
+        "estimated_sec": 140.09,
+        "ratio_to_reference": 0.987,
+        "phases_sec": {
+          "compute": 124.55,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "b300",
+        "gpu_name": "B300",
+        "vram_gb": 288,
+        "estimated_sec": 141.14,
+        "ratio_to_reference": 0.994,
+        "phases_sec": {
+          "compute": 125.61,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_6000_blackwell",
+        "gpu_name": "RTX 6000 WS Blackwell",
+        "vram_gb": 96,
+        "estimated_sec": 141.14,
+        "ratio_to_reference": 0.994,
+        "phases_sec": {
+          "compute": 125.61,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "h100_sxm",
+        "gpu_name": "H100 SXM",
+        "vram_gb": 80,
+        "estimated_sec": 141.73,
+        "ratio_to_reference": 0.998,
+        "phases_sec": {
+          "compute": 126.19,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_6000s",
+        "gpu_name": "RTX PRO 6000 S",
+        "vram_gb": 96,
+        "estimated_sec": 154.82,
+        "ratio_to_reference": 1.09,
+        "phases_sec": {
+          "compute": 139.28,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "h100_pcie",
+        "gpu_name": "H100 PCIe",
+        "vram_gb": 80,
+        "estimated_sec": 160.35,
+        "ratio_to_reference": 1.129,
+        "phases_sec": {
+          "compute": 144.82,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a800",
+        "gpu_name": "A800",
+        "vram_gb": 80,
+        "estimated_sec": 174.49,
+        "ratio_to_reference": 1.229,
+        "phases_sec": {
+          "compute": 158.96,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_a100_40",
+        "gpu_name": "A100 40GB PCIe",
+        "vram_gb": 40,
+        "estimated_sec": 179.6,
+        "ratio_to_reference": 1.265,
+        "phases_sec": {
+          "compute": 164.06,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "l40",
+        "gpu_name": "L40",
+        "vram_gb": 48,
+        "estimated_sec": 181.71,
+        "ratio_to_reference": 1.28,
+        "phases_sec": {
+          "compute": 166.17,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_6000mq",
+        "gpu_name": "RTX PRO 6000 MaxQ",
+        "vram_gb": 96,
+        "estimated_sec": 188.46,
+        "ratio_to_reference": 1.327,
+        "phases_sec": {
+          "compute": 172.92,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5090",
+        "gpu_name": "RTX 5090",
+        "vram_gb": 32,
+        "estimated_sec": 195.54,
+        "ratio_to_reference": 1.377,
+        "phases_sec": {
+          "compute": 180.0,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4090d",
+        "gpu_name": "RTX 4090D",
+        "vram_gb": 24,
+        "estimated_sec": 201.11,
+        "ratio_to_reference": 1.416,
+        "phases_sec": {
+          "compute": 185.57,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5000_blackwell",
+        "gpu_name": "RTX 5000 Blackwell",
+        "vram_gb": 48,
+        "estimated_sec": 202.6,
+        "ratio_to_reference": 1.427,
+        "phases_sec": {
+          "compute": 187.06,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5880_ada",
+        "gpu_name": "RTX 5880 Ada",
+        "vram_gb": 48,
+        "estimated_sec": 202.82,
+        "ratio_to_reference": 1.428,
+        "phases_sec": {
+          "compute": 187.28,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_6000_mig",
+        "gpu_name": "PRO 6000 MIG (Ada)",
+        "vram_gb": 24,
+        "estimated_sec": 204.37,
+        "ratio_to_reference": 1.439,
+        "phases_sec": {
+          "compute": 188.84,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_6000_mig_48",
+        "gpu_name": "PRO 6000 MIG 48 (Blackwell)",
+        "vram_gb": 48,
+        "estimated_sec": 215.87,
+        "ratio_to_reference": 1.52,
+        "phases_sec": {
+          "compute": 200.33,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "mi250x",
+        "gpu_name": "AMD MI250X",
+        "vram_gb": 128,
+        "estimated_sec": 220.69,
+        "ratio_to_reference": 1.554,
+        "phases_sec": {
+          "compute": 205.15,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_6000_ada",
+        "gpu_name": "RTX 6000 Ada",
+        "vram_gb": 48,
+        "estimated_sec": 225.61,
+        "ratio_to_reference": 1.589,
+        "phases_sec": {
+          "compute": 210.08,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5000_ada",
+        "gpu_name": "RTX 5000 Ada",
+        "vram_gb": 32,
+        "estimated_sec": 227.4,
+        "ratio_to_reference": 1.601,
+        "phases_sec": {
+          "compute": 211.87,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "mi250",
+        "gpu_name": "AMD MI250",
+        "vram_gb": 128,
+        "estimated_sec": 228.35,
+        "ratio_to_reference": 1.608,
+        "phases_sec": {
+          "compute": 212.82,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a100_sxm_80",
+        "gpu_name": "A100 SXM 80",
+        "vram_gb": 80,
+        "estimated_sec": 235.55,
+        "ratio_to_reference": 1.659,
+        "phases_sec": {
+          "compute": 220.01,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a100_pcie_80",
+        "gpu_name": "A100 PCIe 80GB",
+        "vram_gb": 80,
+        "estimated_sec": 235.59,
+        "ratio_to_reference": 1.659,
+        "phases_sec": {
+          "compute": 220.06,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a100_sxm_40",
+        "gpu_name": "A100 SXM 40",
+        "vram_gb": 40,
+        "estimated_sec": 239.15,
+        "ratio_to_reference": 1.684,
+        "phases_sec": {
+          "compute": 223.61,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "l40s",
+        "gpu_name": "L40S",
+        "vram_gb": 48,
+        "estimated_sec": 241.34,
+        "ratio_to_reference": 1.7,
+        "phases_sec": {
+          "compute": 225.8,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4080s",
+        "gpu_name": "RTX 4080 SUPER",
+        "vram_gb": 16,
+        "estimated_sec": 244.43,
+        "ratio_to_reference": 1.721,
+        "phases_sec": {
+          "compute": 228.89,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4090",
+        "gpu_name": "RTX 4090",
+        "vram_gb": 24,
+        "estimated_sec": 252.02,
+        "ratio_to_reference": 1.775,
+        "phases_sec": {
+          "compute": 236.48,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4080",
+        "gpu_name": "RTX 4080",
+        "vram_gb": 16,
+        "estimated_sec": 254.42,
+        "ratio_to_reference": 1.792,
+        "phases_sec": {
+          "compute": 238.89,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4500_blackwell_s",
+        "gpu_name": "PRO 4500 Blackwell Server",
+        "vram_gb": 32,
+        "estimated_sec": 254.81,
+        "ratio_to_reference": 1.794,
+        "phases_sec": {
+          "compute": 239.27,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a100_pcie",
+        "gpu_name": "A100 PCIe",
+        "vram_gb": 40,
+        "estimated_sec": 255.31,
+        "ratio_to_reference": 1.798,
+        "phases_sec": {
+          "compute": 239.77,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5080",
+        "gpu_name": "RTX 5080",
+        "vram_gb": 16,
+        "estimated_sec": 268.82,
+        "ratio_to_reference": 1.893,
+        "phases_sec": {
+          "compute": 253.29,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a30",
+        "gpu_name": "A30",
+        "vram_gb": 24,
+        "estimated_sec": 269.49,
+        "ratio_to_reference": 1.898,
+        "phases_sec": {
+          "compute": 253.96,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4070tis",
+        "gpu_name": "RTX 4070 Ti SUPER",
+        "vram_gb": 16,
+        "estimated_sec": 286.9,
+        "ratio_to_reference": 2.02,
+        "phases_sec": {
+          "compute": 271.36,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4500_blackwell",
+        "gpu_name": "PRO 4500 Blackwell",
+        "vram_gb": 32,
+        "estimated_sec": 297.44,
+        "ratio_to_reference": 2.095,
+        "phases_sec": {
+          "compute": 281.91,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4070ti",
+        "gpu_name": "RTX 4070 Ti",
+        "vram_gb": 12,
+        "estimated_sec": 299.71,
+        "ratio_to_reference": 2.111,
+        "phases_sec": {
+          "compute": 284.17,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4070s",
+        "gpu_name": "RTX 4070 SUPER",
+        "vram_gb": 12,
+        "estimated_sec": 324.9,
+        "ratio_to_reference": 2.288,
+        "phases_sec": {
+          "compute": 309.36,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5070",
+        "gpu_name": "RTX 5070",
+        "vram_gb": 12,
+        "estimated_sec": 332.86,
+        "ratio_to_reference": 2.344,
+        "phases_sec": {
+          "compute": 317.32,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a10",
+        "gpu_name": "A10",
+        "vram_gb": 24,
+        "estimated_sec": 336.88,
+        "ratio_to_reference": 2.372,
+        "phases_sec": {
+          "compute": 321.34,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a10g",
+        "gpu_name": "A10G",
+        "vram_gb": 24,
+        "estimated_sec": 336.88,
+        "ratio_to_reference": 2.372,
+        "phases_sec": {
+          "compute": 321.34,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_6000_mig_24",
+        "gpu_name": "PRO 6000 MIG 24 (Blackwell)",
+        "vram_gb": 24,
+        "estimated_sec": 354.34,
+        "ratio_to_reference": 2.495,
+        "phases_sec": {
+          "compute": 338.8,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4070",
+        "gpu_name": "RTX 4070",
+        "vram_gb": 12,
+        "estimated_sec": 360.64,
+        "ratio_to_reference": 2.54,
+        "phases_sec": {
+          "compute": 345.11,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4000_blackwell",
+        "gpu_name": "RTX 4000 Blackwell",
+        "vram_gb": 24,
+        "estimated_sec": 364.75,
+        "ratio_to_reference": 2.569,
+        "phases_sec": {
+          "compute": 349.22,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4500_ada",
+        "gpu_name": "RTX 4500 Ada",
+        "vram_gb": 32,
+        "estimated_sec": 365.9,
+        "ratio_to_reference": 2.577,
+        "phases_sec": {
+          "compute": 350.36,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5070ti",
+        "gpu_name": "RTX 5070 Ti",
+        "vram_gb": 16,
+        "estimated_sec": 367.89,
+        "ratio_to_reference": 2.591,
+        "phases_sec": {
+          "compute": 352.35,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "mi210",
+        "gpu_name": "AMD MI210",
+        "vram_gb": 64,
+        "estimated_sec": 375.17,
+        "ratio_to_reference": 2.642,
+        "phases_sec": {
+          "compute": 359.63,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "mi100",
+        "gpu_name": "AMD MI100",
+        "vram_gb": 32,
+        "estimated_sec": 378.24,
+        "ratio_to_reference": 2.664,
+        "phases_sec": {
+          "compute": 362.7,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a40",
+        "gpu_name": "A40",
+        "vram_gb": 48,
+        "estimated_sec": 397.02,
+        "ratio_to_reference": 2.796,
+        "phases_sec": {
+          "compute": 381.48,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4000_ada",
+        "gpu_name": "RTX 4000 Ada",
+        "vram_gb": 20,
+        "estimated_sec": 401.51,
+        "ratio_to_reference": 2.828,
+        "phases_sec": {
+          "compute": 385.97,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_3090ti",
+        "gpu_name": "RTX 3090 Ti",
+        "vram_gb": 24,
+        "estimated_sec": 424.39,
+        "ratio_to_reference": 2.989,
+        "phases_sec": {
+          "compute": 408.86,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_a6000",
+        "gpu_name": "RTX A6000",
+        "vram_gb": 48,
+        "estimated_sec": 462.3,
+        "ratio_to_reference": 3.256,
+        "phases_sec": {
+          "compute": 446.77,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "l4",
+        "gpu_name": "L4",
+        "vram_gb": 24,
+        "estimated_sec": 471.04,
+        "ratio_to_reference": 3.317,
+        "phases_sec": {
+          "compute": 455.51,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5060ti",
+        "gpu_name": "RTX 5060 Ti",
+        "vram_gb": 16,
+        "estimated_sec": 473.15,
+        "ratio_to_reference": 3.332,
+        "phases_sec": {
+          "compute": 457.62,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5060",
+        "gpu_name": "RTX 5060",
+        "vram_gb": 8,
+        "estimated_sec": 475.6,
+        "ratio_to_reference": 3.349,
+        "phases_sec": {
+          "compute": 460.07,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_a5000",
+        "gpu_name": "RTX A5000",
+        "vram_gb": 24,
+        "estimated_sec": 480.41,
+        "ratio_to_reference": 3.383,
+        "phases_sec": {
+          "compute": 464.87,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_a4500",
+        "gpu_name": "RTX A4500",
+        "vram_gb": 20,
+        "estimated_sec": 485.12,
+        "ratio_to_reference": 3.416,
+        "phases_sec": {
+          "compute": 469.59,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5060_local",
+        "gpu_name": "RTX 5060 Local",
+        "vram_gb": 8,
+        "estimated_sec": 498.16,
+        "ratio_to_reference": 3.508,
+        "phases_sec": {
+          "compute": 482.62,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "v100s",
+        "gpu_name": "V100S",
+        "vram_gb": 32,
+        "estimated_sec": 498.34,
+        "ratio_to_reference": 3.509,
+        "phases_sec": {
+          "compute": 482.8,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_8000_quadro",
+        "gpu_name": "RTX 8000 QUADRO",
+        "vram_gb": 48,
+        "estimated_sec": 507.01,
+        "ratio_to_reference": 3.57,
+        "phases_sec": {
+          "compute": 491.47,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "qrtx_8000",
+        "gpu_name": "Quadro RTX 8000",
+        "vram_gb": 48,
+        "estimated_sec": 510.51,
+        "ratio_to_reference": 3.595,
+        "phases_sec": {
+          "compute": 494.97,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_titan",
+        "gpu_name": "Titan RTX",
+        "vram_gb": 24,
+        "estimated_sec": 510.7,
+        "ratio_to_reference": 3.596,
+        "phases_sec": {
+          "compute": 495.16,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "v100_16gb",
+        "gpu_name": "V100 16GB",
+        "vram_gb": 16,
+        "estimated_sec": 512.56,
+        "ratio_to_reference": 3.61,
+        "phases_sec": {
+          "compute": 497.02,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "v100_32gb",
+        "gpu_name": "V100 32GB",
+        "vram_gb": 32,
+        "estimated_sec": 512.56,
+        "ratio_to_reference": 3.61,
+        "phases_sec": {
+          "compute": 497.02,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_3080_12",
+        "gpu_name": "RTX 3080 (12GB)",
+        "vram_gb": 12,
+        "estimated_sec": 518.78,
+        "ratio_to_reference": 3.653,
+        "phases_sec": {
+          "compute": 503.25,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_3080",
+        "gpu_name": "RTX 3080 (10GB)",
+        "vram_gb": 10,
+        "estimated_sec": 536.45,
+        "ratio_to_reference": 3.778,
+        "phases_sec": {
+          "compute": 520.91,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_3090",
+        "gpu_name": "RTX 3090",
+        "vram_gb": 24,
+        "estimated_sec": 550.49,
+        "ratio_to_reference": 3.877,
+        "phases_sec": {
+          "compute": 534.95,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_a4000",
+        "gpu_name": "RTX A4000",
+        "vram_gb": 16,
+        "estimated_sec": 557.75,
+        "ratio_to_reference": 3.928,
+        "phases_sec": {
+          "compute": 542.21,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4060ti",
+        "gpu_name": "RTX 4060 Ti",
+        "vram_gb": 16,
+        "estimated_sec": 560.78,
+        "ratio_to_reference": 3.949,
+        "phases_sec": {
+          "compute": 545.25,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_2080_ti",
+        "gpu_name": "RTX 2080 Ti",
+        "vram_gb": 22,
+        "estimated_sec": 590.87,
+        "ratio_to_reference": 4.161,
+        "phases_sec": {
+          "compute": 575.33,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_4060",
+        "gpu_name": "RTX 4060",
+        "vram_gb": 8,
+        "estimated_sec": 604.48,
+        "ratio_to_reference": 4.257,
+        "phases_sec": {
+          "compute": 588.94,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a16",
+        "gpu_name": "A16",
+        "vram_gb": 16,
+        "estimated_sec": 606.71,
+        "ratio_to_reference": 4.273,
+        "phases_sec": {
+          "compute": 591.18,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "p100",
+        "gpu_name": "P100",
+        "vram_gb": 16,
+        "estimated_sec": 614.27,
+        "ratio_to_reference": 4.326,
+        "phases_sec": {
+          "compute": 598.74,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "qrtx_6000",
+        "gpu_name": "Quadro RTX 6000",
+        "vram_gb": 24,
+        "estimated_sec": 616.57,
+        "ratio_to_reference": 4.342,
+        "phases_sec": {
+          "compute": 601.04,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_3070ti",
+        "gpu_name": "RTX 3070 Ti",
+        "vram_gb": 8,
+        "estimated_sec": 621.48,
+        "ratio_to_reference": 4.377,
+        "phases_sec": {
+          "compute": 605.94,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5000_quadro",
+        "gpu_name": "RTX 5000 QUADRO",
+        "vram_gb": 16,
+        "estimated_sec": 639.86,
+        "ratio_to_reference": 4.506,
+        "phases_sec": {
+          "compute": 624.32,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_5000_t",
+        "gpu_name": "RTX 5000",
+        "vram_gb": 16,
+        "estimated_sec": 639.86,
+        "ratio_to_reference": 4.506,
+        "phases_sec": {
+          "compute": 624.32,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_3060ti",
+        "gpu_name": "RTX 3060 Ti",
+        "vram_gb": 8,
+        "estimated_sec": 641.5,
+        "ratio_to_reference": 4.518,
+        "phases_sec": {
+          "compute": 625.97,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_3070",
+        "gpu_name": "RTX 3070",
+        "vram_gb": 8,
+        "estimated_sec": 641.5,
+        "ratio_to_reference": 4.518,
+        "phases_sec": {
+          "compute": 625.97,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_3060",
+        "gpu_name": "RTX 3060",
+        "vram_gb": 12,
+        "estimated_sec": 658.62,
+        "ratio_to_reference": 4.638,
+        "phases_sec": {
+          "compute": 643.08,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "p40",
+        "gpu_name": "P40",
+        "vram_gb": 24,
+        "estimated_sec": 664.4,
+        "ratio_to_reference": 4.679,
+        "phases_sec": {
+          "compute": 648.86,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "t4",
+        "gpu_name": "T4",
+        "vram_gb": 16,
+        "estimated_sec": 671.15,
+        "ratio_to_reference": 4.726,
+        "phases_sec": {
+          "compute": 655.62,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_a2000",
+        "gpu_name": "RTX A2000",
+        "vram_gb": 12,
+        "estimated_sec": 678.93,
+        "ratio_to_reference": 4.781,
+        "phases_sec": {
+          "compute": 663.4,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_a2000_6gb",
+        "gpu_name": "RTX A2000 6GB",
+        "vram_gb": 6,
+        "estimated_sec": 678.93,
+        "ratio_to_reference": 4.781,
+        "phases_sec": {
+          "compute": 663.4,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "a2",
+        "gpu_name": "A2",
+        "vram_gb": 16,
+        "estimated_sec": 719.58,
+        "ratio_to_reference": 5.067,
+        "phases_sec": {
+          "compute": 704.04,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "p4",
+        "gpu_name": "P4",
+        "vram_gb": 8,
+        "estimated_sec": 727.67,
+        "ratio_to_reference": 5.124,
+        "phases_sec": {
+          "compute": 712.13,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      },
+      {
+        "gpu_id": "rtx_2000_ada",
+        "gpu_name": "RTX 2000 Ada",
+        "vram_gb": 16,
+        "estimated_sec": 801.13,
+        "ratio_to_reference": 5.642,
+        "phases_sec": {
+          "compute": 785.59,
+          "warmup": 11.02,
+          "download": 2.52,
+          "setup": 2.0
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,425 @@
+{
+  "task": "vit_batch_inference",
+  "created_utc": "2026-10-07T10:20:12+00:00",
+  "calibration_id": "c-6c518e4b0bbf",
+  "client_commit": "0e2e207275f808b0e86fe9f0d49122ec993fe2d4",
+  "task_options": {
+    "timeout": 900,
+    "data_urls": [
+      "hf://models/google/vit-base-patch16-224"
+    ],
+    "dataset_size": 1,
+    "disk_gb": 10,
+    "stream_stderr": true
+  },
+  "task_kwargs": {},
+  "assay": {
+    "meta": {
+      "schema_version": "assay/1",
+      "analyzer_version": "0.1.0",
+      "calibration_id": "c-6c518e4b0bbf",
+      "confidence": 0.9
+    },
+    "workload": {
+      "type": "batch_inference",
+      "mode": "inference",
+      "framework": "pytorch",
+      "model": {
+        "name": "ViT Base",
+        "params_billions": 0.086,
+        "precision": "fp16",
+        "mixed_precision_autocast": false,
+        "gradient_scaler": false,
+        "gradient_checkpointing": false,
+        "peft": null
+      },
+      "runtime": {
+        "inference_engine": "transformers",
+        "optimizer": null,
+        "distributed_training": false
+      },
+      "knobs": {
+        "batch_size": 128,
+        "gradient_accumulation_steps": null,
+        "epochs": null,
+        "max_steps": null,
+        "dataset_samples": null,
+        "image_size": 224,
+        "seq_len": null,
+        "input_tokens": null,
+        "dataloader_workers": null,
+        "dataloader_pin_memory": false
+      },
+      "data": {
+        "dataset_mb": 1.0,
+        "model_download_mb": 172.0
+      },
+      "estimated": {
+        "augmentation_complexity": null,
+        "checkpointing_frequency": null,
+        "file_io_intensity": null
+      }
+    },
+    "requirements": {
+      "min_vram_gb": 27,
+      "vram_breakdown_gb": {
+        "model": 0.17,
+        "gradients": 0.0,
+        "optimizer": 0.0,
+        "activations": 23.74,
+        "total": 27.5
+      },
+      "min_disk_gb": 1,
+      "disk_breakdown_gb": {
+        "weights": 0.17,
+        "dataset": 0.0,
+        "outputs": 0.0,
+        "total": 0.2
+      },
+      "cpu_only": false
+    },
+    "work": {
+      "reference_cu": 9204,
+      "phases_cu": {
+        "compute": 24,
+        "warmup": 4315,
+        "io": 1865,
+        "setup": 3000
+      },
+      "reference_sec": 9.2,
+      "spread": {
+        "factor": 1.001
+      }
+    },
+    "assay_key": "ak1.4dBlPZ1GmEVtIPvjGnCHw3aqGM6IyGvrfgL5mXThbUHFTZRUmO7cK3e7hOhDevw-NyMM2NO2TU0DvlA8RX_D64EKbXjFONdI6Y0BnHQw78XjwGI_cETe4sLzbm3igmq7LGrNuYIBvcSLmDvFAQh1OtiDBJqq-7ARtvyuKrZIEfAwKac3DClvpMy4jlmYswGEc9hbjRzUGHxtTcyumFWuIQwitLqhOpYfZr1GZQc3wuHJrDOpYUPnODjGRqEobPEPzPPC70ctY1bjvnaLIto2GTl1UfO1vYUsk_DwFEY6dlRjpBiXot0PgVbDECrvvriXB0Z4dIESGQrM2HWxCKpOLRoLC9h2naADwcQqTNoD0DxpTi2sbJwPjYIiZ566HHLiMKxZQ4H-7ru0S330-C9NXnAcqIorixOkzJPBtFFTxbgls4WEFw"
+  },
+  "ladder": {
+    "meta": {
+      "schema_version": "ladder/2",
+      "calibration_id": "c-6c518e4b0bbf",
+      "assay_calibration_id": "c-6c518e4b0bbf"
+    },
+    "rows": [
+      {
+        "gpu_id": "b200_nvl",
+        "gpu_name": "B200 NVL",
+        "vram_gb": 180,
+        "compute_ratio": 0.8333
+      },
+      {
+        "gpu_id": "b100",
+        "gpu_name": "B100",
+        "vram_gb": 192,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "b200",
+        "gpu_name": "B200 SXM",
+        "vram_gb": 192,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "b300",
+        "gpu_name": "B300",
+        "vram_gb": 288,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "gh200",
+        "gpu_name": "GH200",
+        "vram_gb": 96,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "h100_nvl",
+        "gpu_name": "H100 NVL",
+        "vram_gb": 94,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "h100_pcie",
+        "gpu_name": "H100 PCIe",
+        "vram_gb": 80,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "h100_sxm",
+        "gpu_name": "H100 SXM",
+        "vram_gb": 80,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "h200",
+        "gpu_name": "H200 SXM",
+        "vram_gb": 141,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "h200_nvl",
+        "gpu_name": "H200 NVL",
+        "vram_gb": 141,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "h800",
+        "gpu_name": "H800",
+        "vram_gb": 80,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "mi300x",
+        "gpu_name": "AMD MI300X",
+        "vram_gb": 192,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "mi325x",
+        "gpu_name": "AMD MI325X",
+        "vram_gb": 256,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "rtx_5090",
+        "gpu_name": "RTX 5090",
+        "vram_gb": 32,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "rtx_6000_blackwell",
+        "gpu_name": "RTX 6000 WS Blackwell",
+        "vram_gb": 96,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "rtx_6000s",
+        "gpu_name": "RTX PRO 6000 S",
+        "vram_gb": 96,
+        "compute_ratio": 1.25
+      },
+      {
+        "gpu_id": "rtx_5000_blackwell",
+        "gpu_name": "RTX 5000 Blackwell",
+        "vram_gb": 48,
+        "compute_ratio": 1.6667
+      },
+      {
+        "gpu_id": "a800",
+        "gpu_name": "A800",
+        "vram_gb": 80,
+        "compute_ratio": 2.5
+      },
+      {
+        "gpu_id": "l40",
+        "gpu_name": "L40",
+        "vram_gb": 48,
+        "compute_ratio": 2.5
+      },
+      {
+        "gpu_id": "rtx_4500_blackwell_s",
+        "gpu_name": "PRO 4500 Blackwell Server",
+        "vram_gb": 32,
+        "compute_ratio": 2.5
+      },
+      {
+        "gpu_id": "rtx_5880_ada",
+        "gpu_name": "RTX 5880 Ada",
+        "vram_gb": 48,
+        "compute_ratio": 2.5
+      },
+      {
+        "gpu_id": "rtx_6000mq",
+        "gpu_name": "RTX PRO 6000 MaxQ",
+        "vram_gb": 96,
+        "compute_ratio": 2.5
+      },
+      {
+        "gpu_id": "rtx_a100_40",
+        "gpu_name": "A100 40GB PCIe",
+        "vram_gb": 40,
+        "compute_ratio": 2.5
+      },
+      {
+        "gpu_id": "a100_pcie_80",
+        "gpu_name": "A100 PCIe 80GB",
+        "vram_gb": 80,
+        "compute_ratio": 2.9167
+      },
+      {
+        "gpu_id": "a100_sxm_40",
+        "gpu_name": "A100 SXM 40",
+        "vram_gb": 40,
+        "compute_ratio": 2.9167
+      },
+      {
+        "gpu_id": "a100_sxm_80",
+        "gpu_name": "A100 SXM 80",
+        "vram_gb": 80,
+        "compute_ratio": 2.9167
+      },
+      {
+        "gpu_id": "l40s",
+        "gpu_name": "L40S",
+        "vram_gb": 48,
+        "compute_ratio": 2.9167
+      },
+      {
+        "gpu_id": "mi250",
+        "gpu_name": "AMD MI250",
+        "vram_gb": 128,
+        "compute_ratio": 2.9167
+      },
+      {
+        "gpu_id": "mi250x",
+        "gpu_name": "AMD MI250X",
+        "vram_gb": 128,
+        "compute_ratio": 2.9167
+      },
+      {
+        "gpu_id": "rtx_5000_ada",
+        "gpu_name": "RTX 5000 Ada",
+        "vram_gb": 32,
+        "compute_ratio": 2.9167
+      },
+      {
+        "gpu_id": "rtx_6000_ada",
+        "gpu_name": "RTX 6000 Ada",
+        "vram_gb": 48,
+        "compute_ratio": 2.9167
+      },
+      {
+        "gpu_id": "rtx_6000_mig_48",
+        "gpu_name": "PRO 6000 MIG 48 (Blackwell)",
+        "vram_gb": 48,
+        "compute_ratio": 2.9167
+      },
+      {
+        "gpu_id": "a100_pcie",
+        "gpu_name": "A100 PCIe",
+        "vram_gb": 40,
+        "compute_ratio": 3.3333
+      },
+      {
+        "gpu_id": "rtx_4500_blackwell",
+        "gpu_name": "PRO 4500 Blackwell",
+        "vram_gb": 32,
+        "compute_ratio": 3.3333
+      },
+      {
+        "gpu_id": "mi100",
+        "gpu_name": "AMD MI100",
+        "vram_gb": 32,
+        "compute_ratio": 4.1667
+      },
+      {
+        "gpu_id": "mi210",
+        "gpu_name": "AMD MI210",
+        "vram_gb": 64,
+        "compute_ratio": 4.1667
+      },
+      {
+        "gpu_id": "a40",
+        "gpu_name": "A40",
+        "vram_gb": 48,
+        "compute_ratio": 4.5833
+      },
+      {
+        "gpu_id": "rtx_4500_ada",
+        "gpu_name": "RTX 4500 Ada",
+        "vram_gb": 32,
+        "compute_ratio": 4.5833
+      },
+      {
+        "gpu_id": "rtx_8000_quadro",
+        "gpu_name": "RTX 8000 QUADRO",
+        "vram_gb": 48,
+        "compute_ratio": 5.0
+      },
+      {
+        "gpu_id": "rtx_a6000",
+        "gpu_name": "RTX A6000",
+        "vram_gb": 48,
+        "compute_ratio": 5.0
+      },
+      {
+        "gpu_id": "qrtx_8000",
+        "gpu_name": "Quadro RTX 8000",
+        "vram_gb": 48,
+        "compute_ratio": 6.25
+      },
+      {
+        "gpu_id": "v100_32gb",
+        "gpu_name": "V100 32GB",
+        "vram_gb": 32,
+        "compute_ratio": 6.25
+      },
+      {
+        "gpu_id": "v100s",
+        "gpu_name": "V100S",
+        "vram_gb": 32,
+        "compute_ratio": 6.25
+      }
+    ]
+  },
+  "comparison": {
+    "passport": {
+      "reference_sec": [
+        9,
+        9.2
+      ],
+      "min_vram_gb": [
+        null,
+        27
+      ]
+    },
+    "compute_ratio": {
+      "a100_sxm_40": [
+        3.137,
+        2.9167
+      ],
+      "a100_sxm_80": [
+        5.174,
+        2.9167
+      ],
+      "h100_sxm": [
+        1.538,
+        1.25
+      ],
+      "l4": [
+        3.468,
+        null
+      ],
+      "l40": [
+        1.584,
+        2.5
+      ],
+      "rtx_2000_ada": [
+        1.68,
+        null
+      ],
+      "rtx_5080": [
+        1.601,
+        null
+      ],
+      "rtx_5090": [
+        1.713,
+        1.25
+      ],
+      "rtx_6000_ada": [
+        1.914,
+        2.9167
+      ],
+      "rtx_6000_blackwell": [
+        1.0,
+        1.25
+      ],
+      "rtx_6000s": [
+        1.564,
+        1.25
+      ],
+      "rtx_a6000": [
+        2.7,
+        5.0
+      ]
+    }
+  }
+}
