@@ -66,7 +66,8 @@ Each run prints reference / analyzer pairs for the passport (`reference_sec`,
 `calibration_id`, assay, ladder and the reference / analyzer pairs. Result
 files are not edited after they are written: the UTC time and
 `calibration_id` show that the forecast was made before any run it is
-compared with.
+compared with. `results/` is not tracked by git: the files stay with whoever
+runs the stand; keep them, or hand them over together with the measurements.
 
 ## Tasks
 

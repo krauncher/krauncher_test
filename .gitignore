@@ -2,3 +2,5 @@
 client/
 .env
 __pycache__/
+results/*
+!results/.gitkeep

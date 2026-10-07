@@ -51,6 +51,7 @@ Output: reference / analyzer pairs on stdout, and
 commit, `calibration_id`, assay, ladder and the pairs (`comparison`).
 **Never edit or delete a result file**: its UTC time and `calibration_id` prove
 the forecast predates the runs it is compared with. Run again for a new one.
+`results/` is not tracked by git; do not commit result files.
 
 Errors:
 
