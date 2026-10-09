@@ -1,26 +1,17 @@
-"""Qwen2.5-1.5B-Instruct inference on GSM8K — tutorial 30.
+"""Qwen2.5-7B-Instruct long generation — tutorial 31.
 
-The function below is the task, unchanged. FUNC is the task, OPTIONS the
-arguments of its @client.task decorator, KWARGS the arguments of the call.
-Krauncher variant of tasks/qwen15_inference.py (the neutral form); the expected
-forecast and its sources are in tasks/qwen15_inference.json.
+Neutral form of the task: a plain script, runnable on any machine with a GPU
+(`python tasks/krauncher_tutorials/qwen25_7b_long.py`); models and datasets by their public Hugging Face
+ids. KWARGS are the call arguments. The expected forecast and its sources are
+in qwen25_7b_long.json; the form a service takes is in variants/<service>/krauncher_tutorials/qwen25_7b_long.py.
 """
 
-OPTIONS = dict(
-    timeout=1800,
-    data_urls=['hf://datasets/openai/gsm8k', 'hf://models/Qwen/Qwen2.5-1.5B-Instruct'],
-    pip=['datasets'],
-    dataset_size=3,
-    disk_gb=15,
-    stream_stderr=True,
-)
-
-KWARGS = dict()
+KWARGS = {}
 
 
-def qwen15_inference(num_samples: int = 80, max_new_tokens: int = 100):
-    """Short-form Q/A generation with Qwen2.5-1.5B."""
-    print("Task started. Importing torch / transformers (~10-15s)...", flush=True)
+def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
+    """Long-form chain-of-thought generation, pushes per-task token total ~60k."""
+    print("Task started. Importing torch / transformers (~15-25s)...", flush=True)
     import time
 
     _t_imp = time.monotonic()
@@ -30,12 +21,12 @@ def qwen15_inference(num_samples: int = 80, max_new_tokens: int = 100):
     print(f"Imports done in {time.monotonic() - _t_imp:.1f}s.", flush=True)
 
     t0 = time.monotonic()
-    model_path = "/data/Qwen__Qwen2.5-1.5B-Instruct"
-    dataset_path = "/data/openai__gsm8k"
+    model_path = "Qwen/Qwen2.5-7B-Instruct"
+    dataset_path = "openai/gsm8k"
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     print(f"Tokenizer loaded in {time.monotonic() - t0:.1f}s. "
-          f"Loading model weights (fp16, ~3 GB)...", flush=True)
+          f"Loading model weights (fp16, ~14 GB)...", flush=True)
 
     t1 = time.monotonic()
     model = AutoModelForCausalLM.from_pretrained(
@@ -50,11 +41,14 @@ def qwen15_inference(num_samples: int = 80, max_new_tokens: int = 100):
           flush=True)
 
     last_log = time.monotonic()
-    HEARTBEAT_SEC = 30
+    HEARTBEAT_SEC = 50
 
     for i, sample in enumerate(ds):
         prompt = tokenizer.apply_chat_template(
-            [{"role": "user", "content": f"Solve briefly: {sample['question']}"}],
+            [{"role": "user", "content": (
+                f"Solve this carefully, showing all reasoning steps in detail. "
+                f"Problem: {sample['question']}"
+            )}],
             tokenize=False, add_generation_prompt=True,
         )
         inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
@@ -64,7 +58,7 @@ def qwen15_inference(num_samples: int = 80, max_new_tokens: int = 100):
                 pad_token_id=tokenizer.eos_token_id,
             )
         now = time.monotonic()
-        if (i + 1) % 20 == 0 or (now - last_log) >= HEARTBEAT_SEC:
+        if (i + 1) % 5 == 0 or (now - last_log) >= HEARTBEAT_SEC:
             print(f"  [{i + 1}/{len(ds)}] elapsed {now - t0:.0f}s", flush=True)
             last_log = now
 
@@ -75,4 +69,5 @@ def qwen15_inference(num_samples: int = 80, max_new_tokens: int = 100):
     }
 
 
-FUNC = qwen15_inference
+if __name__ == "__main__":
+    print(qwen7b_long_inference(**KWARGS))

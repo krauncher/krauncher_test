@@ -4,12 +4,12 @@ Nothing runs on a GPU. The service adapter (adapters/) asks its service for
 the pre-run forecast of the task and normalises it to the stand's fields; the
 forecast is written to results/<service>/<task>_<UTC time>.json and never
 edited afterwards: its timestamp and version prove it predates any measured
-run. The task's description (tasks/<task>.json) holds the expected
+run. The task's description (tasks/<source>/<task>.json) holds the expected
 forecast: classification / assay fields are printed expected / service with
 ok / DIFF, the passport (reference_sec, min_vram_gb) and the ladder
 (compute_ratio per GPU) as pairs reference / service.
 
-    python run.py [task] [--service krauncher]   # task = module in tasks/, default bert_imdb
+    python run.py [task] [--service krauncher]   # task = <source>/<task>, e.g. krauncher_tutorials/bert_imdb
 """
 
 import argparse
@@ -58,7 +58,7 @@ async def main(name: str, service: str, mid: str | None) -> None:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("task", nargs="?", default="bert_imdb")
+    ap.add_argument("task", nargs="?", default="krauncher_tutorials/bert_imdb")
     ap.add_argument("--service", default="krauncher", choices=sorted(ADAPTERS))
     ap.add_argument("--measurement", help="measurement set id of the description (default: the first)")
     args = ap.parse_args()

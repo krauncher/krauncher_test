@@ -7,26 +7,31 @@ sample on the stand; they forecast it from the code.
 
 ## What a sample is
 
-Three files under the sample's name `<name>` (lowercase, `_` between words):
+Three files under the sample's name `<name>` (lowercase, `_` between words),
+kept in a folder per source `<source>`: `krauncher_tutorials` (the Krauncher
+client's tutorials and calibration tasks), `lambdalabs` (Lambda's published
+GPU benchmarks), a new folder for a new source (a valid Python package name,
+with an empty `__init__.py`). The task's name on the stand is
+`<source>/<name>`.
 
 | File | What | Who writes it |
 |---|---|---|
-| `tasks/<name>.py` | the neutral task: a plain script, runnable on a machine with a GPU | you |
-| `tasks/<name>.json` | the description: the expected forecast and the measurements | you |
-| `variants/<service>/<name>.py` | the same task in the form one service takes | you, or anyone adding that service; by hand, a script or an LLM from the neutral task — then reviewed |
+| `tasks/<source>/<name>.py` | the neutral task: a plain script, runnable on a machine with a GPU | you |
+| `tasks/<source>/<name>.json` | the description: the expected forecast and the measurements | you |
+| `variants/<service>/<source>/<name>.py` | the same task in the form one service takes | you, or anyone adding that service; by hand, a script or an LLM from the neutral task — then reviewed |
 
-## 1. The neutral task — `tasks/<name>.py`
+## 1. The neutral task — `tasks/<source>/<name>.py`
 
-- One task function and the call arguments `KWARGS`; `python tasks/<name>.py`
+- One task function and the call arguments `KWARGS`; `python tasks/<source>/<name>.py`
   runs it:
 
   ```python
   """<What the task is> (<source, if published>).
 
   Neutral form of the task: a plain script, runnable on any machine with a GPU
-  (`python tasks/<name>.py`); models and datasets by their public ids. KWARGS
+  (`python tasks/<source>/<name>.py`); models and datasets by their public ids. KWARGS
   are the call arguments. The expected forecast and its sources are in
-  <name>.json; the form a service takes is in variants/<service>/<name>.py.
+  <name>.json; the form a service takes is in variants/<service>/<source>/<name>.py.
   """
 
   KWARGS = {"batch_size": 32, "num_epochs": 1}
@@ -54,7 +59,7 @@ Three files under the sample's name `<name>` (lowercase, `_` between words):
   sequence length / image size, number of iterations). Name the source and
   its version (repository, commit or release) in the docstring.
 
-## 2. The description — `tasks/<name>.json`
+## 2. The description — `tasks/<source>/<name>.json`
 
 ```json
 {
@@ -141,7 +146,7 @@ GPU keys are the stand's `gpu_id`s (`rtx_6000_blackwell`, `h100_sxm`,
   results do not fit a single-GPU sample — leave them out.
 - Cite the exact table: URL, version / round, row identifiers.
 
-## 3. A service variant — `variants/<service>/<name>.py`
+## 3. A service variant — `variants/<service>/<source>/<name>.py`
 
 The task in the form that service takes. For Krauncher: the task function
 with the `@client.task` arguments and the call arguments,
@@ -161,8 +166,8 @@ neutral task before it is committed.
 ## 4. Check and submit
 
 ```bash
-.venv/bin/python -m py_compile tasks/<name>.py variants/krauncher/<name>.py
-.venv/bin/python run.py <name>                 # one forecast per service
+.venv/bin/python -m py_compile tasks/<source>/<name>.py variants/krauncher/<source>/<name>.py
+.venv/bin/python run.py <source>/<name>                 # one forecast per service
 .venv/bin/python report.py --measurement <id>  # the sample in the report
 ```
 

@@ -1,9 +1,9 @@
 """BERT fine-tuning on IMDB — tutorial 20 of the krauncher client.
 
 Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/bert_imdb.py`); models and datasets by their public Hugging Face
+(`python tasks/krauncher_tutorials/bert_imdb.py`); models and datasets by their public Hugging Face
 ids. KWARGS are the call arguments. The expected forecast and its sources are
-in bert_imdb.json; the form a service takes is in variants/<service>/bert_imdb.py.
+in bert_imdb.json; the form a service takes is in variants/<service>/krauncher_tutorials/bert_imdb.py.
 """
 
 KWARGS = {'batch_size': 16, 'lr': 2e-05, 'num_epochs': 3}

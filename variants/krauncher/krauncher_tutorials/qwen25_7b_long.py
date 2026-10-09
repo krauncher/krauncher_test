@@ -1,26 +1,26 @@
-"""Phi-3-mini inference on GSM8K — tutorial 32.
+"""Qwen2.5-7B-Instruct long generation — tutorial 31.
 
 The function below is the task, unchanged. FUNC is the task, OPTIONS the
 arguments of its @client.task decorator, KWARGS the arguments of the call.
-Krauncher variant of tasks/phi3_inference.py (the neutral form); the expected
-forecast and its sources are in tasks/phi3_inference.json.
+Krauncher variant of tasks/krauncher_tutorials/qwen25_7b_long.py (the neutral form); the expected
+forecast and its sources are in tasks/krauncher_tutorials/qwen25_7b_long.json.
 """
 
 OPTIONS = dict(
-    timeout=9600,
-    data_urls=['hf://datasets/openai/gsm8k', 'hf://models/microsoft/Phi-3-mini-4k-instruct'],
+    timeout=43200,
+    data_urls=['hf://datasets/openai/gsm8k', 'hf://models/Qwen/Qwen2.5-7B-Instruct'],
     pip=['datasets'],
     dataset_size=3,
-    disk_gb=25,
+    disk_gb=40,
     stream_stderr=True,
 )
 
 KWARGS = dict()
 
 
-def phi3_inference(num_samples: int = 50, max_new_tokens: int = 500):
-    """Mid-size LLM Q/A generation."""
-    print("Task started. Importing torch / transformers (~12-20s)...", flush=True)
+def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
+    """Long-form chain-of-thought generation, pushes per-task token total ~60k."""
+    print("Task started. Importing torch / transformers (~15-25s)...", flush=True)
     import time
 
     _t_imp = time.monotonic()
@@ -30,16 +30,16 @@ def phi3_inference(num_samples: int = 50, max_new_tokens: int = 500):
     print(f"Imports done in {time.monotonic() - _t_imp:.1f}s.", flush=True)
 
     t0 = time.monotonic()
-    model_path = "/data/microsoft__Phi-3-mini-4k-instruct"
+    model_path = "/data/Qwen__Qwen2.5-7B-Instruct"
     dataset_path = "/data/openai__gsm8k"
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     print(f"Tokenizer loaded in {time.monotonic() - t0:.1f}s. "
-          f"Loading model weights (fp16, ~7.6 GB)...", flush=True)
+          f"Loading model weights (fp16, ~14 GB)...", flush=True)
 
     t1 = time.monotonic()
     model = AutoModelForCausalLM.from_pretrained(
-        model_path, dtype=torch.float16, device_map="auto", attn_implementation="sdpa",
+        model_path, dtype=torch.float16, device_map="auto",
     )
     model.eval()
     print(f"Model loaded in {time.monotonic() - t1:.1f}s.", flush=True)
@@ -50,11 +50,14 @@ def phi3_inference(num_samples: int = 50, max_new_tokens: int = 500):
           flush=True)
 
     last_log = time.monotonic()
-    HEARTBEAT_SEC = 40
+    HEARTBEAT_SEC = 50
 
     for i, sample in enumerate(ds):
         prompt = tokenizer.apply_chat_template(
-            [{"role": "user", "content": f"Solve step by step: {sample['question']}"}],
+            [{"role": "user", "content": (
+                f"Solve this carefully, showing all reasoning steps in detail. "
+                f"Problem: {sample['question']}"
+            )}],
             tokenize=False, add_generation_prompt=True,
         )
         inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
@@ -64,7 +67,7 @@ def phi3_inference(num_samples: int = 50, max_new_tokens: int = 500):
                 pad_token_id=tokenizer.eos_token_id,
             )
         now = time.monotonic()
-        if (i + 1) % 10 == 0 or (now - last_log) >= HEARTBEAT_SEC:
+        if (i + 1) % 5 == 0 or (now - last_log) >= HEARTBEAT_SEC:
             print(f"  [{i + 1}/{len(ds)}] elapsed {now - t0:.0f}s", flush=True)
             last_log = now
 
@@ -75,4 +78,4 @@ def phi3_inference(num_samples: int = 50, max_new_tokens: int = 500):
     }
 
 
-FUNC = phi3_inference
+FUNC = qwen7b_long_inference

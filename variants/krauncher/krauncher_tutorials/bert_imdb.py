@@ -3,8 +3,8 @@
 The function below is the tutorial's task, unchanged. FUNC is the task,
 OPTIONS the arguments of its @client.task decorator, KWARGS the arguments
 of the call.
-Krauncher variant of tasks/bert_imdb.py (the neutral form); the expected
-forecast and its sources are in tasks/bert_imdb.json.
+Krauncher variant of tasks/krauncher_tutorials/bert_imdb.py (the neutral form); the expected
+forecast and its sources are in tasks/krauncher_tutorials/bert_imdb.json.
 """
 
 OPTIONS = dict(

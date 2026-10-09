@@ -1,9 +1,9 @@
 """Qwen2.5-7B LoRA fine-tuning on Alpaca — tutorial 21.
 
 Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/qwen25_7b_lora_alpaca.py`); models and datasets by their public Hugging Face
+(`python tasks/krauncher_tutorials/qwen25_7b_lora_alpaca.py`); models and datasets by their public Hugging Face
 ids. KWARGS are the call arguments. The expected forecast and its sources are
-in qwen25_7b_lora_alpaca.json; the form a service takes is in variants/<service>/qwen25_7b_lora_alpaca.py.
+in qwen25_7b_lora_alpaca.json; the form a service takes is in variants/<service>/krauncher_tutorials/qwen25_7b_lora_alpaca.py.
 """
 
 KWARGS = {}

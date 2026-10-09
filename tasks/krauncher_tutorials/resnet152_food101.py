@@ -1,10 +1,10 @@
 """ResNet-152 training on Food-101, 3 epochs x 150 batches — calibration task 18 (fast).
 
 Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/resnet152_food101.py`); the dataset is downloaded from its public URL into
+(`python tasks/krauncher_tutorials/resnet152_food101.py`); the dataset is downloaded from its public URL into
 ./data when missing. KWARGS are the call arguments. The expected forecast and
 its sources are in resnet152_food101.json; the form a service takes is in
-variants/<service>/resnet152_food101.py.
+variants/<service>/krauncher_tutorials/resnet152_food101.py.
 """
 
 KWARGS = {'batch_size': 64, 'epochs': 3, 'lr': 0.01, 'max_batches': 150}

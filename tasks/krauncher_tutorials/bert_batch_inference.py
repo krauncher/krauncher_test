@@ -1,9 +1,9 @@
 """BERT batch inference — tutorial 35.
 
 Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/bert_batch_inference.py`); models and datasets by their public Hugging Face
+(`python tasks/krauncher_tutorials/bert_batch_inference.py`); models and datasets by their public Hugging Face
 ids. KWARGS are the call arguments. The expected forecast and its sources are
-in bert_batch_inference.json; the form a service takes is in variants/<service>/bert_batch_inference.py.
+in bert_batch_inference.json; the form a service takes is in variants/<service>/krauncher_tutorials/bert_batch_inference.py.
 """
 
 KWARGS = {}

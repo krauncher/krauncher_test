@@ -43,7 +43,7 @@ cp .env.example .env       # then set KRAUNCHER_API_KEY=cas_...
 ## Run
 
 ```bash
-.venv/bin/python run.py <task> [--service krauncher]   # <task> = name of tasks/<task>.json
+.venv/bin/python run.py <task> [--service krauncher]   # <task> = <source>/<task>, as tasks/<source>/<task>.json
 ```
 
 Output: reference / service pairs on stdout, and
@@ -210,7 +210,7 @@ DATA_SOURCES = [
 
 ```bash
 .venv/bin/python -c "from tasks import <name> as t; print(t.FUNC.__name__, t.OPTIONS, t.KWARGS)"
-.venv/bin/python run.py <name>
+.venv/bin/python run.py <source>/<name>
 ```
 
 Then read `results/krauncher/<name>_<UTC time>.json`: `raw.assay.workload` shows what the

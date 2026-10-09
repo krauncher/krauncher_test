@@ -2,8 +2,8 @@
 
 The function below is the task, unchanged. FUNC is the task, OPTIONS the
 arguments of its @client.task decorator, KWARGS the arguments of the call.
-Krauncher variant of tasks/qwen25_7b_lora_alpaca.py (the neutral form); the expected
-forecast and its sources are in tasks/qwen25_7b_lora_alpaca.json.
+Krauncher variant of tasks/krauncher_tutorials/qwen25_7b_lora_alpaca.py (the neutral form); the expected
+forecast and its sources are in tasks/krauncher_tutorials/qwen25_7b_lora_alpaca.json.
 """
 
 OPTIONS = dict(

@@ -2,7 +2,7 @@
 
 For every (service, task) the latest result is taken (optionally only those of
 one service version, e.g. a Krauncher calibration_id) and compared with the
-task's description (tasks/<task>.json). Levels:
+task's description (tasks/<source>/<task>.json). Levels:
 
 0. forecast time — wall clock from request to the normalised forecast,
    measured by the stand for every service (plus the service's own parts);
@@ -39,7 +39,7 @@ ROOT = Path(__file__).parent
 def latest(service: str | None, version: str | None) -> dict[tuple[str, str], dict]:
     """(service, task) -> its latest result (new format: results/<service>/)."""
     out: dict[tuple[str, str], dict] = {}
-    for f in sorted((ROOT / "results").glob("*/*.json")):
+    for f in sorted((ROOT / "results").glob("*/**/*.json")):
         r = json.loads(f.read_text())
         if service and r["service"] != service:
             continue
@@ -175,7 +175,8 @@ def main() -> None:
     ap.add_argument("--version", help="only results of this service version (e.g. a calibration_id)")
     ap.add_argument("--measurement", help="only this measurement set of the descriptions (default: each)")
     args = ap.parse_args()
-    descs = {p.stem: json.loads(p.read_text()) for p in (ROOT / "tasks").glob("*.json")}
+    tasks = ROOT / "tasks"
+    descs = {str(p.relative_to(tasks).with_suffix("")): json.loads(p.read_text()) for p in tasks.rglob("*.json")}
     print(report(latest(args.service, args.version), descs, args.measurement))
 
 

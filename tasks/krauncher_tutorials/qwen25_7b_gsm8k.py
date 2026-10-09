@@ -1,9 +1,9 @@
 """Qwen2.5-7B-Instruct inference on GSM8K — tutorial 22.
 
 Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/qwen25_7b_gsm8k.py`); models and datasets by their public Hugging Face
+(`python tasks/krauncher_tutorials/qwen25_7b_gsm8k.py`); models and datasets by their public Hugging Face
 ids. KWARGS are the call arguments. The expected forecast and its sources are
-in qwen25_7b_gsm8k.json; the form a service takes is in variants/<service>/qwen25_7b_gsm8k.py.
+in qwen25_7b_gsm8k.json; the form a service takes is in variants/<service>/krauncher_tutorials/qwen25_7b_gsm8k.py.
 """
 
 KWARGS = {}

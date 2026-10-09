@@ -17,7 +17,8 @@ TASKS = Path(__file__).parent / "tasks"
 
 @dataclass
 class Task:
-    """A stand task — labelled data: its neutral code (tasks/<name>.py, a
+    """A stand task — labelled data. `name` is <source>/<task> (tasks are kept
+    in a folder per source: krauncher_tutorials, lambdalabs, ...). Its neutral code (tasks/<name>.py, a
     plain script runnable on a GPU machine) and its description
     (tasks/<name>.json): `fields`, the expected forecast in the stand's
     fields (classification / assay), `sources`, where they come from, and
@@ -47,7 +48,7 @@ class Task:
 
     def variant(self, service: str) -> ModuleType:
         """The task in the form `service` takes (variants/<service>/<name>.py)."""
-        return importlib.import_module(f"variants.{service}.{self.name}")
+        return importlib.import_module(f"variants.{service}.{self.name.replace('/', '.')}")
 
 
 @dataclass

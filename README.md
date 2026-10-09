@@ -48,14 +48,14 @@ Without ladder access a run stops with
 
 One task:
 
-    .venv/bin/python run.py bert_imdb
+    .venv/bin/python run.py krauncher_tutorials/bert_imdb
 
 `--service <name>` picks the service under test (default `krauncher`; the
 services are adapters in `adapters/`, see `doc/extension_plan.md`).
 
 All tasks:
 
-    for t in tasks/*.json; do .venv/bin/python run.py "$(basename "$t" .json)"; done
+    for t in tasks/*/*.json; do t=${t#tasks/}; .venv/bin/python run.py "${t%.json}"; done
 
 `resnet152_food101` names the public Food-101 dataset through a data source
 `food-101`, from which the analyzer takes the dataset size; `run.py` registers
