@@ -32,7 +32,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import scoring
-from scoring import MEASURED, ladder_pairs, matches, ratio_status, time_status, vram_status
+from scoring import MEASURED, REFERENCE_GPU, ladder_pairs, matches, ratio_status, time_status, vram_status
 
 ROOT = Path(__file__).parent
 
@@ -185,22 +185,27 @@ def analyze(results: dict, descs: dict, measurement: str | None = None) -> dict:
                     continue
                 if meas(t).get("anchor_gpu"):
                     anchors[t] = meas(t)["anchor_gpu"]
+                # the anchor (or the reference card) is 1.0 on both sides by
+                # definition: kept for the card order and the pick, not scored
+                anchor = meas(t).get("anchor_gpu") or REFERENCE_GPU
                 cells[t] = {g: {"measured": e, "forecast": _r(f),
-                                "status": ratio_status(f, e) if f is not None else "none"}
+                                "status": "anchor" if g == anchor else
+                                          ratio_status(f, e) if f is not None else "none"}
                             for g, (e, f) in full.items()}
-                missing = [g for g, (_, f) in full.items() if f is None]
+                scored = [g for g in full if g != anchor]
+                missing = [g for g in scored if full[g][1] is None]
                 if missing:
-                    uncovered.append({"task": t, "missing": missing, "measured": len(full)})
+                    uncovered.append({"task": t, "missing": missing, "measured": len(scored)})
                 lp = {g: v for g, v in full.items() if v[1] is not None}
                 if len(lp) < 3:
                     continue
                 exp, got = {g: v[0] for g, v in lp.items()}, {g: v[1] for g, v in lp.items()}
-                err = [abs(math.log(got[g] / exp[g])) for g in lp]
+                err = [abs(math.log(got[g] / exp[g])) for g in lp if g != anchor]
                 all_err += err
                 pick, best = min(lp, key=lambda g: got[g]), min(lp, key=lambda g: exp[g])
                 regret = exp[pick] / exp[best]
                 rank = _spearman(list(exp.values()), list(got.values()))
-                lrows.append({"task": t, "gpus": len(lp),
+                lrows.append({"task": t, "gpus": len(lp), "scored_gpus": len(err),
                               "typical_error": _r(math.exp(statistics.median(err))),
                               "p90_error": _r(math.exp(_q(err, 0.9))),
                               "rank_corr": _r(rank, 2), "pick": pick, "fastest": best,
@@ -272,8 +277,9 @@ def render_md(rep: dict) -> str:
 
 # --------------------------------------------------------------------- html
 
-_ICON = {"good": "✓", "warning": "!", "critical": "✗", "none": "–"}
-_WORD = {"good": "accurate", "warning": "miss", "critical": "problem", "none": "no forecast"}
+_ICON = {"good": "✓", "warning": "!", "critical": "✗", "none": "–", "anchor": "◦"}
+_WORD = {"good": "accurate", "warning": "miss", "critical": "problem", "none": "no forecast",
+         "anchor": "anchor (1.00 by definition, not scored)"}
 
 # Status colours: the reference palette's fixed status set (good / warning /
 # critical), always paired with an icon and a word — never colour alone.
@@ -311,6 +317,7 @@ tr:last-child td{border-bottom:0} td.num{text-align:right}
 td.cell{text-align:center;font-size:12px;min-width:56px;padding:7px 8px}
 td.cell.good{background:var(--good-bg)} td.cell.warning{background:var(--warning-bg)}
 td.cell.critical{background:var(--critical-bg)} td.cell.none{background:var(--none-bg);color:var(--text-muted)}
+td.cell.anchor{color:var(--text-muted)} .st.anchor{background:var(--none-bg)} .st.anchor b{color:var(--text-muted)}
 .legend{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 0}
 .note{color:var(--text-secondary);font-size:13px;margin:6px 0}
 .toggle{float:right;background:var(--surface-1);color:var(--text-primary);border:1px solid var(--border);border-radius:8px;padding:4px 10px;cursor:pointer;font:inherit}
@@ -394,7 +401,7 @@ def render_html(rep: dict) -> str:
                                        "good" if ld["pick_slower"] == 0 else "critical"))
                 if ld["uncovered"]:
                     miss = sum(len(x["missing"]) for x in ld["uncovered"])
-                    tot = sum(len(c) for c in ld["cells"].values())
+                    tot = sum(sum(1 for x in c.values() if x["status"] != "anchor") for c in ld["cells"].values())
                     tiles.append(_tile("Measured GPUs with no forecast", f"{miss}/{tot}", tag, "critical"))
         P.append('<div class="tiles">' + "".join(tiles) + "</div>")
 
@@ -462,6 +469,8 @@ def render_html(rep: dict) -> str:
                         x = c.get(g)
                         if x is None:
                             tds.append("<td></td>")
+                        elif x["status"] == "anchor":
+                            tds.append(f'<td class="cell anchor" title="{e(g)}: anchor, 1.00 by definition">◦ anchor</td>')
                         elif x["forecast"] is None:
                             tip = f"{g}: measured {x['measured']} · no forecast"
                             tds.append(f'<td class="cell none" title="{e(tip)}">– none</td>')
@@ -477,7 +486,7 @@ def render_html(rep: dict) -> str:
                          'values). An empty cell is a GPU not measured for that task; "vs" names the anchor GPU a '
                          'published measurement is relative to.</p>')
                 P.append(f'<div class="panel"><table><thead><tr><th>task</th>{head}</tr></thead><tbody>{body}</tbody></table></div>')
-                P.append('<div class="legend">' + " ".join(_st(k) for k in ("good", "warning", "critical", "none")) + "</div>")
+                P.append('<div class="legend">' + " ".join(_st(k) for k in ("good", "warning", "critical", "none", "anchor")) + "</div>")
                 if ld["uncovered"]:
                     P.append('<p class="note">' + _st("critical", "no forecast")
                              + " measured GPUs the service listed no row for (e.g. filtered out by its VRAM requirement): "

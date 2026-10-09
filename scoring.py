@@ -4,6 +4,9 @@ run.py (one task) and report.py (all tasks)."""
 PARAMS_TOL = 0.25                              # params_billions within +/-25 %
 _NORM = {"precision": lambda v: v or "fp32"}   # no precision in the code is fp32
 
+# The reference card of the ladder (compute_ratio 1.0 by definition).
+REFERENCE_GPU = "rtx_6000_blackwell"
+
 # Measured values and the ladder: scored by their error, not pass / fail.
 MEASURED = ("reference_sec", "min_vram_gb", "compute_ratio")
 

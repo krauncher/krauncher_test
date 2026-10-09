@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-10-09T16:35:34+00:00",
+  "created_utc": "2026-10-09T16:55:17+00:00",
   "thresholds": {
     "time_good": 1.1,
     "time_warning": 1.25,
@@ -22,7 +22,10 @@
         "krauncher_tutorials/qwen25_7b_lora_alpaca",
         "krauncher_tutorials/resnet152_food101",
         "krauncher_tutorials/vit_batch_inference",
-        "lambdalabs/resnet50_amp_bs1280"
+        "lambdalabs/bert_base_squad_amp_bs192",
+        "lambdalabs/bert_base_squad_amp_bs320",
+        "lambdalabs/resnet50_amp_bs1280",
+        "lambdalabs/resnet50_amp_bs928"
       ],
       "versions": [
         "{\"calibration_id\": \"c-d589e2f979e6\", \"client_commit\": \"0e2e207275f808b0e86fe9f0d49122ec993fe2d4\"}"
@@ -38,7 +41,10 @@
         "krauncher_tutorials/qwen25_7b_lora_alpaca": "2026-10-09T16:35:32+00:00",
         "krauncher_tutorials/resnet152_food101": "2026-10-09T16:35:32+00:00",
         "krauncher_tutorials/vit_batch_inference": "2026-10-09T16:35:33+00:00",
-        "lambdalabs/resnet50_amp_bs1280": "2026-10-09T16:35:34+00:00"
+        "lambdalabs/bert_base_squad_amp_bs192": "2026-10-09T16:53:39+00:00",
+        "lambdalabs/bert_base_squad_amp_bs320": "2026-10-09T16:52:48+00:00",
+        "lambdalabs/resnet50_amp_bs1280": "2026-10-09T16:35:34+00:00",
+        "lambdalabs/resnet50_amp_bs928": "2026-10-09T16:49:43+00:00"
       },
       "forecast_time": {
         "median_sec": 0.62,
@@ -95,10 +101,25 @@
             "assay_ladder_sec": 0.04,
             "forecast_sec": 0.62
           },
+          "lambdalabs/bert_base_squad_amp_bs192": {
+            "analysis_sec": 0.55,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
+          "lambdalabs/bert_base_squad_amp_bs320": {
+            "analysis_sec": 0.55,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
           "lambdalabs/resnet50_amp_bs1280": {
             "analysis_sec": 0.54,
             "assay_ladder_sec": 0.04,
             "forecast_sec": 0.62
+          },
+          "lambdalabs/resnet50_amp_bs928": {
+            "analysis_sec": 0.54,
+            "assay_ladder_sec": 0.05,
+            "forecast_sec": 0.63
           }
         }
       },
@@ -155,14 +176,29 @@
               "forecast": "batch_inference",
               "status": "good"
             },
+            "lambdalabs/bert_base_squad_amp_bs192": {
+              "expected": "ai_training",
+              "forecast": "ai_training",
+              "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs320": {
+              "expected": "ai_training",
+              "forecast": "ai_training",
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "cv_training",
+              "forecast": "cv_training",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs928": {
               "expected": "cv_training",
               "forecast": "cv_training",
               "status": "good"
             }
           },
-          "match": 11,
-          "total": 11
+          "match": 14,
+          "total": 14
         },
         "mode": {
           "tasks": {
@@ -216,14 +252,29 @@
               "forecast": "inference",
               "status": "good"
             },
+            "lambdalabs/bert_base_squad_amp_bs192": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs320": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs928": {
               "expected": "training",
               "forecast": "training",
               "status": "good"
             }
           },
-          "match": 11,
-          "total": 11
+          "match": 14,
+          "total": 14
         },
         "framework": {
           "tasks": {
@@ -277,14 +328,29 @@
               "forecast": "pytorch",
               "status": "good"
             },
+            "lambdalabs/bert_base_squad_amp_bs192": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs320": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs928": {
               "expected": "pytorch",
               "forecast": "pytorch",
               "status": "good"
             }
           },
-          "match": 11,
-          "total": 11
+          "match": 14,
+          "total": 14
         },
         "precision": {
           "tasks": {
@@ -338,14 +404,29 @@
               "forecast": "fp16",
               "status": "good"
             },
+            "lambdalabs/bert_base_squad_amp_bs192": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs320": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs928": {
               "expected": "fp16",
               "forecast": "fp16",
               "status": "good"
             }
           },
-          "match": 11,
-          "total": 11
+          "match": 14,
+          "total": 14
         },
         "params_billions": {
           "tasks": {
@@ -399,14 +480,29 @@
               "forecast": 0.086,
               "status": "good"
             },
+            "lambdalabs/bert_base_squad_amp_bs192": {
+              "expected": 0.109,
+              "forecast": 0.11,
+              "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs320": {
+              "expected": 0.109,
+              "forecast": 0.11,
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": 0.0256,
+              "forecast": 0.025,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs928": {
               "expected": 0.0256,
               "forecast": 0.025,
               "status": "good"
             }
           },
-          "match": 11,
-          "total": 11
+          "match": 14,
+          "total": 14
         },
         "batch_size": {
           "tasks": {
@@ -460,14 +556,29 @@
               "forecast": 128,
               "status": "good"
             },
+            "lambdalabs/bert_base_squad_amp_bs192": {
+              "expected": 192,
+              "forecast": 192,
+              "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs320": {
+              "expected": 320,
+              "forecast": 320,
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
               "expected": 1280,
               "forecast": 1280,
               "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs928": {
+              "expected": 928,
+              "forecast": 928,
+              "status": "good"
             }
           },
-          "match": 6,
-          "total": 11
+          "match": 9,
+          "total": 14
         },
         "epochs": {
           "tasks": {
@@ -490,10 +601,15 @@
               "expected": 2,
               "forecast": 2,
               "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs928": {
+              "expected": 1,
+              "forecast": 1,
+              "status": "good"
             }
           },
-          "match": 4,
-          "total": 4
+          "match": 5,
+          "total": 5
         },
         "dataset_samples": {
           "tasks": {
@@ -536,10 +652,20 @@
               "expected": 101000,
               "forecast": 75750,
               "status": "critical"
+            },
+            "lambdalabs/bert_base_squad_amp_bs192": {
+              "expected": 87599,
+              "forecast": 87599,
+              "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs320": {
+              "expected": 87599,
+              "forecast": 87599,
+              "status": "good"
             }
           },
-          "match": 7,
-          "total": 8
+          "match": 9,
+          "total": 10
         },
         "seq_len": {
           "tasks": {
@@ -557,10 +683,20 @@
               "expected": 512,
               "forecast": 512,
               "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs192": {
+              "expected": 384,
+              "forecast": 384,
+              "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs320": {
+              "expected": 384,
+              "forecast": 384,
+              "status": "good"
             }
           },
-          "match": 3,
-          "total": 3
+          "match": 5,
+          "total": 5
         },
         "cpu_only": {
           "tasks": {
@@ -614,14 +750,29 @@
               "forecast": false,
               "status": "good"
             },
+            "lambdalabs/bert_base_squad_amp_bs192": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/bert_base_squad_amp_bs320": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs928": {
               "expected": false,
               "forecast": false,
               "status": "good"
             }
           },
-          "match": 11,
-          "total": 11
+          "match": 14,
+          "total": 14
         }
       },
       "measurements": [
@@ -819,9 +970,9 @@
             ]
           },
           "ladder": {
-            "pairs": 136,
-            "typical_error": 1.249,
-            "p90_error": 1.966,
+            "pairs": 126,
+            "typical_error": 1.263,
+            "p90_error": 2.012,
             "median_rank_corr": 0.83,
             "pick_slower": 3,
             "n": 10,
@@ -829,7 +980,8 @@
               {
                 "task": "krauncher_tutorials/bert_batch_inference",
                 "gpus": 10,
-                "typical_error": 1.262,
+                "scored_gpus": 9,
+                "typical_error": 1.309,
                 "p90_error": 1.721,
                 "rank_corr": 0.85,
                 "pick": "rtx_6000_blackwell",
@@ -840,7 +992,8 @@
               {
                 "task": "krauncher_tutorials/bert_imdb",
                 "gpus": 27,
-                "typical_error": 1.246,
+                "scored_gpus": 26,
+                "typical_error": 1.247,
                 "p90_error": 1.65,
                 "rank_corr": 0.93,
                 "pick": "b200",
@@ -851,7 +1004,8 @@
               {
                 "task": "krauncher_tutorials/phi3_inference",
                 "gpus": 10,
-                "typical_error": 1.326,
+                "scored_gpus": 9,
+                "typical_error": 1.335,
                 "p90_error": 2.012,
                 "rank_corr": 0.84,
                 "pick": "rtx_6000_blackwell",
@@ -862,7 +1016,8 @@
               {
                 "task": "krauncher_tutorials/qwen15_inference",
                 "gpus": 10,
-                "typical_error": 1.286,
+                "scored_gpus": 9,
+                "typical_error": 1.365,
                 "p90_error": 2.826,
                 "rank_corr": 0.66,
                 "pick": "h100_sxm",
@@ -873,7 +1028,8 @@
               {
                 "task": "krauncher_tutorials/qwen25_7b_batched",
                 "gpus": 9,
-                "typical_error": 1.179,
+                "scored_gpus": 8,
+                "typical_error": 1.188,
                 "p90_error": 1.818,
                 "rank_corr": 0.87,
                 "pick": "rtx_6000_blackwell",
@@ -884,7 +1040,8 @@
               {
                 "task": "krauncher_tutorials/qwen25_7b_gsm8k",
                 "gpus": 12,
-                "typical_error": 1.153,
+                "scored_gpus": 11,
+                "typical_error": 1.195,
                 "p90_error": 1.705,
                 "rank_corr": 0.83,
                 "pick": "rtx_6000_blackwell",
@@ -895,7 +1052,8 @@
               {
                 "task": "krauncher_tutorials/qwen25_7b_long",
                 "gpus": 8,
-                "typical_error": 1.099,
+                "scored_gpus": 7,
+                "typical_error": 1.121,
                 "p90_error": 1.671,
                 "rank_corr": 0.55,
                 "pick": "rtx_6000_blackwell",
@@ -906,7 +1064,8 @@
               {
                 "task": "krauncher_tutorials/qwen25_7b_lora_alpaca",
                 "gpus": 10,
-                "typical_error": 1.201,
+                "scored_gpus": 9,
+                "typical_error": 1.215,
                 "p90_error": 1.696,
                 "rank_corr": 0.92,
                 "pick": "b300",
@@ -917,7 +1076,8 @@
               {
                 "task": "krauncher_tutorials/resnet152_food101",
                 "gpus": 28,
-                "typical_error": 1.421,
+                "scored_gpus": 27,
+                "typical_error": 1.424,
                 "p90_error": 2.246,
                 "rank_corr": 0.57,
                 "pick": "b200",
@@ -928,7 +1088,8 @@
               {
                 "task": "krauncher_tutorials/vit_batch_inference",
                 "gpus": 12,
-                "typical_error": 1.406,
+                "scored_gpus": 11,
+                "typical_error": 1.479,
                 "p90_error": 2.47,
                 "rank_corr": 0.66,
                 "pick": "h100_sxm",
@@ -977,7 +1138,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000s": {
                   "measured": 1.451,
@@ -1099,7 +1260,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000s": {
                   "measured": 1.285,
@@ -1166,7 +1327,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000s": {
                   "measured": 1.516,
@@ -1218,7 +1379,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000s": {
                   "measured": 1.53,
@@ -1265,7 +1426,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000s": {
                   "measured": 1.365,
@@ -1322,7 +1483,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000s": {
                   "measured": 1.086,
@@ -1369,7 +1530,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000s": {
                   "measured": 1.33,
@@ -1431,7 +1592,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000s": {
                   "measured": 0.994,
@@ -1553,7 +1714,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000mq": {
                   "measured": 1.56,
@@ -1635,7 +1796,7 @@
                 "rtx_6000_blackwell": {
                   "measured": 1.0,
                   "forecast": 1.0,
-                  "status": "good"
+                  "status": "anchor"
                 },
                 "rtx_6000s": {
                   "measured": 1.564,
@@ -1656,7 +1817,7 @@
                   "rtx_4500_blackwell",
                   "rtx_5090"
                 ],
-                "measured": 12
+                "measured": 11
               }
             ],
             "anchors": {}
@@ -1668,34 +1829,119 @@
             true
           ],
           "tasks": [
-            "lambdalabs/resnet50_amp_bs1280"
+            "lambdalabs/bert_base_squad_amp_bs192",
+            "lambdalabs/bert_base_squad_amp_bs320",
+            "lambdalabs/resnet50_amp_bs1280",
+            "lambdalabs/resnet50_amp_bs928"
           ],
           "vram_bound": {
-            "above": 1,
-            "n": 1,
+            "above": 2,
+            "n": 4,
             "tasks": [
+              {
+                "task": "lambdalabs/bert_base_squad_amp_bs192",
+                "at_most": 48,
+                "forecast": 26,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/bert_base_squad_amp_bs320",
+                "at_most": 80,
+                "forecast": 42,
+                "status": "good"
+              },
               {
                 "task": "lambdalabs/resnet50_amp_bs1280",
                 "at_most": 80,
                 "forecast": 130,
                 "status": "critical"
+              },
+              {
+                "task": "lambdalabs/resnet50_amp_bs928",
+                "at_most": 48,
+                "forecast": 94,
+                "status": "critical"
               }
             ]
           },
           "ladder": {
-            "pairs": 0,
-            "typical_error": null,
-            "p90_error": null,
-            "median_rank_corr": null,
+            "pairs": 5,
+            "typical_error": 1.167,
+            "p90_error": 1.71,
+            "median_rank_corr": 1.0,
             "pick_slower": 0,
-            "n": 0,
-            "tasks": [],
+            "n": 2,
+            "tasks": [
+              {
+                "task": "lambdalabs/bert_base_squad_amp_bs192",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.617,
+                "p90_error": 1.71,
+                "rank_corr": 1.0,
+                "pick": "rtx_6000_ada",
+                "fastest": "rtx_6000_ada",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/bert_base_squad_amp_bs320",
+                "gpus": 4,
+                "scored_gpus": 3,
+                "typical_error": 1.043,
+                "p90_error": 1.167,
+                "rank_corr": 1.0,
+                "pick": "h100_sxm",
+                "fastest": "h100_sxm",
+                "time_regret": 1.0,
+                "status": "good"
+              }
+            ],
             "cells": {
+              "lambdalabs/bert_base_squad_amp_bs192": {
+                "rtx_6000_ada": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_a6000": {
+                  "measured": 1.288,
+                  "forecast": 1.97,
+                  "status": "critical"
+                },
+                "qrtx_8000": {
+                  "measured": 1.747,
+                  "forecast": 2.988,
+                  "status": "critical"
+                }
+              },
+              "lambdalabs/bert_base_squad_amp_bs320": {
+                "a100_sxm_80": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "a100_pcie_80": {
+                  "measured": 1.067,
+                  "forecast": 1.113,
+                  "status": "good"
+                },
+                "h100_pcie": {
+                  "measured": 0.788,
+                  "forecast": 0.771,
+                  "status": "good"
+                },
+                "h100_sxm": {
+                  "measured": 0.516,
+                  "forecast": 0.602,
+                  "status": "warning"
+                }
+              },
               "lambdalabs/resnet50_amp_bs1280": {
                 "a100_sxm_80": {
                   "measured": 1.0,
                   "forecast": null,
-                  "status": "none"
+                  "status": "anchor"
                 },
                 "a100_pcie_80": {
                   "measured": 1.036,
@@ -1712,22 +1958,49 @@
                   "forecast": null,
                   "status": "none"
                 }
+              },
+              "lambdalabs/resnet50_amp_bs928": {
+                "rtx_6000_ada": {
+                  "measured": 1.0,
+                  "forecast": null,
+                  "status": "anchor"
+                },
+                "rtx_a6000": {
+                  "measured": 1.251,
+                  "forecast": null,
+                  "status": "none"
+                },
+                "qrtx_8000": {
+                  "measured": 1.76,
+                  "forecast": null,
+                  "status": "none"
+                }
               }
             },
             "uncovered": [
               {
                 "task": "lambdalabs/resnet50_amp_bs1280",
                 "missing": [
-                  "a100_sxm_80",
                   "a100_pcie_80",
                   "h100_pcie",
                   "h100_sxm"
                 ],
-                "measured": 4
+                "measured": 3
+              },
+              {
+                "task": "lambdalabs/resnet50_amp_bs928",
+                "missing": [
+                  "rtx_a6000",
+                  "qrtx_8000"
+                ],
+                "measured": 2
               }
             ],
             "anchors": {
-              "lambdalabs/resnet50_amp_bs1280": "a100_sxm_80"
+              "lambdalabs/bert_base_squad_amp_bs192": "rtx_6000_ada",
+              "lambdalabs/bert_base_squad_amp_bs320": "a100_sxm_80",
+              "lambdalabs/resnet50_amp_bs1280": "a100_sxm_80",
+              "lambdalabs/resnet50_amp_bs928": "rtx_6000_ada"
             }
           }
         }
