@@ -2,6 +2,7 @@
 and the GPU ladder, read into the stand's fields."""
 
 import subprocess
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -57,8 +58,10 @@ class KrauncherAdapter(ServiceInterface):
         client = KrauncherClient(estimate_only=True)
         _ensure_data_sources(client, getattr(mod, "DATA_SOURCES", []))
         handle = await client.task(**mod.OPTIONS)(mod.FUNC)(**mod.KWARGS)
+        t0 = time.monotonic()
         assay = await client.analyzer().assay(handle.classification.analyzer_job_id)
         ladder = await client.ladder(assay)
+        t_assay_ladder = time.monotonic() - t0
         return Forecast(
             service=self.name,
             task=task.name,
@@ -72,4 +75,9 @@ class KrauncherAdapter(ServiceInterface):
             fields=stand_fields(assay, ladder),
             raw={"assay": assay, "ladder": ladder},
             request={"options": mod.OPTIONS, "kwargs": mod.KWARGS},
+            timing={
+                # code analysis as the client measured it (submit -> classification)
+                "analysis_sec": round(handle.classification.analyzer_time or 0.0, 2),
+                "assay_ladder_sec": round(t_assay_ladder, 2),
+            },
         )

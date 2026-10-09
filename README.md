@@ -74,6 +74,17 @@ files are not edited after they are written: the UTC time and
 compared with. `results/` is not tracked by git: the files stay with whoever
 runs the stand; keep them, or hand them over together with the measurements.
 
+### 7. Report
+
+    .venv/bin/python report.py [--service krauncher] [--version <calibration_id>]
+
+Markdown over the latest result of every task, per service: forecast time
+(request to normalised forecast, measured by the stand), classification /
+assay fields (match per field), reference-card time (centre, typical
+deviation, inside the issued spread), VRAM (centre, forecasts below the
+measured peak) and the ladder (error per GPU, rank correlation of the card
+order, time regret of the GPU picked as fastest).
+
 ## Tasks
 
 | Module | Task |

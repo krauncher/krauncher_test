@@ -52,3 +52,7 @@ class Forecast:
     fields: dict[str, Any]
     raw: dict[str, Any]
     request: dict[str, Any] = field(default_factory=dict)
+    # Wall-clock seconds. forecast_sec — measured by the stand around the
+    # service call (ServiceInterface.timed_forecast), the same way for every
+    # service; other keys — the service's own parts, where it reports them.
+    timing: dict[str, float] = field(default_factory=dict)

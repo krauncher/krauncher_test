@@ -56,6 +56,9 @@ ladder) and `request` (task options and arguments).
 the forecast predates the runs it is compared with. Run again for a new one.
 `results/` is not tracked by git; do not commit result files.
 
+Report over all tasks: `.venv/bin/python report.py [--service <name>] [--version <id>]`
+(latest result per task; comparison rules in `scoring.py`, shared with `run.py`).
+
 Errors:
 
 | Message | Meaning |

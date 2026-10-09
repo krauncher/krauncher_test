@@ -105,7 +105,8 @@ class Forecast:
    out of the code), scored field by field (same fields as the CaS
    classification stand, `cas-analyzer/research/classification_eval.py`).
    *Done 2026-10-09.*
-3. `report.py` over the normalised results, per service.
+3. `report.py` over the normalised results, per service. *Done 2026-10-09;
+   regret in $/task waits for prices.*
 4. Neutral task form (a plain script runnable locally on a GPU, public data
    ids) in `tasks/`; today's Krauncher-form tasks move to
    `variants/krauncher/`. Variants for other services are prepared files

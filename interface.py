@@ -7,6 +7,7 @@ alike. See doc/extension_plan.md.
 """
 
 import json
+import time
 from abc import ABC, abstractmethod
 from datetime import datetime
 from pathlib import Path
@@ -33,6 +34,14 @@ class ServiceInterface(ABC):
     @abstractmethod
     async def forecast(self, task: Task) -> Forecast:
         """The service's pre-run forecast of `task`, normalised."""
+
+    async def timed_forecast(self, task: Task) -> Forecast:
+        """forecast() with its wall-clock time from request to the normalised
+        answer (timing['forecast_sec']), measured here for every service."""
+        t0 = time.monotonic()
+        fc = await self.forecast(task)
+        fc.timing["forecast_sec"] = round(time.monotonic() - t0, 2)
+        return fc
 
     def save(self, fc: Forecast) -> Path:
         """Write the forecast to results/<service>/<task>_<UTC>.json. A result

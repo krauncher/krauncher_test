@@ -18,28 +18,16 @@ from pathlib import Path
 
 from adapters import ADAPTERS
 from models import Forecast, Task
+from scoring import MEASURED, matches
 
 ROOT = Path(__file__).parent
-
-
-# Fields compared as values (pass / fail); the rest — measured times and the
-# ladder — are shown as pairs, their error is the report's business.
-PARAMS_TOL = 0.25                         # params_billions within +/-25 %
-_NORM = {"precision": lambda v: v or "fp32"}  # no precision in the code is fp32
-
-
-def matches(field: str, want, got) -> bool:
-    if field == "params_billions":
-        return got is not None and abs(got - want) <= PARAMS_TOL * want
-    n = _NORM.get(field, lambda v: v)
-    return n(want) == n(got)
 
 
 def compare(fc: Forecast, task: Task, caps: set[str]) -> dict:
     """Expected / service pairs over the expected fields the service answers."""
     exp, got = task.expected, fc.fields
     pairs = {f: [exp[f], got.get(f)] for f in exp
-             if f in caps and f not in ("reference_sec", "min_vram_gb", "compute_ratio")}
+             if f in caps and f not in MEASURED}
     return {
         "fields": {f: [w, g, matches(f, w, g)] for f, (w, g) in pairs.items()},
         "passport": {f: [exp.get(f), got.get(f)] for f in ("reference_sec", "min_vram_gb") if f in caps},
@@ -51,10 +39,11 @@ def compare(fc: Forecast, task: Task, caps: set[str]) -> dict:
 async def main(name: str, service: str) -> None:
     task = Task.load(name)
     adapter = ADAPTERS[service]
-    fc = await adapter.forecast(task)
+    fc = await adapter.timed_forecast(task)
     out = adapter.save(fc)
     cmp = compare(fc, task, adapter.capabilities())
     print(f"{out.relative_to(ROOT)}: {service} {fc.version}")
+    print("timing, s: " + ", ".join(f"{k} {v}" for k, v in fc.timing.items()))
     print(f"{'':<22}{'expected':>16}{service:>16}")
     for key, (w, g, ok) in cmp["fields"].items():
         print(f"{key:<22}{str(w):>16}{str(g):>16}  {'ok' if ok else 'DIFF'}")
