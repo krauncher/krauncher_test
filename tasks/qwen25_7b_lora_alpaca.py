@@ -2,7 +2,7 @@
 
 The function below is the task, unchanged. FUNC is the task, OPTIONS the
 arguments of its @client.task decorator, KWARGS the arguments of the call.
-REFERENCE holds measured values the forecast is checked against.
+The expected forecast and its sources are in qwen25_7b_lora_alpaca.json.
 """
 
 OPTIONS = dict(
@@ -15,24 +15,6 @@ OPTIONS = dict(
 )
 
 KWARGS = dict()
-
-# Reference values. Source: Krauncher calibration runs on rented hosts
-# (March-September 2026), the same data the analyzer's calibrator is fitted on,
-# so this is not an independent check. Geometric mean over runs.
-REFERENCE = dict(
-    # Passport (assay), reference card = RTX PRO 6000 Blackwell.
-    reference_sec=622,  # whole task measured on the reference card
-    vram_gb=30.4,  # median vram_peak_mb (31093 MB) over completed tasks with this entry_point,
-    # all configurations mixed; device memory from nvidia-smi, polled every 10 s
-    # Ladder: measured compute (exec - io - setup) on a GPU, on its rented hosts,
-    # over the same on the reference card brought to the ideal host with the
-    # analyzer's host model (566.0 s), per ladder gpu_id.
-    compute_ratio={
-        "a100_pcie": 1.831, "a100_sxm_80": 1.545, "b300": 0.586, "h100_sxm": 0.681,
-        "l40": 2.711, "l40s": 1.717, "rtx_4500_blackwell": 2.417, "rtx_5090": 1.481,
-        "rtx_6000_ada": 2.568, "rtx_6000_blackwell": 1.000, "rtx_6000s": 0.994, "rtx_a6000": 3.402,
-    },
-)
 
 
 def lora_finetune_qwen_alpaca(

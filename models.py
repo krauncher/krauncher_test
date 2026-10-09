@@ -1,31 +1,37 @@
 """Normalised data of the stand: a task, and a service's forecast of it.
 
 Every service adapter reads its own answer into a Forecast; the stand compares
-Forecast.fields with the task's REFERENCE (and, later, EXPECTED) in one way
-for all services.
+Forecast.fields with the task's expected fields in one way for all services.
 """
 
 import importlib
+import json
 from dataclasses import dataclass, field
+from pathlib import Path
 from types import ModuleType
 from typing import Any
 
 
+TASKS = Path(__file__).parent / "tasks"
+
+
 @dataclass
 class Task:
-    """A stand task. Today a task module is in the Krauncher form (FUNC,
-    OPTIONS, KWARGS, REFERENCE, DATA_SOURCES; see README)."""
+    """A stand task: its code (tasks/<name>.py, today in the Krauncher form —
+    FUNC, OPTIONS, KWARGS, DATA_SOURCES; see README) and its description
+    (tasks/<name>.json): `fields`, the expected forecast in the stand's
+    fields, and `sources`, where each expected value comes from."""
 
     name: str
     module: ModuleType
-    reference: dict[str, Any]
-    expected: dict[str, Any] = field(default_factory=dict)
+    expected: dict[str, Any]
+    sources: dict[str, str] = field(default_factory=dict)
 
     @classmethod
     def load(cls, name: str) -> "Task":
-        mod = importlib.import_module(f"tasks.{name}")
-        return cls(name=name, module=mod, reference=mod.REFERENCE,
-                   expected=getattr(mod, "EXPECTED", {}))
+        desc = json.loads((TASKS / f"{name}.json").read_text())
+        return cls(name=name, module=importlib.import_module(f"tasks.{name}"),
+                   expected=desc["fields"], sources=desc.get("sources", {}))
 
 
 @dataclass

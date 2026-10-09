@@ -72,9 +72,10 @@ class Forecast:
     raw: dict                  # the answer as received, kept for audit
 ```
 
-- `Task`: the neutral task — code, call arguments, data by public ids (HF),
-  `EXPECTED` (fields the forecast should contain) and `REFERENCE`
-  (measurements with source).
+- `Task`: labelled data — the task's code and its description
+  `tasks/<name>.json`: `fields`, the expected forecast in the stand's fields
+  (classification / assay fields read from the code, `reference_sec`,
+  `min_vram_gb`, `compute_ratio`), and `sources` per value.
 - Service variants are prepared files, not built by adapter code:
   `variants/<service>/<task>.py` holds the task in the form that service
   takes (Krauncher: `FUNC` / `OPTIONS` with the `/data` bridge, the installed
@@ -99,15 +100,17 @@ class Forecast:
 
 1. `interface.py`, `models.py`, `adapters/krauncher.py` reproducing today's
    `run.py` (assay + ladder → stand fields); `run.py` picks the adapter by
-   name; current tasks are read as they are.
-2. `EXPECTED` in the tasks, scored field by field (same fields as the CaS
+   name; current tasks are read as they are. *Done 2026-10-09.*
+2. The description file per task (`tasks/<name>.json`, `REFERENCE` moved
+   out of the code), scored field by field (same fields as the CaS
    classification stand, `cas-analyzer/research/classification_eval.py`).
+   *Done 2026-10-09.*
 3. `report.py` over the normalised results, per service.
 4. Neutral task form (a plain script runnable locally on a GPU, public data
    ids) in `tasks/`; today's Krauncher-form tasks move to
    `variants/krauncher/`. Variants for other services are prepared files
    (by hand, script or LLM), reviewed and committed.
-5. References as a list of measurements with `source` / `date` / host;
-   new tasks outside the calibration corpus.
+5. Several measurements per value with `source` / `date` / host in the
+   description; new tasks outside the calibration corpus.
 
 Open: task sources for the independent corpus; budget for measurement runs.

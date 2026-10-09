@@ -2,7 +2,7 @@
 
 The function below is the task, unchanged. FUNC is the task, OPTIONS the
 arguments of its @client.task decorator, KWARGS the arguments of the call.
-REFERENCE holds measured values the forecast is checked against.
+The expected forecast and its sources are in resnet152_food101.json.
 """
 
 OPTIONS = dict(
@@ -18,28 +18,6 @@ DATA_SOURCES = [
 ]
 
 KWARGS = dict(epochs=3, batch_size=64, lr=0.01, max_batches=150)
-
-# Reference values. Source: Krauncher calibration runs on rented hosts
-# (March-September 2026), the same data the analyzer's calibrator is fitted on,
-# so this is not an independent check. Geometric mean over runs.
-REFERENCE = dict(
-    # Passport (assay), reference card = RTX PRO 6000 Blackwell.
-    reference_sec=194,  # whole task measured on the reference card
-    vram_gb=13.2,  # median vram_peak_mb (13502 MB) over completed tasks with this entry_point,
-    # all configurations mixed; device memory from nvidia-smi, polled every 10 s
-    # Ladder: measured compute (exec - io - setup) on a GPU, on its rented hosts,
-    # over the same on the reference card brought to the ideal host with the
-    # analyzer's host model (142.5 s), per ladder gpu_id.
-    compute_ratio={
-        "a100_pcie_80": 4.387, "a100_sxm_80": 3.024, "a40": 7.568, "b200": 1.653,
-        "h100_pcie": 4.861, "h100_sxm": 3.209, "l4": 4.635, "l40s": 4.915,
-        "qrtx_6000": 5.633, "rtx_2000_ada": 6.025, "rtx_3090": 5.150, "rtx_4000_blackwell": 2.849,
-        "rtx_4060ti": 3.143, "rtx_4090": 2.007, "rtx_4500_ada": 1.963, "rtx_4500_blackwell": 1.919,
-        "rtx_5060ti": 4.042, "rtx_5070ti": 4.010, "rtx_5080": 1.596, "rtx_5090": 3.639,
-        "rtx_6000_ada": 1.883, "rtx_6000_blackwell": 1.000, "rtx_6000mq": 1.560, "rtx_6000s": 2.766,
-        "rtx_a4000": 3.427, "rtx_a4500": 3.115, "rtx_a5000": 6.258, "rtx_a6000": 5.212,
-    },
-)
 
 
 def train_resnet152(epochs: int, batch_size: int, lr: float, max_batches: int = 0):

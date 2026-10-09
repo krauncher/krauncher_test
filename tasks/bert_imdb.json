@@ -1,0 +1,53 @@
+{
+  "task": "bert_imdb",
+  "fields": {
+    "workload_type": "ai_training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp16",
+    "params_billions": 0.11,
+    "batch_size": 16,
+    "epochs": 3,
+    "dataset_samples": 25000,
+    "seq_len": 256,
+    "cpu_only": false,
+    "min_vram_gb": 3.9,
+    "reference_sec": 143,
+    "compute_ratio": {
+      "a100_pcie_80": 2.051,
+      "a100_sxm_80": 1.796,
+      "a40": 3.783,
+      "b200": 0.667,
+      "h100_pcie": 1.902,
+      "h100_sxm": 1.66,
+      "l4": 5.574,
+      "l40": 2.152,
+      "l40s": 2.327,
+      "qrtx_6000": 5.156,
+      "rtx_2000_ada": 7.302,
+      "rtx_3090": 3.475,
+      "rtx_4060ti": 5.998,
+      "rtx_4090": 1.994,
+      "rtx_4500_ada": 3.496,
+      "rtx_4500_blackwell": 2.165,
+      "rtx_5060ti": 4.599,
+      "rtx_5070ti": 4.775,
+      "rtx_5080": 2.516,
+      "rtx_5090": 1.912,
+      "rtx_6000_ada": 2.097,
+      "rtx_6000_blackwell": 1.0,
+      "rtx_6000s": 1.285,
+      "rtx_a4000": 5.556,
+      "rtx_a4500": 4.021,
+      "rtx_a5000": 3.756,
+      "rtx_a6000": 3.318
+    }
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-09; draft, self-checked against the analyzer's answer (disagreements resolved from the code)",
+    "measurements": "Reference values. Source: Krauncher calibration runs on rented hosts (March-September 2026), the same data the analyzer's calibrator is fitted on, so this is not an independent check. Geometric mean over runs.",
+    "reference_sec": "whole task measured on the reference card; RTX PRO 6000 Blackwell",
+    "min_vram_gb": "median vram_peak_mb (3979 MB) over completed tasks with this entry_point, all configurations mixed; device memory from nvidia-smi, polled every 10 s",
+    "compute_ratio": "measured compute (exec - io - setup) on a GPU, on its rented hosts, over the same on the reference card brought to the ideal host with the analyzer's host model (136.0 s measured -> 136.6 s), per ladder gpu_id."
+  }
+}

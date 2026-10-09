@@ -2,7 +2,7 @@
 
 The function below is the task, unchanged. FUNC is the task, OPTIONS the
 arguments of its @client.task decorator, KWARGS the arguments of the call.
-REFERENCE holds measured values the forecast is checked against.
+The expected forecast and its sources are in vit_batch_inference.json.
 """
 
 OPTIONS = dict(
@@ -14,24 +14,6 @@ OPTIONS = dict(
 )
 
 KWARGS = dict()
-
-# Reference values. Source: Krauncher calibration runs on rented hosts
-# (March-September 2026), the same data the analyzer's calibrator is fitted on,
-# so this is not an independent check. Geometric mean over runs.
-REFERENCE = dict(
-    # Passport (assay), reference card = RTX PRO 6000 Blackwell.
-    reference_sec=9,  # whole task measured on the reference card
-    vram_gb=0.8,  # median vram_peak_mb (834 MB) over completed tasks with this entry_point,
-    # all configurations mixed; device memory from nvidia-smi, polled every 10 s
-    # Ladder: measured compute (exec - io - setup) on a GPU, on its rented hosts,
-    # over the same on the reference card brought to the ideal host with the
-    # analyzer's host model (4.6 s), per ladder gpu_id.
-    compute_ratio={
-        "a100_sxm_40": 3.137, "a100_sxm_80": 5.174, "h100_sxm": 1.538, "l4": 3.468,
-        "l40": 1.584, "rtx_2000_ada": 1.680, "rtx_5080": 1.601, "rtx_5090": 1.713,
-        "rtx_6000_ada": 1.914, "rtx_6000_blackwell": 1.000, "rtx_6000s": 1.564, "rtx_a6000": 2.700,
-    },
-)
 
 
 def vit_batch_inference(batch_size: int = 128, image_size: int = 224):

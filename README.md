@@ -91,8 +91,10 @@ runs the stand; keep them, or hand them over together with the measurements.
 
 ## Adding a task
 
-A module in `tasks/` defines the task function (`FUNC`), the arguments of
-its `@client.task` decorator (`OPTIONS`), of the call (`KWARGS`) and the
-reference values (`REFERENCE`: `reference_sec`, `vram_gb`, `compute_ratio` per GPU).
+A task is a module in `tasks/` — the task function (`FUNC`), the arguments of
+its `@client.task` decorator (`OPTIONS`) and of the call (`KWARGS`) — and its
+description `tasks/<name>.json`: the expected forecast in the stand's fields
+(classification and assay fields read from the code, `reference_sec`,
+`min_vram_gb`, `compute_ratio` per GPU) with the source of each value.
 A task that reads a registered data source (`OPTIONS["data"]`) lists it in
 `DATA_SOURCES`; `run.py` registers it on the account when missing.

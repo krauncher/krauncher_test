@@ -2,7 +2,8 @@
 
 The function below is the tutorial's task, unchanged. FUNC is the task,
 OPTIONS the arguments of its @client.task decorator, KWARGS the arguments
-of the call. REFERENCE holds measured values the forecast is checked against.
+of the call.
+The expected forecast and its sources are in bert_imdb.json.
 """
 
 OPTIONS = dict(
@@ -12,28 +13,6 @@ OPTIONS = dict(
 )
 
 KWARGS = dict(num_epochs=3, batch_size=16, lr=2e-5)
-
-# Reference values. Source: Krauncher calibration runs on rented hosts
-# (March-September 2026), the same data the analyzer's calibrator is fitted on,
-# so this is not an independent check. Geometric mean over runs.
-REFERENCE = dict(
-    # Passport (assay), reference card = RTX PRO 6000 Blackwell.
-    reference_sec=143,  # whole task measured on the reference card
-    vram_gb=3.9,  # median vram_peak_mb (3979 MB) over completed tasks with this entry_point,
-    # all configurations mixed; device memory from nvidia-smi, polled every 10 s
-    # Ladder: measured compute (exec - io - setup) on a GPU, on its rented hosts,
-    # over the same on the reference card brought to the ideal host with the
-    # analyzer's host model (136.0 s measured -> 136.6 s), per ladder gpu_id.
-    compute_ratio={
-        "a100_pcie_80": 2.051, "a100_sxm_80": 1.796, "a40": 3.783, "b200": 0.667,
-        "h100_pcie": 1.902, "h100_sxm": 1.660, "l4": 5.574, "l40": 2.152, "l40s": 2.327,
-        "qrtx_6000": 5.156, "rtx_2000_ada": 7.302, "rtx_3090": 3.475, "rtx_4060ti": 5.998,
-        "rtx_4090": 1.994, "rtx_4500_ada": 3.496, "rtx_4500_blackwell": 2.165,
-        "rtx_5060ti": 4.599, "rtx_5070ti": 4.775, "rtx_5080": 2.516, "rtx_5090": 1.912,
-        "rtx_6000_ada": 2.097, "rtx_6000_blackwell": 1.000, "rtx_6000s": 1.285,
-        "rtx_a4000": 5.556, "rtx_a4500": 4.021, "rtx_a5000": 3.756, "rtx_a6000": 3.318,
-    },
-)
 
 
 def finetune_bert_imdb(num_epochs: int = 3, batch_size: int = 16, lr: float = 2e-5):

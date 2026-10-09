@@ -2,7 +2,7 @@
 
 The function below is the task, unchanged. FUNC is the task, OPTIONS the
 arguments of its @client.task decorator, KWARGS the arguments of the call.
-REFERENCE holds measured values the forecast is checked against.
+The expected forecast and its sources are in qwen15_inference.json.
 """
 
 OPTIONS = dict(
@@ -15,24 +15,6 @@ OPTIONS = dict(
 )
 
 KWARGS = dict()
-
-# Reference values. Source: Krauncher calibration runs on rented hosts
-# (March-September 2026), the same data the analyzer's calibrator is fitted on,
-# so this is not an independent check. Geometric mean over runs.
-REFERENCE = dict(
-    # Passport (assay), reference card = RTX PRO 6000 Blackwell.
-    reference_sec=77,  # whole task measured on the reference card
-    vram_gb=4.0,  # median vram_peak_mb (4127 MB) over completed tasks with this entry_point,
-    # all configurations mixed; device memory from nvidia-smi, polled every 10 s
-    # Ladder: measured compute (exec - io - setup) on a GPU, on its rented hosts,
-    # over the same on the reference card brought to the ideal host with the
-    # analyzer's host model (59.8 s), per ladder gpu_id.
-    compute_ratio={
-        "a100_sxm_80": 2.924, "h100_sxm": 2.031, "l4": 3.508, "l40": 2.814,
-        "rtx_5080": 3.207, "rtx_5090": 2.207, "rtx_6000_ada": 2.797, "rtx_6000_blackwell": 1.000,
-        "rtx_6000s": 1.530, "rtx_a6000": 3.742,
-    },
-)
 
 
 def qwen15_inference(num_samples: int = 80, max_new_tokens: int = 100):

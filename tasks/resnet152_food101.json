@@ -1,0 +1,53 @@
+{
+  "task": "resnet152_food101",
+  "fields": {
+    "workload_type": "cv_training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp32",
+    "params_billions": 0.06,
+    "batch_size": 64,
+    "epochs": 3,
+    "dataset_samples": 101000,
+    "cpu_only": false,
+    "min_vram_gb": 13.2,
+    "reference_sec": 194,
+    "compute_ratio": {
+      "a100_pcie_80": 4.387,
+      "a100_sxm_80": 3.024,
+      "a40": 7.568,
+      "b200": 1.653,
+      "h100_pcie": 4.861,
+      "h100_sxm": 3.209,
+      "l4": 4.635,
+      "l40s": 4.915,
+      "qrtx_6000": 5.633,
+      "rtx_2000_ada": 6.025,
+      "rtx_3090": 5.15,
+      "rtx_4000_blackwell": 2.849,
+      "rtx_4060ti": 3.143,
+      "rtx_4090": 2.007,
+      "rtx_4500_ada": 1.963,
+      "rtx_4500_blackwell": 1.919,
+      "rtx_5060ti": 4.042,
+      "rtx_5070ti": 4.01,
+      "rtx_5080": 1.596,
+      "rtx_5090": 3.639,
+      "rtx_6000_ada": 1.883,
+      "rtx_6000_blackwell": 1.0,
+      "rtx_6000mq": 1.56,
+      "rtx_6000s": 2.766,
+      "rtx_a4000": 3.427,
+      "rtx_a4500": 3.115,
+      "rtx_a5000": 6.258,
+      "rtx_a6000": 5.212
+    }
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-09; draft, self-checked against the analyzer's answer (disagreements resolved from the code)",
+    "measurements": "Reference values. Source: Krauncher calibration runs on rented hosts (March-September 2026), the same data the analyzer's calibrator is fitted on, so this is not an independent check. Geometric mean over runs.",
+    "reference_sec": "whole task measured on the reference card; RTX PRO 6000 Blackwell",
+    "min_vram_gb": "median vram_peak_mb (13502 MB) over completed tasks with this entry_point, all configurations mixed; device memory from nvidia-smi, polled every 10 s",
+    "compute_ratio": "measured compute (exec - io - setup) on a GPU, on its rented hosts, over the same on the reference card brought to the ideal host with the analyzer's host model (142.5 s), per ladder gpu_id."
+  }
+}

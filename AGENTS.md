@@ -77,14 +77,16 @@ for `run.py --service`. Plan: `doc/extension_plan.md`.
 
 ## Wrapping your own example as a task
 
-Create `tasks/<name>.py`. `run.py` imports it and needs four names:
+A task is two files: its code `tasks/<name>.py` and its description
+`tasks/<name>.json` (the expected forecast, see "The description" below).
+`run.py` imports the code and needs three names:
 
 ```python
 """<What the task is>.
 
 FUNC is the task, OPTIONS the arguments of its @client.task decorator,
-KWARGS the arguments of the call. REFERENCE holds the values the forecast
-is checked against.
+KWARGS the arguments of the call.
+The expected forecast and its sources are in <name>.json.
 """
 
 OPTIONS = dict(
@@ -96,12 +98,6 @@ OPTIONS = dict(
 )
 
 KWARGS = dict(num_epochs=3, batch_size=16)
-
-REFERENCE = dict(
-    reference_sec=None,       # whole task, seconds, measured on RTX PRO 6000 Blackwell
-    vram_gb=None,             # measured peak VRAM, GB
-    compute_ratio={},         # gpu_id -> compute on that GPU / compute on the reference card
-)
 
 
 def train(num_epochs: int = 3, batch_size: int = 16):
@@ -146,18 +142,35 @@ Parameters of the decorator (full table in the client's AGENTS.md):
 Keyword arguments of the call, `dict()` for the defaults. Only scalar values
 (int, float, bool, str) reach the analyzer.
 
-### REFERENCE — the values the forecast is checked against
+### The description — `tasks/<name>.json`
 
-| Key | Compared with | How to obtain |
+The expected forecast in the stand's fields, and where each value comes from:
+
+```json
+{
+  "task": "<name>",
+  "fields": {
+    "workload_type": "ai_training", "mode": "training", "framework": "pytorch",
+    "precision": "fp16", "params_billions": 0.11, "batch_size": 16, "epochs": 3,
+    "dataset_samples": 25000, "seq_len": 256, "cpu_only": false,
+    "min_vram_gb": 3.9, "reference_sec": 143,
+    "compute_ratio": {"b200": 0.667, "rtx_6000_blackwell": 1.0}
+  },
+  "sources": {"classification": "...", "reference_sec": "...", "min_vram_gb": "...", "compute_ratio": "..."}
+}
+```
+
+| Field | Compared with (Krauncher) | How to obtain |
 |---|---|---|
+| `workload_type`, `mode`, `framework`, `precision`, `params_billions`, `batch_size`, `epochs`, `dataset_samples`, `seq_len`, `cpu_only` | `assay.workload` / `assay.requirements.cpu_only`; printed ok / DIFF (`params_billions` within ±25 %, no precision = fp32) | read from the task code: what the task is, not what any service answers |
 | `reference_sec` | `assay.work.reference_sec` | whole task, seconds, on RTX PRO 6000 Blackwell |
-| `vram_gb` | `assay.requirements.min_vram_gb` | peak VRAM of the run, GB |
+| `min_vram_gb` | `assay.requirements.min_vram_gb` | peak VRAM of the run, GB |
 | `compute_ratio` | ladder `compute_ratio` per `gpu_id` | compute on the GPU / compute on the reference card, where compute = whole task − download − setup |
 
-Unknown values stay `None` (or `{}` for `compute_ratio`); the run prints `-`
-for them. `gpu_id` keys are the ladder's own: run the task once and take them
-from `ladder.rows[].gpu_id` in the result file. State in a comment where the
-reference values come from (own measurement, hardware, date).
+Leave out a field that is not known. `gpu_id` keys are the ladder's own: run
+the task once and take them from `raw.ladder.rows[].gpu_id` in the result
+file. `sources` states where each value comes from (own measurement,
+hardware, date; labelled from the code).
 
 ### DATA_SOURCES — optional
 

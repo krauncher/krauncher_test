@@ -1,0 +1,38 @@
+{
+  "task": "qwen25_7b_lora_alpaca",
+  "fields": {
+    "workload_type": "lora_training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp16",
+    "params_billions": 7.62,
+    "batch_size": 4,
+    "epochs": 3,
+    "dataset_samples": 3000,
+    "seq_len": 512,
+    "cpu_only": false,
+    "min_vram_gb": 30.4,
+    "reference_sec": 622,
+    "compute_ratio": {
+      "a100_pcie": 1.831,
+      "a100_sxm_80": 1.545,
+      "b300": 0.586,
+      "h100_sxm": 0.681,
+      "l40": 2.711,
+      "l40s": 1.717,
+      "rtx_4500_blackwell": 2.417,
+      "rtx_5090": 1.481,
+      "rtx_6000_ada": 2.568,
+      "rtx_6000_blackwell": 1.0,
+      "rtx_6000s": 0.994,
+      "rtx_a6000": 3.402
+    }
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-09; draft, self-checked against the analyzer's answer (disagreements resolved from the code)",
+    "measurements": "Reference values. Source: Krauncher calibration runs on rented hosts (March-September 2026), the same data the analyzer's calibrator is fitted on, so this is not an independent check. Geometric mean over runs.",
+    "reference_sec": "whole task measured on the reference card; RTX PRO 6000 Blackwell",
+    "min_vram_gb": "median vram_peak_mb (31093 MB) over completed tasks with this entry_point, all configurations mixed; device memory from nvidia-smi, polled every 10 s",
+    "compute_ratio": "measured compute (exec - io - setup) on a GPU, on its rented hosts, over the same on the reference card brought to the ideal host with the analyzer's host model (566.0 s), per ladder gpu_id."
+  }
+}
