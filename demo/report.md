@@ -1,6 +1,6 @@
 ## krauncher
 
-14 tasks; versions: {"calibration_id": "c-d589e2f979e6", "client_commit": "0e2e207275f808b0e86fe9f0d49122ec993fe2d4"}
+18 tasks; versions: {"calibration_id": "c-d589e2f979e6", "client_commit": "0e2e207275f808b0e86fe9f0d49122ec993fe2d4"}
 
 ### Forecast time
 
@@ -10,16 +10,16 @@ median 0.62 s, p90 0.65 s, max 0.76 s
 
 | field | match | differs in |
 |---|---|---|
-| workload_type | 14/14 | - |
-| mode | 14/14 | - |
-| framework | 14/14 | - |
-| precision | 14/14 | - |
-| params_billions | 14/14 | - |
-| batch_size | 9/14 | krauncher_tutorials/phi3_inference, krauncher_tutorials/qwen15_inference, krauncher_tutorials/qwen25_7b_batched, krauncher_tutorials/qwen25_7b_gsm8k, krauncher_tutorials/qwen25_7b_long |
+| workload_type | 18/18 | - |
+| mode | 18/18 | - |
+| framework | 18/18 | - |
+| precision | 18/18 | - |
+| params_billions | 18/18 | - |
+| batch_size | 13/18 | krauncher_tutorials/phi3_inference, krauncher_tutorials/qwen15_inference, krauncher_tutorials/qwen25_7b_batched, krauncher_tutorials/qwen25_7b_gsm8k, krauncher_tutorials/qwen25_7b_long |
 | epochs | 5/5 | - |
-| dataset_samples | 9/10 | krauncher_tutorials/resnet152_food101 |
-| seq_len | 5/5 | - |
-| cpu_only | 14/14 | - |
+| dataset_samples | 13/14 | krauncher_tutorials/resnet152_food101 |
+| seq_len | 9/9 | - |
+| cpu_only | 18/18 | - |
 
 ### Measurements: krauncher-calibration-2026 (independent: False; 10 tasks)
 
@@ -78,20 +78,24 @@ centre x1.108, typical deviation x1.128, below the measured peak 1/10
 
 measured GPUs without a forecast: krauncher_tutorials/qwen25_7b_lora_alpaca 2/11
 
-### Measurements: lambda-dlb-v1-fp16 (independent: True; 4 tasks)
+### Measurements: lambda-dlb-v1-fp16 (independent: True; 8 tasks)
 
 #### VRAM upper bound
 
-forecast above the measured bound in 2/4 tasks; lambdalabs/resnet50_amp_bs1280: 130 GB > 80 GB; lambdalabs/resnet50_amp_bs928: 94 GB > 48 GB
+forecast above the measured bound in 2/8 tasks; lambdalabs/resnet50_amp_bs1280: 130 GB > 80 GB; lambdalabs/resnet50_amp_bs928: 94 GB > 48 GB
 
 #### Ladder (compute_ratio)
 
-5 (task, GPU) pairs: typical error x1.167, p90 x1.71; median rank correlation 1.0; pick slower than the fastest in 0/2 tasks
+13 (task, GPU) pairs: typical error x1.358, p90 x1.71; median rank correlation 1.0; pick slower than the fastest in 0/6 tasks
 
 | task | GPUs | typical error | p90 | rank corr | picked | fastest | time regret | status |
 |---|---|---|---|---|---|---|---|---|
 | lambdalabs/bert_base_squad_amp_bs192 | 3 | x1.617 | x1.71 | 1.0 | rtx_6000_ada | rtx_6000_ada | x1.0 | good |
 | lambdalabs/bert_base_squad_amp_bs320 | 4 | x1.043 | x1.167 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
+| lambdalabs/bert_base_squad_amp_bs96 | 2 | x1.489 | x1.489 | None | rtx_4090 | rtx_4090 | x1.0 | good |
+| lambdalabs/bert_large_squad_amp_bs112 | 4 | x1.025 | x1.216 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
+| lambdalabs/bert_large_squad_amp_bs28 | 3 | x1.397 | x1.438 | 0.5 | rtx_4090 | rtx_4090 | x1.0 | warning |
+| lambdalabs/bert_large_squad_amp_bs64 | 3 | x1.791 | x1.891 | 1.0 | rtx_6000_ada | rtx_6000_ada | x1.0 | good |
 
 #### Ladder coverage
 
