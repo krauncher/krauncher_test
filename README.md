@@ -76,9 +76,12 @@ runs the stand; keep them, or hand them over together with the measurements.
 
 ### 7. Report
 
-    .venv/bin/python report.py [--service krauncher] [--version <calibration_id>]
+    .venv/bin/python report.py [--service krauncher] [--version <calibration_id>] [--out DIR]
 
-Markdown over the latest result of every task, per service: forecast time
+Writes `report.json` (machine-readable), `report.md` and `report.html` (for
+viewing: every value marked accurate / miss / problem) to `DIR` (default
+`results/report/`), over the latest result of every task, per service:
+forecast time
 (request to normalised forecast, measured by the stand), classification /
 assay fields (match per field), reference-card time (centre, typical
 deviation, inside the issued spread), VRAM (centre, forecasts below the

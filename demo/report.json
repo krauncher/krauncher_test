@@ -1,0 +1,1737 @@
+{
+  "created_utc": "2026-10-09T16:35:34+00:00",
+  "thresholds": {
+    "time_good": 1.1,
+    "time_warning": 1.25,
+    "ratio_good": 1.15,
+    "ratio_warning": 1.5,
+    "vram_over_warning": 1.3,
+    "params_tolerance": 0.25
+  },
+  "services": [
+    {
+      "service": "krauncher",
+      "tasks": [
+        "krauncher_tutorials/bert_batch_inference",
+        "krauncher_tutorials/bert_imdb",
+        "krauncher_tutorials/phi3_inference",
+        "krauncher_tutorials/qwen15_inference",
+        "krauncher_tutorials/qwen25_7b_batched",
+        "krauncher_tutorials/qwen25_7b_gsm8k",
+        "krauncher_tutorials/qwen25_7b_long",
+        "krauncher_tutorials/qwen25_7b_lora_alpaca",
+        "krauncher_tutorials/resnet152_food101",
+        "krauncher_tutorials/vit_batch_inference",
+        "lambdalabs/resnet50_amp_bs1280"
+      ],
+      "versions": [
+        "{\"calibration_id\": \"c-d589e2f979e6\", \"client_commit\": \"0e2e207275f808b0e86fe9f0d49122ec993fe2d4\"}"
+      ],
+      "result_created_utc": {
+        "krauncher_tutorials/bert_batch_inference": "2026-10-09T16:35:26+00:00",
+        "krauncher_tutorials/bert_imdb": "2026-10-09T16:35:27+00:00",
+        "krauncher_tutorials/phi3_inference": "2026-10-09T16:35:28+00:00",
+        "krauncher_tutorials/qwen15_inference": "2026-10-09T16:35:29+00:00",
+        "krauncher_tutorials/qwen25_7b_batched": "2026-10-09T16:35:29+00:00",
+        "krauncher_tutorials/qwen25_7b_gsm8k": "2026-10-09T16:35:30+00:00",
+        "krauncher_tutorials/qwen25_7b_long": "2026-10-09T16:35:31+00:00",
+        "krauncher_tutorials/qwen25_7b_lora_alpaca": "2026-10-09T16:35:32+00:00",
+        "krauncher_tutorials/resnet152_food101": "2026-10-09T16:35:32+00:00",
+        "krauncher_tutorials/vit_batch_inference": "2026-10-09T16:35:33+00:00",
+        "lambdalabs/resnet50_amp_bs1280": "2026-10-09T16:35:34+00:00"
+      },
+      "forecast_time": {
+        "median_sec": 0.62,
+        "p90_sec": 0.65,
+        "max_sec": 0.76,
+        "tasks": {
+          "krauncher_tutorials/bert_batch_inference": {
+            "analysis_sec": 0.68,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.76
+          },
+          "krauncher_tutorials/bert_imdb": {
+            "analysis_sec": 0.54,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
+          "krauncher_tutorials/phi3_inference": {
+            "analysis_sec": 0.54,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
+          "krauncher_tutorials/qwen15_inference": {
+            "analysis_sec": 0.54,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
+          "krauncher_tutorials/qwen25_7b_batched": {
+            "analysis_sec": 0.54,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
+          "krauncher_tutorials/qwen25_7b_gsm8k": {
+            "analysis_sec": 0.55,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
+          "krauncher_tutorials/qwen25_7b_long": {
+            "analysis_sec": 0.54,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
+          "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+            "analysis_sec": 0.55,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
+          "krauncher_tutorials/resnet152_food101": {
+            "analysis_sec": 0.53,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.65
+          },
+          "krauncher_tutorials/vit_batch_inference": {
+            "analysis_sec": 0.55,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          },
+          "lambdalabs/resnet50_amp_bs1280": {
+            "analysis_sec": 0.54,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
+          }
+        }
+      },
+      "fields": {
+        "workload_type": {
+          "tasks": {
+            "krauncher_tutorials/bert_batch_inference": {
+              "expected": "batch_inference",
+              "forecast": "batch_inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/bert_imdb": {
+              "expected": "ai_training",
+              "forecast": "ai_training",
+              "status": "good"
+            },
+            "krauncher_tutorials/phi3_inference": {
+              "expected": "llm_inference",
+              "forecast": "llm_inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen15_inference": {
+              "expected": "llm_inference",
+              "forecast": "llm_inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_batched": {
+              "expected": "llm_inference",
+              "forecast": "llm_inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_gsm8k": {
+              "expected": "llm_inference",
+              "forecast": "llm_inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_long": {
+              "expected": "llm_inference",
+              "forecast": "llm_inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": "lora_training",
+              "forecast": "lora_training",
+              "status": "good"
+            },
+            "krauncher_tutorials/resnet152_food101": {
+              "expected": "cv_training",
+              "forecast": "cv_training",
+              "status": "good"
+            },
+            "krauncher_tutorials/vit_batch_inference": {
+              "expected": "batch_inference",
+              "forecast": "batch_inference",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "cv_training",
+              "forecast": "cv_training",
+              "status": "good"
+            }
+          },
+          "match": 11,
+          "total": 11
+        },
+        "mode": {
+          "tasks": {
+            "krauncher_tutorials/bert_batch_inference": {
+              "expected": "inference",
+              "forecast": "inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/bert_imdb": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "krauncher_tutorials/phi3_inference": {
+              "expected": "inference",
+              "forecast": "inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen15_inference": {
+              "expected": "inference",
+              "forecast": "inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_batched": {
+              "expected": "inference",
+              "forecast": "inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_gsm8k": {
+              "expected": "inference",
+              "forecast": "inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_long": {
+              "expected": "inference",
+              "forecast": "inference",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "krauncher_tutorials/resnet152_food101": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "krauncher_tutorials/vit_batch_inference": {
+              "expected": "inference",
+              "forecast": "inference",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            }
+          },
+          "match": 11,
+          "total": 11
+        },
+        "framework": {
+          "tasks": {
+            "krauncher_tutorials/bert_batch_inference": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "krauncher_tutorials/bert_imdb": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "krauncher_tutorials/phi3_inference": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen15_inference": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_batched": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_gsm8k": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_long": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "krauncher_tutorials/resnet152_food101": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "krauncher_tutorials/vit_batch_inference": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            }
+          },
+          "match": 11,
+          "total": 11
+        },
+        "precision": {
+          "tasks": {
+            "krauncher_tutorials/bert_batch_inference": {
+              "expected": "fp32",
+              "forecast": null,
+              "status": "good"
+            },
+            "krauncher_tutorials/bert_imdb": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "krauncher_tutorials/phi3_inference": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen15_inference": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_batched": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_gsm8k": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_long": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "krauncher_tutorials/resnet152_food101": {
+              "expected": "fp32",
+              "forecast": null,
+              "status": "good"
+            },
+            "krauncher_tutorials/vit_batch_inference": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            }
+          },
+          "match": 11,
+          "total": 11
+        },
+        "params_billions": {
+          "tasks": {
+            "krauncher_tutorials/bert_batch_inference": {
+              "expected": 0.11,
+              "forecast": 0.11,
+              "status": "good"
+            },
+            "krauncher_tutorials/bert_imdb": {
+              "expected": 0.11,
+              "forecast": 0.11,
+              "status": "good"
+            },
+            "krauncher_tutorials/phi3_inference": {
+              "expected": 3.82,
+              "forecast": 3.8,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen15_inference": {
+              "expected": 1.54,
+              "forecast": 1.54,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_batched": {
+              "expected": 7.62,
+              "forecast": 7.62,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_gsm8k": {
+              "expected": 7.62,
+              "forecast": 7.62,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_long": {
+              "expected": 7.62,
+              "forecast": 7.62,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": 7.62,
+              "forecast": 7.62,
+              "status": "good"
+            },
+            "krauncher_tutorials/resnet152_food101": {
+              "expected": 0.06,
+              "forecast": 0.0602,
+              "status": "good"
+            },
+            "krauncher_tutorials/vit_batch_inference": {
+              "expected": 0.086,
+              "forecast": 0.086,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs1280": {
+              "expected": 0.0256,
+              "forecast": 0.025,
+              "status": "good"
+            }
+          },
+          "match": 11,
+          "total": 11
+        },
+        "batch_size": {
+          "tasks": {
+            "krauncher_tutorials/bert_batch_inference": {
+              "expected": 64,
+              "forecast": 64,
+              "status": "good"
+            },
+            "krauncher_tutorials/bert_imdb": {
+              "expected": 16,
+              "forecast": 16,
+              "status": "good"
+            },
+            "krauncher_tutorials/phi3_inference": {
+              "expected": 1,
+              "forecast": null,
+              "status": "critical"
+            },
+            "krauncher_tutorials/qwen15_inference": {
+              "expected": 1,
+              "forecast": null,
+              "status": "critical"
+            },
+            "krauncher_tutorials/qwen25_7b_batched": {
+              "expected": 1,
+              "forecast": null,
+              "status": "critical"
+            },
+            "krauncher_tutorials/qwen25_7b_gsm8k": {
+              "expected": 1,
+              "forecast": null,
+              "status": "critical"
+            },
+            "krauncher_tutorials/qwen25_7b_long": {
+              "expected": 1,
+              "forecast": null,
+              "status": "critical"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": 4,
+              "forecast": 4,
+              "status": "good"
+            },
+            "krauncher_tutorials/resnet152_food101": {
+              "expected": 64,
+              "forecast": 64,
+              "status": "good"
+            },
+            "krauncher_tutorials/vit_batch_inference": {
+              "expected": 128,
+              "forecast": 128,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs1280": {
+              "expected": 1280,
+              "forecast": 1280,
+              "status": "good"
+            }
+          },
+          "match": 6,
+          "total": 11
+        },
+        "epochs": {
+          "tasks": {
+            "krauncher_tutorials/bert_imdb": {
+              "expected": 3,
+              "forecast": 3,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": 3,
+              "forecast": 3,
+              "status": "good"
+            },
+            "krauncher_tutorials/resnet152_food101": {
+              "expected": 3,
+              "forecast": 3,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs1280": {
+              "expected": 2,
+              "forecast": 2,
+              "status": "good"
+            }
+          },
+          "match": 4,
+          "total": 4
+        },
+        "dataset_samples": {
+          "tasks": {
+            "krauncher_tutorials/bert_imdb": {
+              "expected": 25000,
+              "forecast": 25000,
+              "status": "good"
+            },
+            "krauncher_tutorials/phi3_inference": {
+              "expected": 50,
+              "forecast": 50,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen15_inference": {
+              "expected": 80,
+              "forecast": 80,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_batched": {
+              "expected": 30,
+              "forecast": 30,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_gsm8k": {
+              "expected": 200,
+              "forecast": 200,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_long": {
+              "expected": 30,
+              "forecast": 30,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": 3000,
+              "forecast": 3000,
+              "status": "good"
+            },
+            "krauncher_tutorials/resnet152_food101": {
+              "expected": 101000,
+              "forecast": 75750,
+              "status": "critical"
+            }
+          },
+          "match": 7,
+          "total": 8
+        },
+        "seq_len": {
+          "tasks": {
+            "krauncher_tutorials/bert_batch_inference": {
+              "expected": 128,
+              "forecast": 128,
+              "status": "good"
+            },
+            "krauncher_tutorials/bert_imdb": {
+              "expected": 256,
+              "forecast": 256,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": 512,
+              "forecast": 512,
+              "status": "good"
+            }
+          },
+          "match": 3,
+          "total": 3
+        },
+        "cpu_only": {
+          "tasks": {
+            "krauncher_tutorials/bert_batch_inference": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "krauncher_tutorials/bert_imdb": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "krauncher_tutorials/phi3_inference": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen15_inference": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_batched": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_gsm8k": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_long": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "krauncher_tutorials/resnet152_food101": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "krauncher_tutorials/vit_batch_inference": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs1280": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            }
+          },
+          "match": 11,
+          "total": 11
+        }
+      },
+      "measurements": [
+        {
+          "id": "krauncher-calibration-2026",
+          "independent": [
+            false
+          ],
+          "tasks": [
+            "krauncher_tutorials/bert_batch_inference",
+            "krauncher_tutorials/bert_imdb",
+            "krauncher_tutorials/phi3_inference",
+            "krauncher_tutorials/qwen15_inference",
+            "krauncher_tutorials/qwen25_7b_batched",
+            "krauncher_tutorials/qwen25_7b_gsm8k",
+            "krauncher_tutorials/qwen25_7b_long",
+            "krauncher_tutorials/qwen25_7b_lora_alpaca",
+            "krauncher_tutorials/resnet152_food101",
+            "krauncher_tutorials/vit_batch_inference"
+          ],
+          "reference_time": {
+            "centre": 0.943,
+            "typical_deviation": 1.065,
+            "inside_spread": 8,
+            "n": 10,
+            "tasks": [
+              {
+                "task": "krauncher_tutorials/bert_batch_inference",
+                "measured": 13,
+                "forecast": 10.3,
+                "ratio": 0.792,
+                "spread_factor": 1.015,
+                "inside_spread": false,
+                "status": "critical"
+              },
+              {
+                "task": "krauncher_tutorials/bert_imdb",
+                "measured": 143,
+                "forecast": 143.1,
+                "ratio": 1.001,
+                "spread_factor": 1.025,
+                "inside_spread": true,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/phi3_inference",
+                "measured": 133,
+                "forecast": 139.4,
+                "ratio": 1.048,
+                "spread_factor": 1.232,
+                "inside_spread": true,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen15_inference",
+                "measured": 77,
+                "forecast": 75.8,
+                "ratio": 0.984,
+                "spread_factor": 1.238,
+                "inside_spread": true,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_batched",
+                "measured": 136,
+                "forecast": 145.2,
+                "ratio": 1.068,
+                "spread_factor": 1.194,
+                "inside_spread": true,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_gsm8k",
+                "measured": 711,
+                "forecast": 639.1,
+                "ratio": 0.899,
+                "spread_factor": 1.294,
+                "inside_spread": true,
+                "status": "warning"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_long",
+                "measured": 204,
+                "forecast": 199.1,
+                "ratio": 0.976,
+                "spread_factor": 1.229,
+                "inside_spread": true,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_lora_alpaca",
+                "measured": 622,
+                "forecast": 661.0,
+                "ratio": 1.063,
+                "spread_factor": 1.187,
+                "inside_spread": true,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/resnet152_food101",
+                "measured": 194,
+                "forecast": 118.1,
+                "ratio": 0.609,
+                "spread_factor": 1.802,
+                "inside_spread": true,
+                "status": "critical"
+              },
+              {
+                "task": "krauncher_tutorials/vit_batch_inference",
+                "measured": 9,
+                "forecast": 10.1,
+                "ratio": 1.122,
+                "spread_factor": 1.001,
+                "inside_spread": false,
+                "status": "warning"
+              }
+            ]
+          },
+          "vram": {
+            "centre": 1.108,
+            "typical_deviation": 1.128,
+            "below_peak": 1,
+            "n": 10,
+            "tasks": [
+              {
+                "task": "krauncher_tutorials/bert_batch_inference",
+                "measured": 0.8,
+                "forecast": 1,
+                "ratio": 1.25,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/bert_imdb",
+                "measured": 3.9,
+                "forecast": 5,
+                "ratio": 1.282,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/phi3_inference",
+                "measured": 8.8,
+                "forecast": 9,
+                "ratio": 1.023,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen15_inference",
+                "measured": 4.0,
+                "forecast": 4,
+                "ratio": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_batched",
+                "measured": 17.6,
+                "forecast": 18,
+                "ratio": 1.023,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_gsm8k",
+                "measured": 15.7,
+                "forecast": 18,
+                "ratio": 1.146,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_long",
+                "measured": 15.8,
+                "forecast": 18,
+                "ratio": 1.139,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_lora_alpaca",
+                "measured": 30.4,
+                "forecast": 34,
+                "ratio": 1.118,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/resnet152_food101",
+                "measured": 13.2,
+                "forecast": 12,
+                "ratio": 0.909,
+                "status": "critical"
+              },
+              {
+                "task": "krauncher_tutorials/vit_batch_inference",
+                "measured": 0.8,
+                "forecast": 1,
+                "ratio": 1.25,
+                "status": "good"
+              }
+            ]
+          },
+          "ladder": {
+            "pairs": 136,
+            "typical_error": 1.249,
+            "p90_error": 1.966,
+            "median_rank_corr": 0.83,
+            "pick_slower": 3,
+            "n": 10,
+            "tasks": [
+              {
+                "task": "krauncher_tutorials/bert_batch_inference",
+                "gpus": 10,
+                "typical_error": 1.262,
+                "p90_error": 1.721,
+                "rank_corr": 0.85,
+                "pick": "rtx_6000_blackwell",
+                "fastest": "rtx_6000_blackwell",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/bert_imdb",
+                "gpus": 27,
+                "typical_error": 1.246,
+                "p90_error": 1.65,
+                "rank_corr": 0.93,
+                "pick": "b200",
+                "fastest": "b200",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/phi3_inference",
+                "gpus": 10,
+                "typical_error": 1.326,
+                "p90_error": 2.012,
+                "rank_corr": 0.84,
+                "pick": "rtx_6000_blackwell",
+                "fastest": "rtx_6000_blackwell",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen15_inference",
+                "gpus": 10,
+                "typical_error": 1.286,
+                "p90_error": 2.826,
+                "rank_corr": 0.66,
+                "pick": "h100_sxm",
+                "fastest": "rtx_6000_blackwell",
+                "time_regret": 2.031,
+                "status": "critical"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_batched",
+                "gpus": 9,
+                "typical_error": 1.179,
+                "p90_error": 1.818,
+                "rank_corr": 0.87,
+                "pick": "rtx_6000_blackwell",
+                "fastest": "rtx_6000_blackwell",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_gsm8k",
+                "gpus": 12,
+                "typical_error": 1.153,
+                "p90_error": 1.705,
+                "rank_corr": 0.83,
+                "pick": "rtx_6000_blackwell",
+                "fastest": "rtx_6000_blackwell",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_long",
+                "gpus": 8,
+                "typical_error": 1.099,
+                "p90_error": 1.671,
+                "rank_corr": 0.55,
+                "pick": "rtx_6000_blackwell",
+                "fastest": "rtx_6000_blackwell",
+                "time_regret": 1.0,
+                "status": "warning"
+              },
+              {
+                "task": "krauncher_tutorials/qwen25_7b_lora_alpaca",
+                "gpus": 10,
+                "typical_error": 1.201,
+                "p90_error": 1.696,
+                "rank_corr": 0.92,
+                "pick": "b300",
+                "fastest": "b300",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "krauncher_tutorials/resnet152_food101",
+                "gpus": 28,
+                "typical_error": 1.421,
+                "p90_error": 2.246,
+                "rank_corr": 0.57,
+                "pick": "b200",
+                "fastest": "rtx_6000_blackwell",
+                "time_regret": 1.653,
+                "status": "critical"
+              },
+              {
+                "task": "krauncher_tutorials/vit_batch_inference",
+                "gpus": 12,
+                "typical_error": 1.406,
+                "p90_error": 2.47,
+                "rank_corr": 0.66,
+                "pick": "h100_sxm",
+                "fastest": "rtx_6000_blackwell",
+                "time_regret": 1.538,
+                "status": "critical"
+              }
+            ],
+            "cells": {
+              "krauncher_tutorials/bert_batch_inference": {
+                "a100_sxm_80": {
+                  "measured": 1.761,
+                  "forecast": 1.752,
+                  "status": "good"
+                },
+                "h100_sxm": {
+                  "measured": 1.458,
+                  "forecast": 1.005,
+                  "status": "warning"
+                },
+                "l4": {
+                  "measured": 2.531,
+                  "forecast": 3.627,
+                  "status": "warning"
+                },
+                "l40": {
+                  "measured": 1.61,
+                  "forecast": 1.323,
+                  "status": "warning"
+                },
+                "rtx_5080": {
+                  "measured": 2.184,
+                  "forecast": 2.017,
+                  "status": "good"
+                },
+                "rtx_5090": {
+                  "measured": 2.288,
+                  "forecast": 1.433,
+                  "status": "critical"
+                },
+                "rtx_6000_ada": {
+                  "measured": 1.758,
+                  "forecast": 1.673,
+                  "status": "good"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 1.451,
+                  "forecast": 1.109,
+                  "status": "warning"
+                },
+                "rtx_a6000": {
+                  "measured": 2.067,
+                  "forecast": 3.557,
+                  "status": "critical"
+                }
+              },
+              "krauncher_tutorials/bert_imdb": {
+                "a100_pcie_80": {
+                  "measured": 2.051,
+                  "forecast": 1.752,
+                  "status": "warning"
+                },
+                "a100_sxm_80": {
+                  "measured": 1.796,
+                  "forecast": 1.752,
+                  "status": "good"
+                },
+                "a40": {
+                  "measured": 3.783,
+                  "forecast": 3.037,
+                  "status": "warning"
+                },
+                "b200": {
+                  "measured": 0.667,
+                  "forecast": 0.698,
+                  "status": "good"
+                },
+                "h100_pcie": {
+                  "measured": 1.902,
+                  "forecast": 1.153,
+                  "status": "critical"
+                },
+                "h100_sxm": {
+                  "measured": 1.66,
+                  "forecast": 1.005,
+                  "status": "critical"
+                },
+                "l4": {
+                  "measured": 5.574,
+                  "forecast": 3.627,
+                  "status": "critical"
+                },
+                "l40": {
+                  "measured": 2.152,
+                  "forecast": 1.323,
+                  "status": "critical"
+                },
+                "l40s": {
+                  "measured": 2.327,
+                  "forecast": 1.798,
+                  "status": "warning"
+                },
+                "qrtx_6000": {
+                  "measured": 5.156,
+                  "forecast": 4.785,
+                  "status": "good"
+                },
+                "rtx_2000_ada": {
+                  "measured": 7.302,
+                  "forecast": 6.254,
+                  "status": "warning"
+                },
+                "rtx_3090": {
+                  "measured": 3.475,
+                  "forecast": 4.259,
+                  "status": "warning"
+                },
+                "rtx_4060ti": {
+                  "measured": 5.998,
+                  "forecast": 4.341,
+                  "status": "warning"
+                },
+                "rtx_4090": {
+                  "measured": 1.994,
+                  "forecast": 1.883,
+                  "status": "good"
+                },
+                "rtx_4500_ada": {
+                  "measured": 3.496,
+                  "forecast": 2.789,
+                  "status": "warning"
+                },
+                "rtx_4500_blackwell": {
+                  "measured": 2.165,
+                  "forecast": 2.244,
+                  "status": "good"
+                },
+                "rtx_5060ti": {
+                  "measured": 4.599,
+                  "forecast": 3.643,
+                  "status": "warning"
+                },
+                "rtx_5070ti": {
+                  "measured": 4.775,
+                  "forecast": 2.805,
+                  "status": "critical"
+                },
+                "rtx_5080": {
+                  "measured": 2.516,
+                  "forecast": 2.017,
+                  "status": "warning"
+                },
+                "rtx_5090": {
+                  "measured": 1.912,
+                  "forecast": 1.433,
+                  "status": "warning"
+                },
+                "rtx_6000_ada": {
+                  "measured": 2.097,
+                  "forecast": 1.673,
+                  "status": "warning"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 1.285,
+                  "forecast": 1.109,
+                  "status": "warning"
+                },
+                "rtx_a4000": {
+                  "measured": 5.556,
+                  "forecast": 4.317,
+                  "status": "warning"
+                },
+                "rtx_a4500": {
+                  "measured": 4.021,
+                  "forecast": 3.739,
+                  "status": "good"
+                },
+                "rtx_a5000": {
+                  "measured": 3.756,
+                  "forecast": 3.701,
+                  "status": "good"
+                },
+                "rtx_a6000": {
+                  "measured": 3.318,
+                  "forecast": 3.557,
+                  "status": "good"
+                }
+              },
+              "krauncher_tutorials/phi3_inference": {
+                "a100_sxm_80": {
+                  "measured": 2.891,
+                  "forecast": 1.437,
+                  "status": "critical"
+                },
+                "h100_sxm": {
+                  "measured": 2.082,
+                  "forecast": 1.272,
+                  "status": "critical"
+                },
+                "l4": {
+                  "measured": 4.222,
+                  "forecast": 2.536,
+                  "status": "critical"
+                },
+                "l40": {
+                  "measured": 2.695,
+                  "forecast": 1.439,
+                  "status": "critical"
+                },
+                "rtx_5080": {
+                  "measured": 2.91,
+                  "forecast": 2.18,
+                  "status": "warning"
+                },
+                "rtx_5090": {
+                  "measured": 1.931,
+                  "forecast": 1.466,
+                  "status": "warning"
+                },
+                "rtx_6000_ada": {
+                  "measured": 2.702,
+                  "forecast": 2.162,
+                  "status": "warning"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 1.516,
+                  "forecast": 1.284,
+                  "status": "warning"
+                },
+                "rtx_a6000": {
+                  "measured": 3.715,
+                  "forecast": 2.822,
+                  "status": "warning"
+                }
+              },
+              "krauncher_tutorials/qwen15_inference": {
+                "a100_sxm_80": {
+                  "measured": 2.924,
+                  "forecast": 1.156,
+                  "status": "critical"
+                },
+                "h100_sxm": {
+                  "measured": 2.031,
+                  "forecast": 0.719,
+                  "status": "critical"
+                },
+                "l4": {
+                  "measured": 3.508,
+                  "forecast": 3.352,
+                  "status": "good"
+                },
+                "l40": {
+                  "measured": 2.814,
+                  "forecast": 1.181,
+                  "status": "critical"
+                },
+                "rtx_5080": {
+                  "measured": 3.207,
+                  "forecast": 1.632,
+                  "status": "critical"
+                },
+                "rtx_5090": {
+                  "measured": 2.207,
+                  "forecast": 1.839,
+                  "status": "warning"
+                },
+                "rtx_6000_ada": {
+                  "measured": 2.797,
+                  "forecast": 2.048,
+                  "status": "warning"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 1.53,
+                  "forecast": 1.264,
+                  "status": "warning"
+                },
+                "rtx_a6000": {
+                  "measured": 3.742,
+                  "forecast": 4.107,
+                  "status": "good"
+                }
+              },
+              "krauncher_tutorials/qwen25_7b_batched": {
+                "a100_sxm_80": {
+                  "measured": 1.742,
+                  "forecast": 1.783,
+                  "status": "good"
+                },
+                "h100_sxm": {
+                  "measured": 1.27,
+                  "forecast": 1.061,
+                  "status": "warning"
+                },
+                "l4": {
+                  "measured": 4.731,
+                  "forecast": 2.602,
+                  "status": "critical"
+                },
+                "l40": {
+                  "measured": 1.915,
+                  "forecast": 1.326,
+                  "status": "warning"
+                },
+                "rtx_5090": {
+                  "measured": 1.474,
+                  "forecast": 1.327,
+                  "status": "good"
+                },
+                "rtx_6000_ada": {
+                  "measured": 1.79,
+                  "forecast": 1.651,
+                  "status": "good"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 1.365,
+                  "forecast": 1.158,
+                  "status": "warning"
+                },
+                "rtx_a6000": {
+                  "measured": 2.495,
+                  "forecast": 3.179,
+                  "status": "warning"
+                }
+              },
+              "krauncher_tutorials/qwen25_7b_gsm8k": {
+                "a100_sxm_80": {
+                  "measured": 1.774,
+                  "forecast": 1.783,
+                  "status": "good"
+                },
+                "h100_sxm": {
+                  "measured": 1.18,
+                  "forecast": 1.061,
+                  "status": "good"
+                },
+                "l4": {
+                  "measured": 4.911,
+                  "forecast": 2.602,
+                  "status": "critical"
+                },
+                "l40": {
+                  "measured": 1.893,
+                  "forecast": 1.326,
+                  "status": "warning"
+                },
+                "rtx_4090": {
+                  "measured": 2.345,
+                  "forecast": 1.657,
+                  "status": "warning"
+                },
+                "rtx_4500_blackwell": {
+                  "measured": 1.837,
+                  "forecast": 2.195,
+                  "status": "warning"
+                },
+                "rtx_5090": {
+                  "measured": 1.444,
+                  "forecast": 1.327,
+                  "status": "good"
+                },
+                "rtx_6000_ada": {
+                  "measured": 1.698,
+                  "forecast": 1.651,
+                  "status": "good"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 1.086,
+                  "forecast": 1.158,
+                  "status": "good"
+                },
+                "rtx_a5000": {
+                  "measured": 2.186,
+                  "forecast": 3.726,
+                  "status": "critical"
+                },
+                "rtx_a6000": {
+                  "measured": 2.396,
+                  "forecast": 3.179,
+                  "status": "warning"
+                }
+              },
+              "krauncher_tutorials/qwen25_7b_long": {
+                "a100_sxm_80": {
+                  "measured": 1.898,
+                  "forecast": 1.762,
+                  "status": "good"
+                },
+                "h100_sxm": {
+                  "measured": 1.341,
+                  "forecast": 1.197,
+                  "status": "good"
+                },
+                "l40": {
+                  "measured": 1.977,
+                  "forecast": 1.183,
+                  "status": "critical"
+                },
+                "rtx_5090": {
+                  "measured": 1.251,
+                  "forecast": 1.333,
+                  "status": "good"
+                },
+                "rtx_6000_ada": {
+                  "measured": 1.855,
+                  "forecast": 1.544,
+                  "status": "warning"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 1.33,
+                  "forecast": 1.257,
+                  "status": "good"
+                },
+                "rtx_a6000": {
+                  "measured": 2.605,
+                  "forecast": 3.168,
+                  "status": "warning"
+                }
+              },
+              "krauncher_tutorials/qwen25_7b_lora_alpaca": {
+                "a100_pcie": {
+                  "measured": 1.831,
+                  "forecast": 1.461,
+                  "status": "warning"
+                },
+                "a100_sxm_80": {
+                  "measured": 1.545,
+                  "forecast": 1.301,
+                  "status": "warning"
+                },
+                "b300": {
+                  "measured": 0.586,
+                  "forecast": 0.345,
+                  "status": "critical"
+                },
+                "h100_sxm": {
+                  "measured": 0.681,
+                  "forecast": 0.586,
+                  "status": "warning"
+                },
+                "l40": {
+                  "measured": 2.711,
+                  "forecast": 1.629,
+                  "status": "critical"
+                },
+                "l40s": {
+                  "measured": 1.717,
+                  "forecast": 1.656,
+                  "status": "good"
+                },
+                "rtx_4500_blackwell": {
+                  "measured": 2.417,
+                  "forecast": null,
+                  "status": "none"
+                },
+                "rtx_5090": {
+                  "measured": 1.481,
+                  "forecast": null,
+                  "status": "none"
+                },
+                "rtx_6000_ada": {
+                  "measured": 2.568,
+                  "forecast": 1.568,
+                  "status": "critical"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 0.994,
+                  "forecast": 1.063,
+                  "status": "good"
+                },
+                "rtx_a6000": {
+                  "measured": 3.402,
+                  "forecast": 2.8,
+                  "status": "warning"
+                }
+              },
+              "krauncher_tutorials/resnet152_food101": {
+                "a100_pcie_80": {
+                  "measured": 4.387,
+                  "forecast": 2.132,
+                  "status": "critical"
+                },
+                "a100_sxm_80": {
+                  "measured": 3.024,
+                  "forecast": 2.132,
+                  "status": "warning"
+                },
+                "a40": {
+                  "measured": 7.568,
+                  "forecast": 3.697,
+                  "status": "critical"
+                },
+                "b200": {
+                  "measured": 1.653,
+                  "forecast": 1.0,
+                  "status": "critical"
+                },
+                "h100_pcie": {
+                  "measured": 4.861,
+                  "forecast": 1.403,
+                  "status": "critical"
+                },
+                "h100_sxm": {
+                  "measured": 3.209,
+                  "forecast": 1.223,
+                  "status": "critical"
+                },
+                "l4": {
+                  "measured": 4.635,
+                  "forecast": 4.414,
+                  "status": "good"
+                },
+                "l40s": {
+                  "measured": 4.915,
+                  "forecast": 2.188,
+                  "status": "critical"
+                },
+                "qrtx_6000": {
+                  "measured": 5.633,
+                  "forecast": 5.824,
+                  "status": "good"
+                },
+                "rtx_2000_ada": {
+                  "measured": 6.025,
+                  "forecast": 7.613,
+                  "status": "warning"
+                },
+                "rtx_3090": {
+                  "measured": 5.15,
+                  "forecast": 5.184,
+                  "status": "good"
+                },
+                "rtx_4000_blackwell": {
+                  "measured": 2.849,
+                  "forecast": 3.384,
+                  "status": "warning"
+                },
+                "rtx_4060ti": {
+                  "measured": 3.143,
+                  "forecast": 5.284,
+                  "status": "critical"
+                },
+                "rtx_4090": {
+                  "measured": 2.007,
+                  "forecast": 2.292,
+                  "status": "good"
+                },
+                "rtx_4500_ada": {
+                  "measured": 1.963,
+                  "forecast": 3.395,
+                  "status": "critical"
+                },
+                "rtx_4500_blackwell": {
+                  "measured": 1.919,
+                  "forecast": 2.732,
+                  "status": "warning"
+                },
+                "rtx_5060ti": {
+                  "measured": 4.042,
+                  "forecast": 4.434,
+                  "status": "good"
+                },
+                "rtx_5070ti": {
+                  "measured": 4.01,
+                  "forecast": 3.414,
+                  "status": "warning"
+                },
+                "rtx_5080": {
+                  "measured": 1.596,
+                  "forecast": 2.454,
+                  "status": "critical"
+                },
+                "rtx_5090": {
+                  "measured": 3.639,
+                  "forecast": 1.744,
+                  "status": "critical"
+                },
+                "rtx_6000_ada": {
+                  "measured": 1.883,
+                  "forecast": 2.036,
+                  "status": "good"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000mq": {
+                  "measured": 1.56,
+                  "forecast": 1.676,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 2.766,
+                  "forecast": 1.35,
+                  "status": "critical"
+                },
+                "rtx_a4000": {
+                  "measured": 3.427,
+                  "forecast": 5.254,
+                  "status": "critical"
+                },
+                "rtx_a4500": {
+                  "measured": 3.115,
+                  "forecast": 4.55,
+                  "status": "warning"
+                },
+                "rtx_a5000": {
+                  "measured": 6.258,
+                  "forecast": 4.505,
+                  "status": "warning"
+                },
+                "rtx_a6000": {
+                  "measured": 5.212,
+                  "forecast": 4.329,
+                  "status": "warning"
+                }
+              },
+              "krauncher_tutorials/vit_batch_inference": {
+                "a100_sxm_40": {
+                  "measured": 3.137,
+                  "forecast": 2.121,
+                  "status": "warning"
+                },
+                "a100_sxm_80": {
+                  "measured": 5.174,
+                  "forecast": 2.095,
+                  "status": "critical"
+                },
+                "h100_sxm": {
+                  "measured": 1.538,
+                  "forecast": 1.0,
+                  "status": "critical"
+                },
+                "l4": {
+                  "measured": 3.468,
+                  "forecast": 3.671,
+                  "status": "good"
+                },
+                "l40": {
+                  "measured": 1.584,
+                  "forecast": 1.728,
+                  "status": "good"
+                },
+                "rtx_2000_ada": {
+                  "measured": 1.68,
+                  "forecast": 6.336,
+                  "status": "critical"
+                },
+                "rtx_5080": {
+                  "measured": 1.601,
+                  "forecast": 2.816,
+                  "status": "critical"
+                },
+                "rtx_5090": {
+                  "measured": 1.713,
+                  "forecast": 1.282,
+                  "status": "warning"
+                },
+                "rtx_6000_ada": {
+                  "measured": 1.914,
+                  "forecast": 2.04,
+                  "status": "good"
+                },
+                "rtx_6000_blackwell": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "rtx_6000s": {
+                  "measured": 1.564,
+                  "forecast": 1.057,
+                  "status": "warning"
+                },
+                "rtx_a6000": {
+                  "measured": 2.7,
+                  "forecast": 3.522,
+                  "status": "warning"
+                }
+              }
+            },
+            "uncovered": [
+              {
+                "task": "krauncher_tutorials/qwen25_7b_lora_alpaca",
+                "missing": [
+                  "rtx_4500_blackwell",
+                  "rtx_5090"
+                ],
+                "measured": 12
+              }
+            ],
+            "anchors": {}
+          }
+        },
+        {
+          "id": "lambda-dlb-v1-fp16",
+          "independent": [
+            true
+          ],
+          "tasks": [
+            "lambdalabs/resnet50_amp_bs1280"
+          ],
+          "vram_bound": {
+            "above": 1,
+            "n": 1,
+            "tasks": [
+              {
+                "task": "lambdalabs/resnet50_amp_bs1280",
+                "at_most": 80,
+                "forecast": 130,
+                "status": "critical"
+              }
+            ]
+          },
+          "ladder": {
+            "pairs": 0,
+            "typical_error": null,
+            "p90_error": null,
+            "median_rank_corr": null,
+            "pick_slower": 0,
+            "n": 0,
+            "tasks": [],
+            "cells": {
+              "lambdalabs/resnet50_amp_bs1280": {
+                "a100_sxm_80": {
+                  "measured": 1.0,
+                  "forecast": null,
+                  "status": "none"
+                },
+                "a100_pcie_80": {
+                  "measured": 1.036,
+                  "forecast": null,
+                  "status": "none"
+                },
+                "h100_pcie": {
+                  "measured": 0.851,
+                  "forecast": null,
+                  "status": "none"
+                },
+                "h100_sxm": {
+                  "measured": 0.574,
+                  "forecast": null,
+                  "status": "none"
+                }
+              }
+            },
+            "uncovered": [
+              {
+                "task": "lambdalabs/resnet50_amp_bs1280",
+                "missing": [
+                  "a100_sxm_80",
+                  "a100_pcie_80",
+                  "h100_pcie",
+                  "h100_sxm"
+                ],
+                "measured": 4
+              }
+            ],
+            "anchors": {
+              "lambdalabs/resnet50_amp_bs1280": "a100_sxm_80"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

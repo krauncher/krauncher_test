@@ -32,3 +32,33 @@ def ladder_pairs(meas: dict, got: dict | None) -> dict[str, tuple[float, float |
             return {g: (r, None) for g, r in exp.items()}
         return {g: (r, got[g] / got[anchor] if g in got else None) for g, r in exp.items()}
     return {g: (r, got.get(g)) for g, r in exp.items()}
+
+
+# Status of a forecast value against what was measured: "good" (accurate),
+# "warning" (a noticeable miss), "critical" (a problem). Thresholds on
+# |log(forecast / measured)|; the report states them.
+TIME_GOOD, TIME_WARN = 1.10, 1.25      # reference_sec
+RATIO_GOOD, RATIO_WARN = 1.15, 1.50    # compute_ratio per GPU
+VRAM_OVER_WARN = 1.30                  # forecast / measured peak above this: over-provisioning
+
+
+def time_status(forecast: float, measured: float) -> str:
+    """By the deviation alone. Whether the measurement falls inside the spread
+    the service issued is reported beside it: that is the honesty of the
+    interval, not the accuracy of the forecast."""
+    r = forecast / measured
+    e = max(r, 1 / r)
+    return "good" if e <= TIME_GOOD else "warning" if e <= TIME_WARN else "critical"
+
+
+def ratio_status(forecast: float, measured: float) -> str:
+    r = forecast / measured
+    e = max(r, 1 / r)
+    return "good" if e <= RATIO_GOOD else "warning" if e <= RATIO_WARN else "critical"
+
+
+def vram_status(forecast: float, measured: float) -> str:
+    """Below the measured peak is an OOM risk; far above it, over-provisioning."""
+    if forecast < measured:
+        return "critical"
+    return "good" if forecast / measured <= VRAM_OVER_WARN else "warning"
