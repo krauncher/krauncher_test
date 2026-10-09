@@ -185,7 +185,11 @@ measured values:
 
 A task can carry several measurement sets (own runs, published results, a
 validator's runs); `independent` says whether the set is independent of the
-service's calibration. `run.py --measurement <id>` picks the set to print
+service's calibration. A set measured without the reference card names an
+`anchor_gpu`: its ratios are relative to that GPU, and the stand divides each
+forecast by the forecast for the anchor. Procedure for new samples,
+including published benchmarks: `doc/adding_samples.md`.
+`run.py --measurement <id>` picks the set to print
 (default: the first); `report.py` reports levels 2–4 per set. Leave out a
 value that is not known. `gpu_id` keys are the ladder's own: run the task once
 and take them from `raw.ladder.rows[].gpu_id` in the result file.

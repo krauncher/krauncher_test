@@ -31,7 +31,7 @@ import math
 import statistics
 from pathlib import Path
 
-from scoring import MEASURED, matches
+from scoring import MEASURED, ladder_pairs, matches
 
 ROOT = Path(__file__).parent
 
@@ -142,8 +142,10 @@ def report(results: dict, descs: dict, measurement: str | None = None) -> str:
             # 4. ladder
             rows, all_err = [], []
             for t, r in rs.items():
-                exp, got = meas(t).get("compute_ratio") or {}, r["fields"].get("compute_ratio") or {}
-                gpus = [g for g in exp if g in got]
+                lp = {g: v for g, v in ladder_pairs(meas(t), r["fields"].get("compute_ratio")).items()
+                      if v[1] is not None}
+                exp, got = {g: v[0] for g, v in lp.items()}, {g: v[1] for g, v in lp.items()}
+                gpus = list(lp)
                 if len(gpus) < 3:
                     continue
                 err = [abs(math.log(got[g] / exp[g])) for g in gpus]

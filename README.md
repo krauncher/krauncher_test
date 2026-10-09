@@ -102,6 +102,9 @@ order, time regret of the GPU picked as fastest).
 
 ## Adding a task
 
+The procedure, for your own workload or a published benchmark:
+[doc/adding_samples.md](doc/adding_samples.md).
+
 A task is its neutral code `tasks/<name>.py` — a plain script runnable on a
 GPU machine (the task function, the call arguments `KWARGS`, models and
 datasets by public ids) — and its description `tasks/<name>.json`: the
