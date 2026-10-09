@@ -43,12 +43,15 @@ cp .env.example .env       # then set KRAUNCHER_API_KEY=cas_...
 ## Run
 
 ```bash
-.venv/bin/python run.py <task>      # <task> = module name in tasks/, without .py
+.venv/bin/python run.py <task> [--service krauncher]   # <task> = module name in tasks/, without .py
 ```
 
-Output: reference / analyzer pairs on stdout, and
-`results/<task>_<UTC time>.json` with task options and arguments, client
-commit, `calibration_id`, assay, ladder and the pairs (`comparison`).
+Output: reference / service pairs on stdout, and
+`results/<service>/<task>_<UTC time>.json` with the normalised forecast:
+`version` (Krauncher: `calibration_id`, client commit), `fields` (the stand's
+fields: workload_type, mode, precision, ..., reference_sec, min_vram_gb,
+compute_ratio per GPU), `raw` (the service's answer as received: assay,
+ladder) and `request` (task options and arguments).
 **Never edit or delete a result file**: its UTC time and `calibration_id` prove
 the forecast predates the runs it is compared with. Run again for a new one.
 `results/` is not tracked by git; do not commit result files.
@@ -63,6 +66,14 @@ Errors:
 | `Analyzer failed and CU estimation is unavailable` | the analyzer could not read the task |
 
 ---
+
+## Services
+
+A service under test is an adapter in `adapters/` implementing
+`ServiceInterface` (`interface.py`): `name`, `capabilities()` (the stand
+fields it answers) and `forecast(task)` (its pre-run forecast, normalised to
+a `Forecast`, `models.py`). `adapters/__init__.py` registers adapters by name
+for `run.py --service`. Plan: `doc/extension_plan.md`.
 
 ## Wrapping your own example as a task
 
@@ -167,7 +178,7 @@ DATA_SOURCES = [
 .venv/bin/python run.py <name>
 ```
 
-Then read `results/<name>_<UTC time>.json`: `assay.workload` shows what the
+Then read `results/krauncher/<name>_<UTC time>.json`: `raw.assay.workload` shows what the
 analyzer recognized (model, precision, knobs); a `null` in `knobs` for a value
 the code sets means the analyzer did not read it — a finding to report, not a
 reason to rewrite the task.

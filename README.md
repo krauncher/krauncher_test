@@ -50,6 +50,9 @@ One task:
 
     .venv/bin/python run.py bert_imdb
 
+`--service <name>` picks the service under test (default `krauncher`; the
+services are adapters in `adapters/`, see `doc/extension_plan.md`).
+
 All tasks:
 
     for t in tasks/[a-z]*.py; do .venv/bin/python run.py "$(basename "$t" .py)"; done
@@ -60,10 +63,12 @@ it on your account if it is missing.
 
 ### 6. Read the result
 
-Each run prints reference / analyzer pairs for the passport (`reference_sec`,
+Each run prints reference / service pairs for the passport (`reference_sec`,
 `min_vram_gb`) and for every GPU of the ladder (`compute_ratio`), and writes
-`results/<task>_<UTC time>.json`: task options and arguments, client commit,
-`calibration_id`, assay, ladder and the reference / analyzer pairs. Result
+`results/<service>/<task>_<UTC time>.json`: the forecast normalised to the
+stand's fields, the service's answer as received (for Krauncher: assay and
+ladder), its version (`calibration_id`, client commit) and the task options
+and arguments. Result
 files are not edited after they are written: the UTC time and
 `calibration_id` show that the forecast was made before any run it is
 compared with. `results/` is not tracked by git: the files stay with whoever
