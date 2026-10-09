@@ -111,6 +111,7 @@ Published benchmarks (`tasks/<source>/`, independent measurements):
 |---|---|
 | `lambdalabs/resnet50_amp_bs1280` | ResNet-50 training, AMP, batch 1280, synthetic data; Lambda GPU benchmark (A100 / H100 80 GB) |
 | `lambdalabs/resnet50_amp_bs928` | ResNet-50 training, AMP, batch 928, synthetic data; Lambda GPU benchmark (RTX 6000 Ada, RTX A6000, Quadro RTX 8000, 48 GB) |
+| `lambdalabs/bert_base_squad_amp_bs320` | BERT-base fine-tuning on SQuAD v1.1, mixed precision, batch 320, 101 steps; Lambda GPU benchmark (A100 / H100 80 GB) |
 
 ## Adding a task
 
