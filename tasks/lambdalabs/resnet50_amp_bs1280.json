@@ -1,0 +1,35 @@
+{
+  "task": "lambdalabs/resnet50_amp_bs1280",
+  "fields": {
+    "workload_type": "cv_training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp16",
+    "params_billions": 0.0256,
+    "batch_size": 1280,
+    "epochs": 2,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-09 (synthetic data: dataset_samples not stated)"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column resnet50 (training throughput, images/s), single-GPU rows run with batch 1280 (pytorch/pytorch-train-bs-fp16.csv): 'A100 80GB SXM4' 1582; 'A100 80GB PCIe' 1527; 'H100 80GB PCIe Gen5' 1866, 'LambdaCloud H100 80GB PCIe Gen5' 1851; 'H100 80GB SXM5' 2616, 'Dell H100 80GB SXM5' 2776, 'DellTexas H100 80GB SXM5' 2785, 'SMC H100 80GB SXM5' 2787, '1CC H100 80GB SXM5' 2791, 'RAIDZ1 H100 80GB SXM5' 2790",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "anchor_gpu": "a100_sxm_80",
+      "compute_ratio": {
+        "a100_sxm_80": 1.0,
+        "a100_pcie_80": 1.036,
+        "h100_pcie": 0.851,
+        "h100_sxm": 0.574
+      },
+      "compute_ratio_note": "throughput[A100 80GB SXM4] / throughput[GPU]; several rows of one GPU (different hosts) pooled by geometric mean (H100 PCIe 1858.5, H100 SXM5 2756.7 images/s)",
+      "vram_gb_at_most": 80,
+      "vram_gb_at_most_note": "the run completed with batch 1280 on 80 GB cards (A100 80GB, H100 80GB), so the peak is at most 80 GB"
+    }
+  ]
+}

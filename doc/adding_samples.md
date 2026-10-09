@@ -58,6 +58,12 @@ with an empty `__init__.py`). The task's name on the stand is
   reduction to one file, with its settings (model, batch size, precision,
   sequence length / image size, number of iterations). Name the source and
   its version (repository, commit or release) in the docstring.
+- A reduction must be checkable by anyone: in the docstring, the exact
+  command / config the benchmark ran, and for every choice in the script the
+  file and lines of the source it follows; then the differences from the
+  source, each with why it does not change the measured work. Nothing is
+  tuned towards a service's answer. Example:
+  `tasks/lambdalabs/resnet50_amp_bs1280.py`.
 
 ## 2. The description — `tasks/<source>/<name>.json`
 
@@ -127,6 +133,7 @@ obtained.
 | `source`, `date`, `hardware` | where the values are published or who measured, when, on what (GPUs, host, driver, CUDA, framework versions) |
 | `reference_sec` | whole task, seconds, on the reference card (RTX PRO 6000 Blackwell). Leave out if the reference card was not measured |
 | `min_vram_gb` | peak GPU memory of the run, GB |
+| `vram_gb_at_most` | an upper bound on the peak, GB, when only that is known: the run completed on a card of that size |
 | `compute_ratio` | per GPU: compute time on that GPU / compute time on the anchor GPU. Compute = whole task minus data download and environment setup |
 | `anchor_gpu` | the GPU the ratios are relative to; leave out when it is the reference card. The stand divides each service's forecast by its forecast for the anchor |
 
@@ -141,7 +148,13 @@ GPU keys are the stand's `gpu_id`s (`rtx_6000_blackwell`, `h100_sxm`,
 - Time per step or per run: `compute_ratio[g] = time[g] / time[anchor]`.
 - Use only rows with the same settings (model, batch, precision, sequence
   length, software version) across GPUs; a different setting is a different
-  sample.
+  sample. Benchmarks often pick the batch by the card's memory (e.g. 448 on
+  24 GB, 928 on 48 GB, 1280 on 80 GB): one sample per batch, with the cards
+  that ran it.
+- Several rows of one GPU (different hosts of the same card): pool them by
+  geometric mean and say so in the note.
+- A run that completed on a card bounds the peak memory: record
+  `vram_gb_at_most`.
 - A single-GPU number per card: one row per card. Multi-GPU or multi-node
   results do not fit a single-GPU sample — leave them out.
 - Cite the exact table: URL, version / round, row identifiers.

@@ -139,11 +139,23 @@ def report(results: dict, descs: dict, measurement: str | None = None) -> str:
                 lines += [f"| {t} | {w} | {g} | x{g / w:.2f} |" for t, w, g in pairs]
                 lines.append("")
 
+            # 3b. VRAM upper bounds (the run fitted on a card of that size)
+            bounds = [(t, meas(t)["vram_gb_at_most"], r["fields"].get("min_vram_gb")) for t, r in rs.items()
+                      if meas(t).get("vram_gb_at_most") and r["fields"].get("min_vram_gb") is not None]
+            if bounds:
+                over = [(t, b, g) for t, b, g in bounds if g > b]
+                lines += ["#### VRAM upper bound", "",
+                          f"forecast above the measured upper bound in {len(over)}/{len(bounds)} tasks"
+                          + ("".join(f"; {t}: {g} GB > {b} GB" for t, b, g in over)), ""]
+
             # 4. ladder
-            rows, all_err = [], []
+            rows, all_err, uncovered = [], [], []
             for t, r in rs.items():
-                lp = {g: v for g, v in ladder_pairs(meas(t), r["fields"].get("compute_ratio")).items()
-                      if v[1] is not None}
+                full = ladder_pairs(meas(t), r["fields"].get("compute_ratio"))
+                missing = [g for g, v in full.items() if v[1] is None]
+                if missing:
+                    uncovered.append((t, len(missing), len(full)))
+                lp = {g: v for g, v in full.items() if v[1] is not None}
                 exp, got = {g: v[0] for g, v in lp.items()}, {g: v[1] for g, v in lp.items()}
                 gpus = list(lp)
                 if len(gpus) < 3:
@@ -166,6 +178,11 @@ def report(results: dict, descs: dict, measurement: str | None = None) -> str:
                 lines += [f"| {t} | {n} | x{m:.2f} | x{p:.2f} | {rc:.2f} | x{rg:.2f} | {pk} | {bs} |"
                           for t, n, m, p, rc, rg, pk, bs in rows]
                 lines.append("")
+            if uncovered:
+                lines += ["#### Ladder coverage", "",
+                          "measured GPUs without a forecast (the service listed no row for them, e.g. "
+                          "filtered out by its VRAM requirement): "
+                          + "; ".join(f"{t} {m}/{n}" for t, m, n in uncovered), ""]
     return "\n".join(lines)
 
 

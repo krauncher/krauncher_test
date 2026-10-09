@@ -87,6 +87,8 @@ order, time regret of the GPU picked as fastest).
 
 ## Tasks
 
+Krauncher client tutorials (`tasks/krauncher_tutorials/`, measured on Krauncher's calibration runs — not independent):
+
 | Module | Task |
 |---|---|
 | `bert_imdb` | BERT fine-tuning on IMDB |
@@ -99,6 +101,12 @@ order, time regret of the GPU picked as fastest).
 | `bert_batch_inference` | BERT batch inference |
 | `vit_batch_inference` | ViT batch inference |
 | `resnet152_food101` | ResNet-152 training on Food-101 |
+
+Published benchmarks (`tasks/<source>/`, independent measurements):
+
+| Task | Source |
+|---|---|
+| `lambdalabs/resnet50_amp_bs1280` | ResNet-50 training, AMP, batch 1280, synthetic data; Lambda GPU benchmark (A100 / H100 80 GB) |
 
 ## Adding a task
 

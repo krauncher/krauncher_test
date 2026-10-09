@@ -32,6 +32,7 @@ def compare(fc: Forecast, task: Task, caps: set[str], mid: str | None = None) ->
     return {
         "fields": {f: [w, g, matches(f, w, g)] for f, (w, g) in pairs.items()},
         "passport": {f: [meas.get(f), got.get(f)] for f in ("reference_sec", "min_vram_gb") if f in caps},
+        "vram_at_most": [meas.get("vram_gb_at_most"), got.get("min_vram_gb")],
         "compute_ratio": {g: list(v) for g, v in ladder_pairs(meas, got.get("compute_ratio")).items()},
     }
 
@@ -50,6 +51,10 @@ async def main(name: str, service: str, mid: str | None) -> None:
     print(f"{'measurement: ' + (task.measured(mid).get('id') or '-'):<22}{'reference':>16}{service:>16}")
     for key, (r, a) in cmp["passport"].items():
         print(f"{key:<22}{'-' if r is None else r:>16}{'-' if a is None else a:>16}")
+    bound, vram = cmp["vram_at_most"]
+    if bound is not None:
+        print(f"{'vram_gb_at_most':<22}{bound:>16}{'-' if vram is None else vram:>16}  "
+              f"{'ok' if vram is not None and vram <= bound else 'OVER'}")
     anchor = task.measured(mid).get("anchor_gpu")
     print("compute_ratio" + (f" (relative to {anchor})" if anchor else ""))
     for g, (r, a) in cmp["compute_ratio"].items():
