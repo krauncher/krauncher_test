@@ -20,19 +20,30 @@ class Task:
     """A stand task — labelled data: its neutral code (tasks/<name>.py, a
     plain script runnable on a GPU machine) and its description
     (tasks/<name>.json): `fields`, the expected forecast in the stand's
-    fields, and `sources`, where each expected value comes from. The form a
-    service takes is a prepared file, variants/<service>/<name>.py."""
+    fields (classification / assay), `sources`, where they come from, and
+    `measurements`, sets of measured values (reference_sec, min_vram_gb,
+    compute_ratio), each with its id, source, date and whether it is
+    independent of the service's calibration. The form a service takes is a
+    prepared file, variants/<service>/<name>.py."""
 
     name: str
     code: Path
     expected: dict[str, Any]
     sources: dict[str, str] = field(default_factory=dict)
+    measurements: list[dict[str, Any]] = field(default_factory=list)
 
     @classmethod
     def load(cls, name: str) -> "Task":
         desc = json.loads((TASKS / f"{name}.json").read_text())
-        return cls(name=name, code=TASKS / f"{name}.py",
-                   expected=desc["fields"], sources=desc.get("sources", {}))
+        return cls(name=name, code=TASKS / f"{name}.py", expected=desc["fields"],
+                   sources=desc.get("sources", {}), measurements=desc.get("measurements", []))
+
+    def measured(self, mid: str | None = None) -> dict[str, Any]:
+        """The measurement set `mid` (the first one when None); {} if absent."""
+        for m in self.measurements:
+            if mid is None or m["id"] == mid:
+                return m
+        return {}
 
     def variant(self, service: str) -> ModuleType:
         """The task in the form `service` takes (variants/<service>/<name>.py)."""

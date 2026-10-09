@@ -8,29 +8,36 @@
     "params_billions": 7.62,
     "batch_size": 1,
     "dataset_samples": 200,
-    "cpu_only": false,
-    "min_vram_gb": 15.7,
-    "reference_sec": 711,
-    "compute_ratio": {
-      "a100_sxm_80": 1.774,
-      "h100_sxm": 1.18,
-      "l4": 4.911,
-      "l40": 1.893,
-      "rtx_4090": 2.345,
-      "rtx_4500_blackwell": 1.837,
-      "rtx_5090": 1.444,
-      "rtx_6000_ada": 1.698,
-      "rtx_6000_blackwell": 1.0,
-      "rtx_6000s": 1.086,
-      "rtx_a5000": 2.186,
-      "rtx_a6000": 2.396
-    }
+    "cpu_only": false
   },
   "sources": {
-    "classification": "labelled from the task code, 2026-10-09; draft, self-checked against the analyzer's answer (disagreements resolved from the code)",
-    "measurements": "Reference values. Source: Krauncher calibration runs on rented hosts (March-September 2026), the same data the analyzer's calibrator is fitted on, so this is not an independent check. Geometric mean over runs.",
-    "reference_sec": "whole task measured on the reference card; RTX PRO 6000 Blackwell",
-    "min_vram_gb": "median vram_peak_mb (16091 MB) over completed tasks with this entry_point, all configurations mixed; device memory from nvidia-smi, polled every 10 s",
-    "compute_ratio": "measured compute (exec - io - setup) on a GPU, on its rented hosts, over the same on the reference card brought to the ideal host with the analyzer's host model (576.0 s), per ladder gpu_id."
-  }
+    "classification": "labelled from the task code, 2026-10-09; draft, self-checked against the analyzer's answer (disagreements resolved from the code)"
+  },
+  "measurements": [
+    {
+      "id": "krauncher-calibration-2026",
+      "independent": false,
+      "source": "Reference values. Source: Krauncher calibration runs on rented hosts (March-September 2026), the same data the analyzer's calibrator is fitted on, so this is not an independent check. Geometric mean over runs.",
+      "date": "2026-03..2026-09",
+      "reference_sec": 711,
+      "reference_sec_note": "whole task measured on the reference card; RTX PRO 6000 Blackwell",
+      "min_vram_gb": 15.7,
+      "min_vram_gb_note": "median vram_peak_mb (16091 MB) over completed tasks with this entry_point, all configurations mixed; device memory from nvidia-smi, polled every 10 s",
+      "compute_ratio": {
+        "a100_sxm_80": 1.774,
+        "h100_sxm": 1.18,
+        "l4": 4.911,
+        "l40": 1.893,
+        "rtx_4090": 2.345,
+        "rtx_4500_blackwell": 1.837,
+        "rtx_5090": 1.444,
+        "rtx_6000_ada": 1.698,
+        "rtx_6000_blackwell": 1.0,
+        "rtx_6000s": 1.086,
+        "rtx_a5000": 2.186,
+        "rtx_a6000": 2.396
+      },
+      "compute_ratio_note": "measured compute (exec - io - setup) on a GPU, on its rented hosts, over the same on the reference card brought to the ideal host with the analyzer's host model (576.0 s), per ladder gpu_id."
+    }
+  ]
 }

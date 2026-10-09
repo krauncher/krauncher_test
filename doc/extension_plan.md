@@ -113,6 +113,8 @@ class Forecast:
    (by hand, script or LLM), reviewed and committed. *Done 2026-10-09:
    forecasts identical before and after the move.*
 5. Several measurements per value with `source` / `date` / host in the
-   description; new tasks outside the calibration corpus.
+   description; new tasks outside the calibration corpus. *Measurement sets done
+   2026-10-09 (the current values: `krauncher-calibration-2026`, not
+   independent); new tasks wait for the task sources and the budget.*
 
 Open: task sources for the independent corpus; budget for measurement runs.

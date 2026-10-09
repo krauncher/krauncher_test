@@ -18,9 +18,11 @@ task's description (tasks/<task>.json). Levels:
    Regret in $/task needs prices, which no service answers yet.
 
 Only fields a service answers (its result's `fields`) and the task describes
-are scored. Markdown to stdout.
+are scored. Levels 2-4 are reported per measurement set of the descriptions
+(each set has an id, a source, a date and whether it is independent of the
+service's calibration). Markdown to stdout.
 
-    python report.py [--service krauncher] [--version c-d589e2f979e6]
+    python report.py [--service krauncher] [--version c-d589e2f979e6] [--measurement <id>]
 """
 
 import argparse
@@ -70,7 +72,9 @@ def _spearman(a: list[float], b: list[float]) -> float:
     return 1 - 6 * sum((x - y) ** 2 for x, y in zip(ra, rb)) / (n * (n * n - 1))
 
 
-def report(results: dict, descs: dict) -> str:
+def report(results: dict, descs: dict, measurement: str | None = None) -> str:
+    mids = [measurement] if measurement else list(dict.fromkeys(
+        m["id"] for d in descs.values() for m in d.get("measurements", [])))
     lines = []
     for service in sorted({s for s, _ in results}):
         rs = {t: r for (s, t), r in results.items() if s == service and t in descs}
@@ -106,51 +110,60 @@ def report(results: dict, descs: dict) -> str:
             lines.append(f"| {f} | {ok}/{len(v)} | {', '.join(t for t, m in v if not m) or '-'} |")
         lines.append("")
 
-        # 2. reference-card time, 3. VRAM
-        for f, title in (("reference_sec", "Reference-card time"), ("min_vram_gb", "VRAM")):
-            pairs = [(t, descs[t]["fields"][f], r["fields"][f]) for t, r in rs.items()
-                     if descs[t]["fields"].get(f) and r["fields"].get(f)]
-            if not pairs:
+        # 2-4. measured values, per measurement set of the descriptions
+        for mid in mids:
+            def meas(t, mid=mid):
+                return next((m for m in descs[t].get("measurements", []) if m["id"] == mid), {})
+            have = [t for t in rs if meas(t)]
+            if not have:
                 continue
-            ratios = [g / w for _, w, g in pairs]
-            head = (f"forecast / reference over {len(pairs)} tasks: centre x{_gm(ratios):.2f}, "
-                    f"typical deviation x{math.exp(statistics.median(abs(math.log(x)) for x in ratios)):.2f}")
-            if f == "reference_sec":
-                inside = sum(1 for (t, w, g) in pairs
-                             if 1 / rs[t]["fields"].get("spread_factor", 1) <= w / g <= rs[t]["fields"].get("spread_factor", 1))
-                head += f"; reference inside the issued spread: {inside}/{len(pairs)}"
-            else:
-                head += f"; forecast below the measured peak: {sum(1 for x in ratios if x < 1)}/{len(pairs)}"
-            lines += [f"### {title}", "", head]
-            lines += ["", "| task | reference | forecast | forecast / reference |", "|---|---|---|---|"]
-            lines += [f"| {t} | {w} | {g} | x{g / w:.2f} |" for t, w, g in pairs]
-            lines.append("")
+            indep = sorted({str(meas(t).get("independent")) for t in have})
+            lines += [f"### Measurements: {mid} (independent: {', '.join(indep)}; {len(have)} tasks)", ""]
+            # 2. reference-card time, 3. VRAM
+            for f, title in (("reference_sec", "Reference-card time"), ("min_vram_gb", "VRAM")):
+                pairs = [(t, meas(t)[f], r["fields"][f]) for t, r in rs.items()
+                         if meas(t).get(f) and r["fields"].get(f)]
+                if not pairs:
+                    continue
+                ratios = [g / w for _, w, g in pairs]
+                head = (f"forecast / reference over {len(pairs)} tasks: centre x{_gm(ratios):.2f}, "
+                        f"typical deviation x{math.exp(statistics.median(abs(math.log(x)) for x in ratios)):.2f}")
+                if f == "reference_sec":
+                    inside = sum(1 for (t, w, g) in pairs
+                                 if 1 / rs[t]["fields"].get("spread_factor", 1) <= w / g <= rs[t]["fields"].get("spread_factor", 1))
+                    head += f"; reference inside the issued spread: {inside}/{len(pairs)}"
+                else:
+                    head += f"; forecast below the measured peak: {sum(1 for x in ratios if x < 1)}/{len(pairs)}"
+                lines += [f"#### {title}", "", head]
+                lines += ["", "| task | reference | forecast | forecast / reference |", "|---|---|---|---|"]
+                lines += [f"| {t} | {w} | {g} | x{g / w:.2f} |" for t, w, g in pairs]
+                lines.append("")
 
-        # 4. ladder
-        rows, all_err = [], []
-        for t, r in rs.items():
-            exp, got = descs[t]["fields"].get("compute_ratio") or {}, r["fields"].get("compute_ratio") or {}
-            gpus = [g for g in exp if g in got]
-            if len(gpus) < 3:
-                continue
-            err = [abs(math.log(got[g] / exp[g])) for g in gpus]
-            all_err += err
-            pick = min(gpus, key=lambda g: got[g])
-            best = min(gpus, key=lambda g: exp[g])
-            rows.append((t, len(gpus), math.exp(statistics.median(err)), math.exp(_q(err, 0.9)),
-                         _spearman([exp[g] for g in gpus], [got[g] for g in gpus]),
-                         exp[pick] / exp[best], pick, best))
-        if rows:
-            lines += ["### Ladder (compute_ratio)", "",
-                      f"over {len(all_err)} (task, GPU) pairs: typical error x{math.exp(statistics.median(all_err)):.2f}, "
-                      f"p90 x{math.exp(_q(all_err, 0.9)):.2f}; median rank correlation "
-                      f"{statistics.median(x[4] for x in rows):.2f}; pick slower than the fastest in "
-                      f"{sum(1 for x in rows if x[5] > 1.0001)}/{len(rows)} tasks", "",
-                      "| task | GPUs | typical error | p90 | rank corr | time regret of the pick | picked | fastest |",
-                      "|---|---|---|---|---|---|---|---|"]
-            lines += [f"| {t} | {n} | x{m:.2f} | x{p:.2f} | {rc:.2f} | x{rg:.2f} | {pk} | {bs} |"
-                      for t, n, m, p, rc, rg, pk, bs in rows]
-            lines.append("")
+            # 4. ladder
+            rows, all_err = [], []
+            for t, r in rs.items():
+                exp, got = meas(t).get("compute_ratio") or {}, r["fields"].get("compute_ratio") or {}
+                gpus = [g for g in exp if g in got]
+                if len(gpus) < 3:
+                    continue
+                err = [abs(math.log(got[g] / exp[g])) for g in gpus]
+                all_err += err
+                pick = min(gpus, key=lambda g: got[g])
+                best = min(gpus, key=lambda g: exp[g])
+                rows.append((t, len(gpus), math.exp(statistics.median(err)), math.exp(_q(err, 0.9)),
+                             _spearman([exp[g] for g in gpus], [got[g] for g in gpus]),
+                             exp[pick] / exp[best], pick, best))
+            if rows:
+                lines += ["#### Ladder (compute_ratio)", "",
+                          f"over {len(all_err)} (task, GPU) pairs: typical error x{math.exp(statistics.median(all_err)):.2f}, "
+                          f"p90 x{math.exp(_q(all_err, 0.9)):.2f}; median rank correlation "
+                          f"{statistics.median(x[4] for x in rows):.2f}; pick slower than the fastest in "
+                          f"{sum(1 for x in rows if x[5] > 1.0001)}/{len(rows)} tasks", "",
+                          "| task | GPUs | typical error | p90 | rank corr | time regret of the pick | picked | fastest |",
+                          "|---|---|---|---|---|---|---|---|"]
+                lines += [f"| {t} | {n} | x{m:.2f} | x{p:.2f} | {rc:.2f} | x{rg:.2f} | {pk} | {bs} |"
+                          for t, n, m, p, rc, rg, pk, bs in rows]
+                lines.append("")
     return "\n".join(lines)
 
 
@@ -158,9 +171,10 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--service")
     ap.add_argument("--version", help="only results of this service version (e.g. a calibration_id)")
+    ap.add_argument("--measurement", help="only this measurement set of the descriptions (default: each)")
     args = ap.parse_args()
     descs = {p.stem: json.loads(p.read_text()) for p in (ROOT / "tasks").glob("*.json")}
-    print(report(latest(args.service, args.version), descs))
+    print(report(latest(args.service, args.version), descs, args.measurement))
 
 
 if __name__ == "__main__":

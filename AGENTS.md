@@ -152,7 +152,8 @@ Keyword arguments of the call, `dict()` for the defaults. Only scalar values
 
 ### The description — `tasks/<name>.json`
 
-The expected forecast in the stand's fields, and where each value comes from:
+The expected classification / assay fields, where they come from, and sets of
+measured values:
 
 ```json
 {
@@ -160,25 +161,34 @@ The expected forecast in the stand's fields, and where each value comes from:
   "fields": {
     "workload_type": "ai_training", "mode": "training", "framework": "pytorch",
     "precision": "fp16", "params_billions": 0.11, "batch_size": 16, "epochs": 3,
-    "dataset_samples": 25000, "seq_len": 256, "cpu_only": false,
-    "min_vram_gb": 3.9, "reference_sec": 143,
-    "compute_ratio": {"b200": 0.667, "rtx_6000_blackwell": 1.0}
+    "dataset_samples": 25000, "seq_len": 256, "cpu_only": false
   },
-  "sources": {"classification": "...", "reference_sec": "...", "min_vram_gb": "...", "compute_ratio": "..."}
+  "sources": {"classification": "labelled from the task code, <date>"},
+  "measurements": [
+    {
+      "id": "krauncher-calibration-2026", "independent": false,
+      "source": "...", "date": "2026-03..2026-09",
+      "reference_sec": 143, "reference_sec_note": "...",
+      "min_vram_gb": 3.9, "min_vram_gb_note": "...",
+      "compute_ratio": {"b200": 0.667, "rtx_6000_blackwell": 1.0}, "compute_ratio_note": "..."
+    }
+  ]
 }
 ```
 
 | Field | Compared with (Krauncher) | How to obtain |
 |---|---|---|
-| `workload_type`, `mode`, `framework`, `precision`, `params_billions`, `batch_size`, `epochs`, `dataset_samples`, `seq_len`, `cpu_only` | `assay.workload` / `assay.requirements.cpu_only`; printed ok / DIFF (`params_billions` within ±25 %, no precision = fp32) | read from the task code: what the task is, not what any service answers |
+| `fields`: `workload_type`, `mode`, `framework`, `precision`, `params_billions`, `batch_size`, `epochs`, `dataset_samples`, `seq_len`, `cpu_only` | `assay.workload` / `assay.requirements.cpu_only`; printed ok / DIFF (`params_billions` within ±25 %, no precision = fp32) | read from the task code: what the task is, not what any service answers |
 | `reference_sec` | `assay.work.reference_sec` | whole task, seconds, on RTX PRO 6000 Blackwell |
 | `min_vram_gb` | `assay.requirements.min_vram_gb` | peak VRAM of the run, GB |
 | `compute_ratio` | ladder `compute_ratio` per `gpu_id` | compute on the GPU / compute on the reference card, where compute = whole task − download − setup |
 
-Leave out a field that is not known. `gpu_id` keys are the ladder's own: run
-the task once and take them from `raw.ladder.rows[].gpu_id` in the result
-file. `sources` states where each value comes from (own measurement,
-hardware, date; labelled from the code).
+A task can carry several measurement sets (own runs, published results, a
+validator's runs); `independent` says whether the set is independent of the
+service's calibration. `run.py --measurement <id>` picks the set to print
+(default: the first); `report.py` reports levels 2–4 per set. Leave out a
+value that is not known. `gpu_id` keys are the ladder's own: run the task once
+and take them from `raw.ladder.rows[].gpu_id` in the result file.
 
 ### DATA_SOURCES — optional
 

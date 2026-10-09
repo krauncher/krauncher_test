@@ -23,31 +23,32 @@ from scoring import MEASURED, matches
 ROOT = Path(__file__).parent
 
 
-def compare(fc: Forecast, task: Task, caps: set[str]) -> dict:
-    """Expected / service pairs over the expected fields the service answers."""
-    exp, got = task.expected, fc.fields
+def compare(fc: Forecast, task: Task, caps: set[str], mid: str | None = None) -> dict:
+    """Expected / service pairs over the expected fields the service answers,
+    and reference / service pairs for the measurement set `mid` (first if None)."""
+    exp, got, meas = task.expected, fc.fields, task.measured(mid)
     pairs = {f: [exp[f], got.get(f)] for f in exp
              if f in caps and f not in MEASURED}
     return {
         "fields": {f: [w, g, matches(f, w, g)] for f, (w, g) in pairs.items()},
-        "passport": {f: [exp.get(f), got.get(f)] for f in ("reference_sec", "min_vram_gb") if f in caps},
+        "passport": {f: [meas.get(f), got.get(f)] for f in ("reference_sec", "min_vram_gb") if f in caps},
         "compute_ratio": {g: [r, (got.get("compute_ratio") or {}).get(g)]
-                          for g, r in exp.get("compute_ratio", {}).items()},
+                          for g, r in meas.get("compute_ratio", {}).items()},
     }
 
 
-async def main(name: str, service: str) -> None:
+async def main(name: str, service: str, mid: str | None) -> None:
     task = Task.load(name)
     adapter = ADAPTERS[service]
     fc = await adapter.timed_forecast(task)
     out = adapter.save(fc)
-    cmp = compare(fc, task, adapter.capabilities())
+    cmp = compare(fc, task, adapter.capabilities(), mid)
     print(f"{out.relative_to(ROOT)}: {service} {fc.version}")
     print("timing, s: " + ", ".join(f"{k} {v}" for k, v in fc.timing.items()))
     print(f"{'':<22}{'expected':>16}{service:>16}")
     for key, (w, g, ok) in cmp["fields"].items():
         print(f"{key:<22}{str(w):>16}{str(g):>16}  {'ok' if ok else 'DIFF'}")
-    print(f"{'':<22}{'reference':>16}{service:>16}")
+    print(f"{'measurement: ' + (task.measured(mid).get('id') or '-'):<22}{'reference':>16}{service:>16}")
     for key, (r, a) in cmp["passport"].items():
         print(f"{key:<22}{'-' if r is None else r:>16}{'-' if a is None else a:>16}")
     print("compute_ratio")
@@ -59,5 +60,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("task", nargs="?", default="bert_imdb")
     ap.add_argument("--service", default="krauncher", choices=sorted(ADAPTERS))
+    ap.add_argument("--measurement", help="measurement set id of the description (default: the first)")
     args = ap.parse_args()
-    asyncio.run(main(args.task, args.service))
+    asyncio.run(main(args.task, args.service, args.measurement))
