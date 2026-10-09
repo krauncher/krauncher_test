@@ -113,6 +113,7 @@ Published benchmarks (`tasks/<source>/`, independent measurements):
 | `lambdalabs/resnet50_amp_bs928` | ResNet-50 training, AMP, batch 928, synthetic data; Lambda GPU benchmark (RTX 6000 Ada, RTX A6000, Quadro RTX 8000, 48 GB) |
 | `lambdalabs/bert_base_squad_amp_bs320` | BERT-base fine-tuning on SQuAD v1.1, mixed precision, batch 320, 101 steps; Lambda GPU benchmark (A100 / H100 80 GB) |
 | `lambdalabs/bert_base_squad_amp_bs192` | BERT-base fine-tuning on SQuAD v1.1, mixed precision, batch 192, 101 steps; Lambda GPU benchmark (RTX 6000 Ada, RTX A6000, Quadro RTX 8000, 48 GB) |
+| `lambdalabs/bert_base_squad_amp_bs96` | BERT-base fine-tuning on SQuAD v1.1, mixed precision, batch 96, 101 steps; Lambda GPU benchmark (RTX 4090, RTX 3090, 24 GB) |
 
 ## Adding a task
 

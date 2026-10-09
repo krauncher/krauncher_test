@@ -197,26 +197,28 @@ def analyze(results: dict, descs: dict, measurement: str | None = None) -> dict:
                 if missing:
                     uncovered.append({"task": t, "missing": missing, "measured": len(scored)})
                 lp = {g: v for g, v in full.items() if v[1] is not None}
-                if len(lp) < 3:
+                if len(lp) < 2:
                     continue
                 exp, got = {g: v[0] for g, v in lp.items()}, {g: v[1] for g, v in lp.items()}
                 err = [abs(math.log(got[g] / exp[g])) for g in lp if g != anchor]
                 all_err += err
                 pick, best = min(lp, key=lambda g: got[g]), min(lp, key=lambda g: exp[g])
                 regret = exp[pick] / exp[best]
-                rank = _spearman(list(exp.values()), list(got.values()))
+                rank = _spearman(list(exp.values()), list(got.values())) if len(lp) >= 3 else None
                 lrows.append({"task": t, "gpus": len(lp), "scored_gpus": len(err),
                               "typical_error": _r(math.exp(statistics.median(err))),
                               "p90_error": _r(math.exp(_q(err, 0.9))),
-                              "rank_corr": _r(rank, 2), "pick": pick, "fastest": best,
+                              "rank_corr": _r(rank, 2) if rank is not None else None, "pick": pick, "fastest": best,
                               "time_regret": _r(regret),
-                              "status": "critical" if regret > 1.0001 else "warning" if rank < 0.7 else "good"})
+                              "status": "critical" if regret > 1.0001 else
+                                        "warning" if rank is not None and rank < 0.7 else "good"})
             if cells:
                 ms["ladder"] = {
                     "pairs": len(all_err),
                     "typical_error": _r(math.exp(statistics.median(all_err))) if all_err else None,
                     "p90_error": _r(math.exp(_q(all_err, 0.9))) if all_err else None,
-                    "median_rank_corr": _r(statistics.median(x["rank_corr"] for x in lrows), 2) if lrows else None,
+                    "median_rank_corr": _r(statistics.median(ranks), 2) if (ranks := [x["rank_corr"] for x in lrows
+                                                                                  if x["rank_corr"] is not None]) else None,
                     "pick_slower": sum(1 for x in lrows if x["time_regret"] > 1.0001),
                     "n": len(lrows), "tasks": lrows, "cells": cells, "uncovered": uncovered,
                     "anchors": anchors}

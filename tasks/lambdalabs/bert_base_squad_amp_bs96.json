@@ -1,0 +1,34 @@
+{
+  "task": "lambdalabs/bert_base_squad_amp_bs96",
+  "fields": {
+    "workload_type": "ai_training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp16",
+    "params_billions": 0.109,
+    "batch_size": 96,
+    "dataset_samples": 87599,
+    "seq_len": 384,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-09; dataset_samples = SQuAD v1.1 train examples (87 599; split into more 384-token features)"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column bert_base_squad (training throughput, sequences/s), single-GPU rows run with batch 96 (pytorch/pytorch-train-bs-fp16.csv; configs config_pytorch_3090_v1.sh, config_pytorch_4090_v1.sh source config_pytorch_24GB.sh with no batch fix; the A10 ran batch 80 and is not in this set): 'RTX 4090' 297; 'RTX 3090' 172",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "vram_gb_at_most": 24,
+      "vram_gb_at_most_note": "the run completed with batch 96 on 24 GB cards (RTX 4090, RTX 3090), so the peak is at most 24 GB",
+      "anchor_gpu": "rtx_4090",
+      "compute_ratio": {
+        "rtx_4090": 1.0,
+        "rtx_3090": 1.727
+      },
+      "compute_ratio_note": "throughput[RTX 4090] / throughput[GPU]; one row per GPU"
+    }
+  ]
+}
