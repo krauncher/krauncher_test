@@ -1,0 +1,35 @@
+{
+  "task": "lambdalabs/bert_large_squad_amp_bs64",
+  "fields": {
+    "workload_type": "ai_training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp16",
+    "params_billions": 0.334,
+    "batch_size": 64,
+    "dataset_samples": 87599,
+    "seq_len": 384,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-09; dataset_samples = SQuAD v1.1 train examples (87 599; split into more 384-token features)"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column bert_large_squad (training throughput, sequences/s), single-GPU rows run with batch 64 (pytorch/pytorch-train-bs-fp16.csv; configs config_pytorch_QuadroRTX8000_v1.sh, config_pytorch_AdaA6000_v1.sh, config_pytorch_A6000_v1.sh source config_pytorch_48GB.sh with no batch fix): 'RTX 6000 Ada' 79; 'RTX A6000' 68; 'Quadro RTX 8000' 50",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "vram_gb_at_most": 48,
+      "vram_gb_at_most_note": "the run completed with batch 64 on 48 GB cards (RTX 6000 Ada, RTX A6000, Quadro RTX 8000), so the peak is at most 48 GB",
+      "anchor_gpu": "rtx_6000_ada",
+      "compute_ratio": {
+        "rtx_6000_ada": 1.0,
+        "rtx_a6000": 1.162,
+        "qrtx_8000": 1.58
+      },
+      "compute_ratio_note": "throughput[RTX 6000 Ada] / throughput[GPU]; one row per GPU"
+    }
+  ]
+}
