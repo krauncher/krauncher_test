@@ -54,7 +54,7 @@ class KrauncherAdapter(ServiceInterface):
                 "cpu_only", "min_vram_gb", "reference_sec", "spread_factor", "compute_ratio"}
 
     async def forecast(self, task: Task) -> Forecast:
-        mod = task.module
+        mod = task.variant(self.name)
         client = KrauncherClient(estimate_only=True)
         _ensure_data_sources(client, getattr(mod, "DATA_SOURCES", []))
         handle = await client.task(**mod.OPTIONS)(mod.FUNC)(**mod.KWARGS)

@@ -1,17 +1,26 @@
-"""Qwen2.5-7B-Instruct long generation — tutorial 31.
+"""Phi-3-mini inference on GSM8K — tutorial 32.
 
-Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/qwen25_7b_long.py`); models and datasets by their public Hugging Face
-ids. KWARGS are the call arguments. The expected forecast and its sources are
-in qwen25_7b_long.json; the form a service takes is in variants/<service>/qwen25_7b_long.py.
+The function below is the task, unchanged. FUNC is the task, OPTIONS the
+arguments of its @client.task decorator, KWARGS the arguments of the call.
+Krauncher variant of tasks/phi3_inference.py (the neutral form); the expected
+forecast and its sources are in tasks/phi3_inference.json.
 """
 
-KWARGS = {}
+OPTIONS = dict(
+    timeout=9600,
+    data_urls=['hf://datasets/openai/gsm8k', 'hf://models/microsoft/Phi-3-mini-4k-instruct'],
+    pip=['datasets'],
+    dataset_size=3,
+    disk_gb=25,
+    stream_stderr=True,
+)
+
+KWARGS = dict()
 
 
-def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
-    """Long-form chain-of-thought generation, pushes per-task token total ~60k."""
-    print("Task started. Importing torch / transformers (~15-25s)...", flush=True)
+def phi3_inference(num_samples: int = 50, max_new_tokens: int = 500):
+    """Mid-size LLM Q/A generation."""
+    print("Task started. Importing torch / transformers (~12-20s)...", flush=True)
     import time
 
     _t_imp = time.monotonic()
@@ -21,16 +30,16 @@ def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
     print(f"Imports done in {time.monotonic() - _t_imp:.1f}s.", flush=True)
 
     t0 = time.monotonic()
-    model_path = "Qwen/Qwen2.5-7B-Instruct"
-    dataset_path = "openai/gsm8k"
+    model_path = "/data/microsoft__Phi-3-mini-4k-instruct"
+    dataset_path = "/data/openai__gsm8k"
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     print(f"Tokenizer loaded in {time.monotonic() - t0:.1f}s. "
-          f"Loading model weights (fp16, ~14 GB)...", flush=True)
+          f"Loading model weights (fp16, ~7.6 GB)...", flush=True)
 
     t1 = time.monotonic()
     model = AutoModelForCausalLM.from_pretrained(
-        model_path, dtype=torch.float16, device_map="auto",
+        model_path, dtype=torch.float16, device_map="auto", attn_implementation="sdpa",
     )
     model.eval()
     print(f"Model loaded in {time.monotonic() - t1:.1f}s.", flush=True)
@@ -41,14 +50,11 @@ def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
           flush=True)
 
     last_log = time.monotonic()
-    HEARTBEAT_SEC = 50
+    HEARTBEAT_SEC = 40
 
     for i, sample in enumerate(ds):
         prompt = tokenizer.apply_chat_template(
-            [{"role": "user", "content": (
-                f"Solve this carefully, showing all reasoning steps in detail. "
-                f"Problem: {sample['question']}"
-            )}],
+            [{"role": "user", "content": f"Solve step by step: {sample['question']}"}],
             tokenize=False, add_generation_prompt=True,
         )
         inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
@@ -58,7 +64,7 @@ def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
                 pad_token_id=tokenizer.eos_token_id,
             )
         now = time.monotonic()
-        if (i + 1) % 5 == 0 or (now - last_log) >= HEARTBEAT_SEC:
+        if (i + 1) % 10 == 0 or (now - last_log) >= HEARTBEAT_SEC:
             print(f"  [{i + 1}/{len(ds)}] elapsed {now - t0:.0f}s", flush=True)
             last_log = now
 
@@ -69,5 +75,4 @@ def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
     }
 
 
-if __name__ == "__main__":
-    print(qwen7b_long_inference(**KWARGS))
+FUNC = phi3_inference

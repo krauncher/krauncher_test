@@ -1,20 +1,12 @@
 """Phi-3-mini inference on GSM8K — tutorial 32.
 
-The function below is the task, unchanged. FUNC is the task, OPTIONS the
-arguments of its @client.task decorator, KWARGS the arguments of the call.
-The expected forecast and its sources are in phi3_inference.json.
+Neutral form of the task: a plain script, runnable on any machine with a GPU
+(`python tasks/phi3_inference.py`); models and datasets by their public Hugging Face
+ids. KWARGS are the call arguments. The expected forecast and its sources are
+in phi3_inference.json; the form a service takes is in variants/<service>/phi3_inference.py.
 """
 
-OPTIONS = dict(
-    timeout=9600,
-    data_urls=['hf://datasets/openai/gsm8k', 'hf://models/microsoft/Phi-3-mini-4k-instruct'],
-    pip=['datasets'],
-    dataset_size=3,
-    disk_gb=25,
-    stream_stderr=True,
-)
-
-KWARGS = dict()
+KWARGS = {}
 
 
 def phi3_inference(num_samples: int = 50, max_new_tokens: int = 500):
@@ -29,8 +21,8 @@ def phi3_inference(num_samples: int = 50, max_new_tokens: int = 500):
     print(f"Imports done in {time.monotonic() - _t_imp:.1f}s.", flush=True)
 
     t0 = time.monotonic()
-    model_path = "/data/microsoft__Phi-3-mini-4k-instruct"
-    dataset_path = "/data/openai__gsm8k"
+    model_path = "microsoft/Phi-3-mini-4k-instruct"
+    dataset_path = "openai/gsm8k"
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     print(f"Tokenizer loaded in {time.monotonic() - t0:.1f}s. "
@@ -74,4 +66,5 @@ def phi3_inference(num_samples: int = 50, max_new_tokens: int = 500):
     }
 
 
-FUNC = phi3_inference
+if __name__ == "__main__":
+    print(phi3_inference(**KWARGS))

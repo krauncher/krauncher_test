@@ -1,12 +1,21 @@
 """Qwen2.5-7B LoRA fine-tuning on Alpaca — tutorial 21.
 
-Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/qwen25_7b_lora_alpaca.py`); models and datasets by their public Hugging Face
-ids. KWARGS are the call arguments. The expected forecast and its sources are
-in qwen25_7b_lora_alpaca.json; the form a service takes is in variants/<service>/qwen25_7b_lora_alpaca.py.
+The function below is the task, unchanged. FUNC is the task, OPTIONS the
+arguments of its @client.task decorator, KWARGS the arguments of the call.
+Krauncher variant of tasks/qwen25_7b_lora_alpaca.py (the neutral form); the expected
+forecast and its sources are in tasks/qwen25_7b_lora_alpaca.json.
 """
 
-KWARGS = {}
+OPTIONS = dict(
+    timeout=14400,
+    data_urls=['hf://datasets/tatsu-lab/alpaca', 'hf://models/Qwen/Qwen2.5-7B'],
+    pip=['peft', 'datasets'],
+    dataset_size=22,
+    disk_gb=40,
+    stream_stderr=True,
+)
+
+KWARGS = dict()
 
 
 def lora_finetune_qwen_alpaca(
@@ -43,8 +52,8 @@ def lora_finetune_qwen_alpaca(
 
     t0 = time.monotonic()
 
-    model_path = "Qwen/Qwen2.5-7B"
-    dataset_path = "tatsu-lab/alpaca"
+    model_path = "/data/Qwen__Qwen2.5-7B"
+    dataset_path = "/data/tatsu-lab__alpaca"
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     if tokenizer.pad_token is None:
@@ -171,5 +180,4 @@ def lora_finetune_qwen_alpaca(
     }
 
 
-if __name__ == "__main__":
-    print(lora_finetune_qwen_alpaca(**KWARGS))
+FUNC = lora_finetune_qwen_alpaca

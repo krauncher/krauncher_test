@@ -1,20 +1,12 @@
 """Qwen2.5-7B-Instruct batched inference — tutorial 33.
 
-The function below is the task, unchanged. FUNC is the task, OPTIONS the
-arguments of its @client.task decorator, KWARGS the arguments of the call.
-The expected forecast and its sources are in qwen25_7b_batched.json.
+Neutral form of the task: a plain script, runnable on any machine with a GPU
+(`python tasks/qwen25_7b_batched.py`); models and datasets by their public Hugging Face
+ids. KWARGS are the call arguments. The expected forecast and its sources are
+in qwen25_7b_batched.json; the form a service takes is in variants/<service>/qwen25_7b_batched.py.
 """
 
-OPTIONS = dict(
-    timeout=7200,
-    data_urls=['hf://datasets/openai/gsm8k', 'hf://models/Qwen/Qwen2.5-7B-Instruct'],
-    pip=['datasets'],
-    dataset_size=3,
-    disk_gb=40,
-    stream_stderr=True,
-)
-
-KWARGS = dict()
+KWARGS = {}
 
 
 def qwen7b_batched_inference(
@@ -33,8 +25,8 @@ def qwen7b_batched_inference(
     print(f"Imports done in {time.monotonic() - _t_imp:.1f}s.", flush=True)
 
     t0 = time.monotonic()
-    model_path = "/data/Qwen__Qwen2.5-7B-Instruct"
-    dataset_path = "/data/openai__gsm8k"
+    model_path = "Qwen/Qwen2.5-7B-Instruct"
+    dataset_path = "openai/gsm8k"
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     print(f"Tokenizer loaded in {time.monotonic() - t0:.1f}s. "
@@ -85,4 +77,5 @@ def qwen7b_batched_inference(
     }
 
 
-FUNC = qwen7b_batched_inference
+if __name__ == "__main__":
+    print(qwen7b_batched_inference(**KWARGS))

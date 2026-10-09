@@ -43,7 +43,7 @@ cp .env.example .env       # then set KRAUNCHER_API_KEY=cas_...
 ## Run
 
 ```bash
-.venv/bin/python run.py <task> [--service krauncher]   # <task> = module name in tasks/, without .py
+.venv/bin/python run.py <task> [--service krauncher]   # <task> = name of tasks/<task>.json
 ```
 
 Output: reference / service pairs on stdout, and
@@ -80,9 +80,14 @@ for `run.py --service`. Plan: `doc/extension_plan.md`.
 
 ## Wrapping your own example as a task
 
-A task is two files: its code `tasks/<name>.py` and its description
+A task is labelled data: its neutral code `tasks/<name>.py` (a plain script
+runnable on a GPU machine: the task function, `KWARGS`, models and datasets by
+public ids, `python tasks/<name>.py` runs it) and its description
 `tasks/<name>.json` (the expected forecast, see "The description" below).
-`run.py` imports the code and needs three names:
+Each service takes the task in its own form, a prepared file
+`variants/<service>/<name>.py` (by hand, script or LLM from the neutral code;
+reviewed and committed). The Krauncher variant `variants/krauncher/<name>.py`
+is what the Krauncher adapter submits and needs three names:
 
 ```python
 """<What the task is>.
@@ -203,7 +208,8 @@ reason to rewrite the task.
 
 ## Existing tasks
 
-`tasks/` holds ten examples with reference values from Krauncher's own
+`tasks/` (with their Krauncher variants in `variants/krauncher/`) holds ten
+examples with reference values from Krauncher's own
 calibration runs (the data the analyzer is calibrated on, so not an independent
 check): `bert_imdb`, `qwen25_7b_lora_alpaca`, `qwen25_7b_gsm8k`,
 `qwen25_7b_batched`, `qwen25_7b_long`, `phi3_inference`, `qwen15_inference`,

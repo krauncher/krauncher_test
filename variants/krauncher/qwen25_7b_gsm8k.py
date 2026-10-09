@@ -1,12 +1,20 @@
 """Qwen2.5-7B-Instruct inference on GSM8K — tutorial 22.
 
-Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/qwen25_7b_gsm8k.py`); models and datasets by their public Hugging Face
-ids. KWARGS are the call arguments. The expected forecast and its sources are
-in qwen25_7b_gsm8k.json; the form a service takes is in variants/<service>/qwen25_7b_gsm8k.py.
+The function below is the task, unchanged. FUNC is the task, OPTIONS the
+arguments of its @client.task decorator, KWARGS the arguments of the call.
+Krauncher variant of tasks/qwen25_7b_gsm8k.py (the neutral form); the expected
+forecast and its sources are in tasks/qwen25_7b_gsm8k.json.
 """
 
-KWARGS = {}
+OPTIONS = dict(
+    timeout=36000,
+    data_urls=['hf://datasets/openai/gsm8k', 'hf://models/Qwen/Qwen2.5-7B-Instruct'],
+    pip=['datasets'],
+    dataset_size=3,
+    disk_gb=40,
+)
+
+KWARGS = dict()
 
 
 def qwen_inference_gsm8k(
@@ -30,8 +38,8 @@ def qwen_inference_gsm8k(
 
     t0 = time.monotonic()
 
-    model_path = "Qwen/Qwen2.5-7B-Instruct"
-    dataset_path = "openai/gsm8k"
+    model_path = "/data/Qwen__Qwen2.5-7B-Instruct"
+    dataset_path = "/data/openai__gsm8k"
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     print(f"Tokenizer loaded in {time.monotonic() - t0:.1f}s. "
@@ -122,5 +130,4 @@ def qwen_inference_gsm8k(
     }
 
 
-if __name__ == "__main__":
-    print(qwen_inference_gsm8k(**KWARGS))
+FUNC = qwen_inference_gsm8k

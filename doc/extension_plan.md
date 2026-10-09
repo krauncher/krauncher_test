@@ -110,7 +110,8 @@ class Forecast:
 4. Neutral task form (a plain script runnable locally on a GPU, public data
    ids) in `tasks/`; today's Krauncher-form tasks move to
    `variants/krauncher/`. Variants for other services are prepared files
-   (by hand, script or LLM), reviewed and committed.
+   (by hand, script or LLM), reviewed and committed. *Done 2026-10-09:
+   forecasts identical before and after the move.*
 5. Several measurements per value with `source` / `date` / host in the
    description; new tasks outside the calibration corpus.
 

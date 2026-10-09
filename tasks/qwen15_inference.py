@@ -1,20 +1,12 @@
 """Qwen2.5-1.5B-Instruct inference on GSM8K — tutorial 30.
 
-The function below is the task, unchanged. FUNC is the task, OPTIONS the
-arguments of its @client.task decorator, KWARGS the arguments of the call.
-The expected forecast and its sources are in qwen15_inference.json.
+Neutral form of the task: a plain script, runnable on any machine with a GPU
+(`python tasks/qwen15_inference.py`); models and datasets by their public Hugging Face
+ids. KWARGS are the call arguments. The expected forecast and its sources are
+in qwen15_inference.json; the form a service takes is in variants/<service>/qwen15_inference.py.
 """
 
-OPTIONS = dict(
-    timeout=1800,
-    data_urls=['hf://datasets/openai/gsm8k', 'hf://models/Qwen/Qwen2.5-1.5B-Instruct'],
-    pip=['datasets'],
-    dataset_size=3,
-    disk_gb=15,
-    stream_stderr=True,
-)
-
-KWARGS = dict()
+KWARGS = {}
 
 
 def qwen15_inference(num_samples: int = 80, max_new_tokens: int = 100):
@@ -29,8 +21,8 @@ def qwen15_inference(num_samples: int = 80, max_new_tokens: int = 100):
     print(f"Imports done in {time.monotonic() - _t_imp:.1f}s.", flush=True)
 
     t0 = time.monotonic()
-    model_path = "/data/Qwen__Qwen2.5-1.5B-Instruct"
-    dataset_path = "/data/openai__gsm8k"
+    model_path = "Qwen/Qwen2.5-1.5B-Instruct"
+    dataset_path = "openai/gsm8k"
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     print(f"Tokenizer loaded in {time.monotonic() - t0:.1f}s. "
@@ -74,4 +66,5 @@ def qwen15_inference(num_samples: int = 80, max_new_tokens: int = 100):
     }
 
 
-FUNC = qwen15_inference
+if __name__ == "__main__":
+    print(qwen15_inference(**KWARGS))

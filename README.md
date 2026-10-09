@@ -55,7 +55,7 @@ services are adapters in `adapters/`, see `doc/extension_plan.md`).
 
 All tasks:
 
-    for t in tasks/[a-z]*.py; do .venv/bin/python run.py "$(basename "$t" .py)"; done
+    for t in tasks/*.json; do .venv/bin/python run.py "$(basename "$t" .json)"; done
 
 `resnet152_food101` names the public Food-101 dataset through a data source
 `food-101`, from which the analyzer takes the dataset size; `run.py` registers
@@ -102,10 +102,14 @@ order, time regret of the GPU picked as fastest).
 
 ## Adding a task
 
-A task is a module in `tasks/` — the task function (`FUNC`), the arguments of
-its `@client.task` decorator (`OPTIONS`) and of the call (`KWARGS`) — and its
-description `tasks/<name>.json`: the expected forecast in the stand's fields
-(classification and assay fields read from the code, `reference_sec`,
-`min_vram_gb`, `compute_ratio` per GPU) with the source of each value.
-A task that reads a registered data source (`OPTIONS["data"]`) lists it in
-`DATA_SOURCES`; `run.py` registers it on the account when missing.
+A task is its neutral code `tasks/<name>.py` — a plain script runnable on a
+GPU machine (the task function, the call arguments `KWARGS`, models and
+datasets by public ids) — and its description `tasks/<name>.json`: the
+expected forecast in the stand's fields (classification and assay fields read
+from the code, `reference_sec`, `min_vram_gb`, `compute_ratio` per GPU) with
+the source of each value. A service takes the task in its own form, a
+prepared file `variants/<service>/<name>.py`. The Krauncher variant defines
+the task function (`FUNC`) and the arguments of its `@client.task` decorator
+(`OPTIONS`) and of the call (`KWARGS`); a task that reads a registered data
+source (`OPTIONS["data"]`) lists it in `DATA_SOURCES`, and the run registers
+it on the account when missing.

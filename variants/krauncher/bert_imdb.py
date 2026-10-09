@@ -1,12 +1,19 @@
 """BERT fine-tuning on IMDB — tutorial 20 of the krauncher client.
 
-Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/bert_imdb.py`); models and datasets by their public Hugging Face
-ids. KWARGS are the call arguments. The expected forecast and its sources are
-in bert_imdb.json; the form a service takes is in variants/<service>/bert_imdb.py.
+The function below is the tutorial's task, unchanged. FUNC is the task,
+OPTIONS the arguments of its @client.task decorator, KWARGS the arguments
+of the call.
+Krauncher variant of tasks/bert_imdb.py (the neutral form); the expected
+forecast and its sources are in tasks/bert_imdb.json.
 """
 
-KWARGS = {'batch_size': 16, 'lr': 2e-05, 'num_epochs': 3}
+OPTIONS = dict(
+    timeout=1800,
+    data_urls=["hf://datasets/stanfordnlp/imdb", "hf://models/google-bert/bert-base-uncased"],
+    dataset_size=84,  # IMDB dataset ~84 MB
+)
+
+KWARGS = dict(num_epochs=3, batch_size=16, lr=2e-5)
 
 
 def finetune_bert_imdb(num_epochs: int = 3, batch_size: int = 16, lr: float = 2e-5):
@@ -23,8 +30,8 @@ def finetune_bert_imdb(num_epochs: int = 3, batch_size: int = 16, lr: float = 2e
     print("Task started. Waiting for result (download + training, ~15-20 min)...")
 
     # Load from pre-downloaded local paths (hf:// data bridge)
-    model_path = "google-bert/bert-base-uncased"
-    dataset_path = "stanfordnlp/imdb"
+    model_path = "/data/google-bert__bert-base-uncased"
+    dataset_path = "/data/stanfordnlp__imdb"
 
     print("Loading tokenizer and model...")
     tokenizer = AutoTokenizer.from_pretrained(model_path)
@@ -102,5 +109,4 @@ def finetune_bert_imdb(num_epochs: int = 3, batch_size: int = 16, lr: float = 2e
     }
 
 
-if __name__ == "__main__":
-    print(finetune_bert_imdb(**KWARGS))
+FUNC = finetune_bert_imdb

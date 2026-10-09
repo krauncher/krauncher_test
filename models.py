@@ -17,21 +17,26 @@ TASKS = Path(__file__).parent / "tasks"
 
 @dataclass
 class Task:
-    """A stand task: its code (tasks/<name>.py, today in the Krauncher form —
-    FUNC, OPTIONS, KWARGS, DATA_SOURCES; see README) and its description
+    """A stand task — labelled data: its neutral code (tasks/<name>.py, a
+    plain script runnable on a GPU machine) and its description
     (tasks/<name>.json): `fields`, the expected forecast in the stand's
-    fields, and `sources`, where each expected value comes from."""
+    fields, and `sources`, where each expected value comes from. The form a
+    service takes is a prepared file, variants/<service>/<name>.py."""
 
     name: str
-    module: ModuleType
+    code: Path
     expected: dict[str, Any]
     sources: dict[str, str] = field(default_factory=dict)
 
     @classmethod
     def load(cls, name: str) -> "Task":
         desc = json.loads((TASKS / f"{name}.json").read_text())
-        return cls(name=name, module=importlib.import_module(f"tasks.{name}"),
+        return cls(name=name, code=TASKS / f"{name}.py",
                    expected=desc["fields"], sources=desc.get("sources", {}))
+
+    def variant(self, service: str) -> ModuleType:
+        """The task in the form `service` takes (variants/<service>/<name>.py)."""
+        return importlib.import_module(f"variants.{service}.{self.name}")
 
 
 @dataclass

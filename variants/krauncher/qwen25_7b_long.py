@@ -1,12 +1,21 @@
 """Qwen2.5-7B-Instruct long generation — tutorial 31.
 
-Neutral form of the task: a plain script, runnable on any machine with a GPU
-(`python tasks/qwen25_7b_long.py`); models and datasets by their public Hugging Face
-ids. KWARGS are the call arguments. The expected forecast and its sources are
-in qwen25_7b_long.json; the form a service takes is in variants/<service>/qwen25_7b_long.py.
+The function below is the task, unchanged. FUNC is the task, OPTIONS the
+arguments of its @client.task decorator, KWARGS the arguments of the call.
+Krauncher variant of tasks/qwen25_7b_long.py (the neutral form); the expected
+forecast and its sources are in tasks/qwen25_7b_long.json.
 """
 
-KWARGS = {}
+OPTIONS = dict(
+    timeout=43200,
+    data_urls=['hf://datasets/openai/gsm8k', 'hf://models/Qwen/Qwen2.5-7B-Instruct'],
+    pip=['datasets'],
+    dataset_size=3,
+    disk_gb=40,
+    stream_stderr=True,
+)
+
+KWARGS = dict()
 
 
 def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
@@ -21,8 +30,8 @@ def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
     print(f"Imports done in {time.monotonic() - _t_imp:.1f}s.", flush=True)
 
     t0 = time.monotonic()
-    model_path = "Qwen/Qwen2.5-7B-Instruct"
-    dataset_path = "openai/gsm8k"
+    model_path = "/data/Qwen__Qwen2.5-7B-Instruct"
+    dataset_path = "/data/openai__gsm8k"
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     print(f"Tokenizer loaded in {time.monotonic() - t0:.1f}s. "
@@ -69,5 +78,4 @@ def qwen7b_long_inference(num_samples: int = 30, max_new_tokens: int = 2000):
     }
 
 
-if __name__ == "__main__":
-    print(qwen7b_long_inference(**KWARGS))
+FUNC = qwen7b_long_inference
