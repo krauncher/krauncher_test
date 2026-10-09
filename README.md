@@ -110,6 +110,7 @@ Published benchmarks (`tasks/<source>/`, independent measurements):
 | Task | Source |
 |---|---|
 | `lambdalabs/resnet50_amp_bs1280` | ResNet-50 training, AMP, batch 1280, synthetic data; Lambda GPU benchmark (A100 / H100 80 GB) |
+| `lambdalabs/resnet50_amp_bs928` | ResNet-50 training, AMP, batch 928, synthetic data; Lambda GPU benchmark (RTX 6000 Ada, RTX A6000, Quadro RTX 8000, 48 GB) |
 
 ## Adding a task
 
