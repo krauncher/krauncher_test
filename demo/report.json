@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-10-09T16:58:47+00:00",
+  "created_utc": "2026-10-10T06:59:16+00:00",
   "thresholds": {
     "time_good": 1.1,
     "time_warning": 1.25,
@@ -28,8 +28,23 @@
         "lambdalabs/bert_large_squad_amp_bs112",
         "lambdalabs/bert_large_squad_amp_bs28",
         "lambdalabs/bert_large_squad_amp_bs64",
+        "lambdalabs/ncf_ml20m_bs10m",
+        "lambdalabs/ncf_ml20m_bs4278184",
         "lambdalabs/resnet50_amp_bs1280",
-        "lambdalabs/resnet50_amp_bs928"
+        "lambdalabs/resnet50_amp_bs448",
+        "lambdalabs/resnet50_amp_bs928",
+        "lambdalabs/tacotron2_ljs625_bs148",
+        "lambdalabs/tacotron2_ljs625_bs256",
+        "lambdalabs/tacotron2_ljs625_bs88",
+        "lambdalabs/transformer_xl_base_wt103_bs104",
+        "lambdalabs/transformer_xl_base_wt103_bs24",
+        "lambdalabs/transformer_xl_base_wt103_bs64",
+        "lambdalabs/transformer_xl_large_wt103_bs32",
+        "lambdalabs/transformer_xl_large_wt103_bs48",
+        "lambdalabs/transformer_xl_large_wt103_bs8",
+        "lambdalabs/waveglow_ljs625_bs18",
+        "lambdalabs/waveglow_ljs625_bs32",
+        "lambdalabs/waveglow_ljs625_bs48"
       ],
       "versions": [
         "{\"calibration_id\": \"c-d589e2f979e6\", \"client_commit\": \"0e2e207275f808b0e86fe9f0d49122ec993fe2d4\"}"
@@ -51,13 +66,28 @@
         "lambdalabs/bert_large_squad_amp_bs112": "2026-10-09T16:57:11+00:00",
         "lambdalabs/bert_large_squad_amp_bs28": "2026-10-09T16:57:54+00:00",
         "lambdalabs/bert_large_squad_amp_bs64": "2026-10-09T16:57:53+00:00",
+        "lambdalabs/ncf_ml20m_bs10m": "2026-10-10T06:25:06+00:00",
+        "lambdalabs/ncf_ml20m_bs4278184": "2026-10-10T06:25:59+00:00",
         "lambdalabs/resnet50_amp_bs1280": "2026-10-09T16:35:34+00:00",
-        "lambdalabs/resnet50_amp_bs928": "2026-10-09T16:49:43+00:00"
+        "lambdalabs/resnet50_amp_bs448": "2026-10-10T06:22:42+00:00",
+        "lambdalabs/resnet50_amp_bs928": "2026-10-09T16:49:43+00:00",
+        "lambdalabs/tacotron2_ljs625_bs148": "2026-10-10T06:40:28+00:00",
+        "lambdalabs/tacotron2_ljs625_bs256": "2026-10-10T06:40:27+00:00",
+        "lambdalabs/tacotron2_ljs625_bs88": "2026-10-10T06:40:29+00:00",
+        "lambdalabs/transformer_xl_base_wt103_bs104": "2026-10-10T06:54:37+00:00",
+        "lambdalabs/transformer_xl_base_wt103_bs24": "2026-10-10T06:54:42+00:00",
+        "lambdalabs/transformer_xl_base_wt103_bs64": "2026-10-10T06:54:41+00:00",
+        "lambdalabs/transformer_xl_large_wt103_bs32": "2026-10-10T06:54:44+00:00",
+        "lambdalabs/transformer_xl_large_wt103_bs48": "2026-10-10T06:54:43+00:00",
+        "lambdalabs/transformer_xl_large_wt103_bs8": "2026-10-10T06:54:45+00:00",
+        "lambdalabs/waveglow_ljs625_bs18": "2026-10-10T06:36:24+00:00",
+        "lambdalabs/waveglow_ljs625_bs32": "2026-10-10T06:36:23+00:00",
+        "lambdalabs/waveglow_ljs625_bs48": "2026-10-10T06:35:51+00:00"
       },
       "forecast_time": {
-        "median_sec": 0.62,
-        "p90_sec": 0.65,
-        "max_sec": 0.76,
+        "median_sec": 0.65,
+        "p90_sec": 1.04,
+        "max_sec": 2.94,
         "tasks": {
           "krauncher_tutorials/bert_batch_inference": {
             "analysis_sec": 0.68,
@@ -139,15 +169,90 @@
             "assay_ladder_sec": 0.04,
             "forecast_sec": 0.62
           },
+          "lambdalabs/ncf_ml20m_bs10m": {
+            "analysis_sec": 2.77,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 2.94
+          },
+          "lambdalabs/ncf_ml20m_bs4278184": {
+            "analysis_sec": 2.72,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 2.85
+          },
           "lambdalabs/resnet50_amp_bs1280": {
             "analysis_sec": 0.54,
             "assay_ladder_sec": 0.04,
             "forecast_sec": 0.62
           },
+          "lambdalabs/resnet50_amp_bs448": {
+            "analysis_sec": 0.57,
+            "assay_ladder_sec": 0.06,
+            "forecast_sec": 0.67
+          },
           "lambdalabs/resnet50_amp_bs928": {
             "analysis_sec": 0.54,
             "assay_ladder_sec": 0.05,
             "forecast_sec": 0.63
+          },
+          "lambdalabs/tacotron2_ljs625_bs148": {
+            "analysis_sec": 0.9,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 1.05
+          },
+          "lambdalabs/tacotron2_ljs625_bs256": {
+            "analysis_sec": 0.9,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 1.04
+          },
+          "lambdalabs/tacotron2_ljs625_bs88": {
+            "analysis_sec": 0.9,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 1.04
+          },
+          "lambdalabs/transformer_xl_base_wt103_bs104": {
+            "analysis_sec": 0.72,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.89
+          },
+          "lambdalabs/transformer_xl_base_wt103_bs24": {
+            "analysis_sec": 0.68,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.83
+          },
+          "lambdalabs/transformer_xl_base_wt103_bs64": {
+            "analysis_sec": 0.68,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.84
+          },
+          "lambdalabs/transformer_xl_large_wt103_bs32": {
+            "analysis_sec": 0.67,
+            "assay_ladder_sec": 0.09,
+            "forecast_sec": 0.87
+          },
+          "lambdalabs/transformer_xl_large_wt103_bs48": {
+            "analysis_sec": 0.66,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.82
+          },
+          "lambdalabs/transformer_xl_large_wt103_bs8": {
+            "analysis_sec": 0.67,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.82
+          },
+          "lambdalabs/waveglow_ljs625_bs18": {
+            "analysis_sec": 0.8,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.93
+          },
+          "lambdalabs/waveglow_ljs625_bs32": {
+            "analysis_sec": 0.8,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.93
+          },
+          "lambdalabs/waveglow_ljs625_bs48": {
+            "analysis_sec": 0.81,
+            "assay_ladder_sec": 0.05,
+            "forecast_sec": 0.96
           }
         }
       },
@@ -234,7 +339,22 @@
               "forecast": "ai_training",
               "status": "good"
             },
+            "lambdalabs/ncf_ml20m_bs10m": {
+              "expected": "training",
+              "forecast": "ai_training",
+              "status": "critical"
+            },
+            "lambdalabs/ncf_ml20m_bs4278184": {
+              "expected": "training",
+              "forecast": "ai_training",
+              "status": "critical"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "cv_training",
+              "forecast": "cv_training",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs448": {
               "expected": "cv_training",
               "forecast": "cv_training",
               "status": "good"
@@ -243,10 +363,70 @@
               "expected": "cv_training",
               "forecast": "cv_training",
               "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs148": {
+              "expected": "tts",
+              "forecast": "tts",
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs256": {
+              "expected": "tts",
+              "forecast": "tts",
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs88": {
+              "expected": "tts",
+              "forecast": "tts",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs104": {
+              "expected": "ai_training",
+              "forecast": "ai_training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs24": {
+              "expected": "ai_training",
+              "forecast": "ai_training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs64": {
+              "expected": "ai_training",
+              "forecast": "ai_training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs32": {
+              "expected": "ai_training",
+              "forecast": "ai_training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs48": {
+              "expected": "ai_training",
+              "forecast": "ai_training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs8": {
+              "expected": "ai_training",
+              "forecast": "ai_training",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs18": {
+              "expected": "tts",
+              "forecast": "tts",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs32": {
+              "expected": "tts",
+              "forecast": "tts",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs48": {
+              "expected": "tts",
+              "forecast": "tts",
+              "status": "good"
             }
           },
-          "match": 18,
-          "total": 18
+          "match": 31,
+          "total": 33
         },
         "mode": {
           "tasks": {
@@ -330,7 +510,22 @@
               "forecast": "training",
               "status": "good"
             },
+            "lambdalabs/ncf_ml20m_bs10m": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/ncf_ml20m_bs4278184": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs448": {
               "expected": "training",
               "forecast": "training",
               "status": "good"
@@ -339,10 +534,70 @@
               "expected": "training",
               "forecast": "training",
               "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs148": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs256": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs88": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs104": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs24": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs64": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs32": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs48": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs8": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs18": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs32": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs48": {
+              "expected": "training",
+              "forecast": "training",
+              "status": "good"
             }
           },
-          "match": 18,
-          "total": 18
+          "match": 33,
+          "total": 33
         },
         "framework": {
           "tasks": {
@@ -426,7 +681,22 @@
               "forecast": "pytorch",
               "status": "good"
             },
+            "lambdalabs/ncf_ml20m_bs10m": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/ncf_ml20m_bs4278184": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs448": {
               "expected": "pytorch",
               "forecast": "pytorch",
               "status": "good"
@@ -435,10 +705,70 @@
               "expected": "pytorch",
               "forecast": "pytorch",
               "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs148": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs256": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs88": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs104": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs24": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs64": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs32": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs48": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs8": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs18": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs32": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs48": {
+              "expected": "pytorch",
+              "forecast": "pytorch",
+              "status": "good"
             }
           },
-          "match": 18,
-          "total": 18
+          "match": 33,
+          "total": 33
         },
         "precision": {
           "tasks": {
@@ -522,7 +852,22 @@
               "forecast": "fp16",
               "status": "good"
             },
+            "lambdalabs/ncf_ml20m_bs10m": {
+              "expected": "fp32",
+              "forecast": "fp32",
+              "status": "good"
+            },
+            "lambdalabs/ncf_ml20m_bs4278184": {
+              "expected": "fp32",
+              "forecast": "fp32",
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs448": {
               "expected": "fp16",
               "forecast": "fp16",
               "status": "good"
@@ -531,10 +876,70 @@
               "expected": "fp16",
               "forecast": "fp16",
               "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs148": {
+              "expected": "fp32",
+              "forecast": "fp32",
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs256": {
+              "expected": "fp32",
+              "forecast": "fp32",
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs88": {
+              "expected": "fp32",
+              "forecast": "fp32",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs104": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs24": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs64": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs32": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs48": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs8": {
+              "expected": "fp16",
+              "forecast": "fp16",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs18": {
+              "expected": "fp32",
+              "forecast": "fp32",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs32": {
+              "expected": "fp32",
+              "forecast": "fp32",
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs48": {
+              "expected": "fp32",
+              "forecast": "fp32",
+              "status": "good"
             }
           },
-          "match": 18,
-          "total": 18
+          "match": 33,
+          "total": 33
         },
         "params_billions": {
           "tasks": {
@@ -618,7 +1023,22 @@
               "forecast": 0.34,
               "status": "good"
             },
+            "lambdalabs/ncf_ml20m_bs10m": {
+              "expected": 0.0318,
+              "forecast": null,
+              "status": "critical"
+            },
+            "lambdalabs/ncf_ml20m_bs4278184": {
+              "expected": 0.0318,
+              "forecast": null,
+              "status": "critical"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": 0.0256,
+              "forecast": 0.025,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs448": {
               "expected": 0.0256,
               "forecast": 0.025,
               "status": "good"
@@ -627,10 +1047,70 @@
               "expected": 0.0256,
               "forecast": 0.025,
               "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs148": {
+              "expected": 0.0282,
+              "forecast": 0.112,
+              "status": "critical"
+            },
+            "lambdalabs/tacotron2_ljs625_bs256": {
+              "expected": 0.0282,
+              "forecast": 0.112,
+              "status": "critical"
+            },
+            "lambdalabs/tacotron2_ljs625_bs88": {
+              "expected": 0.0282,
+              "forecast": 0.112,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs104": {
+              "expected": 0.192,
+              "forecast": 0.117,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs24": {
+              "expected": 0.192,
+              "forecast": 0.117,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs64": {
+              "expected": 0.192,
+              "forecast": 0.117,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs32": {
+              "expected": 0.52,
+              "forecast": 0.117,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs48": {
+              "expected": 0.52,
+              "forecast": 0.117,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs8": {
+              "expected": 0.52,
+              "forecast": 0.117,
+              "status": "critical"
+            },
+            "lambdalabs/waveglow_ljs625_bs18": {
+              "expected": 0.268,
+              "forecast": 0.088,
+              "status": "critical"
+            },
+            "lambdalabs/waveglow_ljs625_bs32": {
+              "expected": 0.268,
+              "forecast": 0.088,
+              "status": "critical"
+            },
+            "lambdalabs/waveglow_ljs625_bs48": {
+              "expected": 0.268,
+              "forecast": 0.088,
+              "status": "critical"
             }
           },
-          "match": 18,
-          "total": 18
+          "match": 19,
+          "total": 33
         },
         "batch_size": {
           "tasks": {
@@ -714,19 +1194,94 @@
               "forecast": 64,
               "status": "good"
             },
+            "lambdalabs/ncf_ml20m_bs10m": {
+              "expected": 10000000,
+              "forecast": 10000000,
+              "status": "good"
+            },
+            "lambdalabs/ncf_ml20m_bs4278184": {
+              "expected": 4278184,
+              "forecast": 4278184,
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
               "expected": 1280,
               "forecast": 1280,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs448": {
+              "expected": 448,
+              "forecast": 448,
               "status": "good"
             },
             "lambdalabs/resnet50_amp_bs928": {
               "expected": 928,
               "forecast": 928,
               "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs148": {
+              "expected": 148,
+              "forecast": 148,
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs256": {
+              "expected": 256,
+              "forecast": 256,
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs88": {
+              "expected": 88,
+              "forecast": 88,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs104": {
+              "expected": 104,
+              "forecast": 104,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs24": {
+              "expected": 24,
+              "forecast": 24,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs64": {
+              "expected": 64,
+              "forecast": 64,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs32": {
+              "expected": 32,
+              "forecast": 32,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs48": {
+              "expected": 48,
+              "forecast": 48,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs8": {
+              "expected": 8,
+              "forecast": 8,
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs18": {
+              "expected": 18,
+              "forecast": 18,
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs32": {
+              "expected": 32,
+              "forecast": 32,
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs48": {
+              "expected": 48,
+              "forecast": 48,
+              "status": "good"
             }
           },
-          "match": 13,
-          "total": 18
+          "match": 28,
+          "total": 33
         },
         "epochs": {
           "tasks": {
@@ -745,7 +1300,22 @@
               "forecast": 3,
               "status": "good"
             },
+            "lambdalabs/ncf_ml20m_bs10m": {
+              "expected": 2,
+              "forecast": 2,
+              "status": "good"
+            },
+            "lambdalabs/ncf_ml20m_bs4278184": {
+              "expected": 2,
+              "forecast": 2,
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": 2,
+              "forecast": 2,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs448": {
               "expected": 2,
               "forecast": 2,
               "status": "good"
@@ -754,10 +1324,40 @@
               "expected": 1,
               "forecast": 1,
               "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs148": {
+              "expected": 1,
+              "forecast": 1,
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs256": {
+              "expected": 3,
+              "forecast": 3,
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs88": {
+              "expected": 2,
+              "forecast": 2,
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs18": {
+              "expected": 2,
+              "forecast": 2,
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs32": {
+              "expected": 2,
+              "forecast": 2,
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs48": {
+              "expected": 2,
+              "forecast": 2,
+              "status": "good"
             }
           },
-          "match": 5,
-          "total": 5
+          "match": 14,
+          "total": 14
         },
         "dataset_samples": {
           "tasks": {
@@ -830,10 +1430,50 @@
               "expected": 87599,
               "forecast": 87599,
               "status": "good"
+            },
+            "lambdalabs/ncf_ml20m_bs10m": {
+              "expected": 19861770,
+              "forecast": null,
+              "status": "critical"
+            },
+            "lambdalabs/ncf_ml20m_bs4278184": {
+              "expected": 19861770,
+              "forecast": null,
+              "status": "critical"
+            },
+            "lambdalabs/tacotron2_ljs625_bs148": {
+              "expected": 625,
+              "forecast": 13100,
+              "status": "critical"
+            },
+            "lambdalabs/tacotron2_ljs625_bs256": {
+              "expected": 625,
+              "forecast": 13100,
+              "status": "critical"
+            },
+            "lambdalabs/tacotron2_ljs625_bs88": {
+              "expected": 625,
+              "forecast": 13100,
+              "status": "critical"
+            },
+            "lambdalabs/waveglow_ljs625_bs18": {
+              "expected": 625,
+              "forecast": 13100,
+              "status": "critical"
+            },
+            "lambdalabs/waveglow_ljs625_bs32": {
+              "expected": 625,
+              "forecast": 13100,
+              "status": "critical"
+            },
+            "lambdalabs/waveglow_ljs625_bs48": {
+              "expected": 625,
+              "forecast": 13100,
+              "status": "critical"
             }
           },
           "match": 13,
-          "total": 14
+          "total": 22
         },
         "seq_len": {
           "tasks": {
@@ -881,10 +1521,40 @@
               "expected": 384,
               "forecast": 384,
               "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs104": {
+              "expected": 192,
+              "forecast": null,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs24": {
+              "expected": 192,
+              "forecast": null,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs64": {
+              "expected": 192,
+              "forecast": null,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs32": {
+              "expected": 256,
+              "forecast": null,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs48": {
+              "expected": 256,
+              "forecast": null,
+              "status": "critical"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs8": {
+              "expected": 256,
+              "forecast": null,
+              "status": "critical"
             }
           },
           "match": 9,
-          "total": 9
+          "total": 15
         },
         "cpu_only": {
           "tasks": {
@@ -968,7 +1638,22 @@
               "forecast": false,
               "status": "good"
             },
+            "lambdalabs/ncf_ml20m_bs10m": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/ncf_ml20m_bs4278184": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
             "lambdalabs/resnet50_amp_bs1280": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/resnet50_amp_bs448": {
               "expected": false,
               "forecast": false,
               "status": "good"
@@ -977,10 +1662,70 @@
               "expected": false,
               "forecast": false,
               "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs148": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs256": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/tacotron2_ljs625_bs88": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs104": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs24": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_base_wt103_bs64": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs32": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs48": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/transformer_xl_large_wt103_bs8": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs18": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs32": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
+            },
+            "lambdalabs/waveglow_ljs625_bs48": {
+              "expected": false,
+              "forecast": false,
+              "status": "good"
             }
           },
-          "match": 18,
-          "total": 18
+          "match": 33,
+          "total": 33
         }
       },
       "measurements": [
@@ -2043,12 +2788,27 @@
             "lambdalabs/bert_large_squad_amp_bs112",
             "lambdalabs/bert_large_squad_amp_bs28",
             "lambdalabs/bert_large_squad_amp_bs64",
+            "lambdalabs/ncf_ml20m_bs10m",
+            "lambdalabs/ncf_ml20m_bs4278184",
             "lambdalabs/resnet50_amp_bs1280",
-            "lambdalabs/resnet50_amp_bs928"
+            "lambdalabs/resnet50_amp_bs448",
+            "lambdalabs/resnet50_amp_bs928",
+            "lambdalabs/tacotron2_ljs625_bs148",
+            "lambdalabs/tacotron2_ljs625_bs256",
+            "lambdalabs/tacotron2_ljs625_bs88",
+            "lambdalabs/transformer_xl_base_wt103_bs104",
+            "lambdalabs/transformer_xl_base_wt103_bs24",
+            "lambdalabs/transformer_xl_base_wt103_bs64",
+            "lambdalabs/transformer_xl_large_wt103_bs32",
+            "lambdalabs/transformer_xl_large_wt103_bs48",
+            "lambdalabs/transformer_xl_large_wt103_bs8",
+            "lambdalabs/waveglow_ljs625_bs18",
+            "lambdalabs/waveglow_ljs625_bs32",
+            "lambdalabs/waveglow_ljs625_bs48"
           ],
           "vram_bound": {
-            "above": 2,
-            "n": 8,
+            "above": 3,
+            "n": 23,
             "tasks": [
               {
                 "task": "lambdalabs/bert_base_squad_amp_bs192",
@@ -2087,9 +2847,27 @@
                 "status": "good"
               },
               {
+                "task": "lambdalabs/ncf_ml20m_bs10m",
+                "at_most": 48,
+                "forecast": 6,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/ncf_ml20m_bs4278184",
+                "at_most": 24,
+                "forecast": 6,
+                "status": "good"
+              },
+              {
                 "task": "lambdalabs/resnet50_amp_bs1280",
                 "at_most": 80,
                 "forecast": 130,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/resnet50_amp_bs448",
+                "at_most": 24,
+                "forecast": 46,
                 "status": "critical"
               },
               {
@@ -2097,16 +2875,88 @@
                 "at_most": 48,
                 "forecast": 94,
                 "status": "critical"
+              },
+              {
+                "task": "lambdalabs/tacotron2_ljs625_bs148",
+                "at_most": 48,
+                "forecast": 22,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/tacotron2_ljs625_bs256",
+                "at_most": 80,
+                "forecast": 39,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/tacotron2_ljs625_bs88",
+                "at_most": 24,
+                "forecast": 14,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_base_wt103_bs104",
+                "at_most": 80,
+                "forecast": 19,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_base_wt103_bs24",
+                "at_most": 24,
+                "forecast": 6,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_base_wt103_bs64",
+                "at_most": 48,
+                "forecast": 13,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_large_wt103_bs32",
+                "at_most": 48,
+                "forecast": 9,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_large_wt103_bs48",
+                "at_most": 80,
+                "forecast": 11,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_large_wt103_bs8",
+                "at_most": 24,
+                "forecast": 5,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/waveglow_ljs625_bs18",
+                "at_most": 24,
+                "forecast": 6,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/waveglow_ljs625_bs32",
+                "at_most": 48,
+                "forecast": 9,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/waveglow_ljs625_bs48",
+                "at_most": 80,
+                "forecast": 12,
+                "status": "good"
               }
             ]
           },
           "ladder": {
-            "pairs": 13,
-            "typical_error": 1.358,
+            "pairs": 48,
+            "typical_error": 1.326,
             "p90_error": 1.71,
             "median_rank_corr": 1.0,
             "pick_slower": 0,
-            "n": 6,
+            "n": 20,
             "tasks": [
               {
                 "task": "lambdalabs/bert_base_squad_amp_bs192",
@@ -2177,6 +3027,174 @@
                 "rank_corr": 1.0,
                 "pick": "rtx_6000_ada",
                 "fastest": "rtx_6000_ada",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/ncf_ml20m_bs10m",
+                "gpus": 7,
+                "scored_gpus": 6,
+                "typical_error": 1.285,
+                "p90_error": 1.691,
+                "rank_corr": 1.0,
+                "pick": "h100_sxm",
+                "fastest": "h100_sxm",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/ncf_ml20m_bs4278184",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.615,
+                "p90_error": 1.876,
+                "rank_corr": 0.5,
+                "pick": "rtx_4090",
+                "fastest": "rtx_4090",
+                "time_regret": 1.0,
+                "status": "warning"
+              },
+              {
+                "task": "lambdalabs/tacotron2_ljs625_bs148",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.309,
+                "p90_error": 1.377,
+                "rank_corr": 1.0,
+                "pick": "rtx_6000_ada",
+                "fastest": "rtx_6000_ada",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/tacotron2_ljs625_bs256",
+                "gpus": 4,
+                "scored_gpus": 3,
+                "typical_error": 1.217,
+                "p90_error": 1.303,
+                "rank_corr": 1.0,
+                "pick": "h100_sxm",
+                "fastest": "h100_sxm",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/tacotron2_ljs625_bs88",
+                "gpus": 2,
+                "scored_gpus": 1,
+                "typical_error": 1.969,
+                "p90_error": 1.969,
+                "rank_corr": null,
+                "pick": "rtx_4090",
+                "fastest": "rtx_4090",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_base_wt103_bs104",
+                "gpus": 4,
+                "scored_gpus": 3,
+                "typical_error": 1.15,
+                "p90_error": 1.196,
+                "rank_corr": 1.0,
+                "pick": "h100_sxm",
+                "fastest": "h100_sxm",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_base_wt103_bs24",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.488,
+                "p90_error": 1.523,
+                "rank_corr": 0.5,
+                "pick": "rtx_4090",
+                "fastest": "rtx_4090",
+                "time_regret": 1.0,
+                "status": "warning"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_base_wt103_bs64",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.438,
+                "p90_error": 1.482,
+                "rank_corr": 1.0,
+                "pick": "rtx_6000_ada",
+                "fastest": "rtx_6000_ada",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_large_wt103_bs32",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.413,
+                "p90_error": 1.462,
+                "rank_corr": 1.0,
+                "pick": "rtx_6000_ada",
+                "fastest": "rtx_6000_ada",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_large_wt103_bs48",
+                "gpus": 4,
+                "scored_gpus": 3,
+                "typical_error": 1.045,
+                "p90_error": 1.061,
+                "rank_corr": 1.0,
+                "pick": "h100_sxm",
+                "fastest": "h100_sxm",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_large_wt103_bs8",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.523,
+                "p90_error": 1.902,
+                "rank_corr": 0.5,
+                "pick": "rtx_4090",
+                "fastest": "rtx_4090",
+                "time_regret": 1.0,
+                "status": "warning"
+              },
+              {
+                "task": "lambdalabs/waveglow_ljs625_bs18",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.38,
+                "p90_error": 1.553,
+                "rank_corr": 0.5,
+                "pick": "rtx_4090",
+                "fastest": "rtx_4090",
+                "time_regret": 1.0,
+                "status": "warning"
+              },
+              {
+                "task": "lambdalabs/waveglow_ljs625_bs32",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.549,
+                "p90_error": 1.584,
+                "rank_corr": 1.0,
+                "pick": "rtx_6000_ada",
+                "fastest": "rtx_6000_ada",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/waveglow_ljs625_bs48",
+                "gpus": 4,
+                "scored_gpus": 3,
+                "typical_error": 1.068,
+                "p90_error": 1.349,
+                "rank_corr": 1.0,
+                "pick": "h100_sxm",
+                "fastest": "h100_sxm",
                 "time_regret": 1.0,
                 "status": "good"
               }
@@ -2289,6 +3307,60 @@
                   "status": "critical"
                 }
               },
+              "lambdalabs/ncf_ml20m_bs10m": {
+                "a100_sxm_80": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "a100_pcie_80": {
+                  "measured": 1.047,
+                  "forecast": 1.051,
+                  "status": "good"
+                },
+                "h100_pcie": {
+                  "measured": 0.896,
+                  "forecast": 0.695,
+                  "status": "warning"
+                },
+                "h100_sxm": {
+                  "measured": 0.46,
+                  "forecast": 0.588,
+                  "status": "warning"
+                },
+                "rtx_6000_ada": {
+                  "measured": 0.929,
+                  "forecast": 0.973,
+                  "status": "good"
+                },
+                "rtx_a6000": {
+                  "measured": 1.214,
+                  "forecast": 1.945,
+                  "status": "critical"
+                },
+                "qrtx_8000": {
+                  "measured": 1.555,
+                  "forecast": 2.63,
+                  "status": "critical"
+                }
+              },
+              "lambdalabs/ncf_ml20m_bs4278184": {
+                "rtx_4090": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_3090": {
+                  "measured": 1.282,
+                  "forecast": 2.406,
+                  "status": "critical"
+                },
+                "a10": {
+                  "measured": 2.098,
+                  "forecast": 1.51,
+                  "status": "warning"
+                }
+              },
               "lambdalabs/resnet50_amp_bs1280": {
                 "a100_sxm_80": {
                   "measured": 1.0,
@@ -2311,6 +3383,23 @@
                   "status": "none"
                 }
               },
+              "lambdalabs/resnet50_amp_bs448": {
+                "rtx_4090": {
+                  "measured": 1.0,
+                  "forecast": null,
+                  "status": "anchor"
+                },
+                "rtx_3090": {
+                  "measured": 1.438,
+                  "forecast": null,
+                  "status": "none"
+                },
+                "a10": {
+                  "measured": 2.039,
+                  "forecast": null,
+                  "status": "none"
+                }
+              },
               "lambdalabs/resnet50_amp_bs928": {
                 "rtx_6000_ada": {
                   "measured": 1.0,
@@ -2327,6 +3416,225 @@
                   "forecast": null,
                   "status": "none"
                 }
+              },
+              "lambdalabs/tacotron2_ljs625_bs148": {
+                "rtx_6000_ada": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_a6000": {
+                  "measured": 1.582,
+                  "forecast": 1.97,
+                  "status": "warning"
+                },
+                "qrtx_8000": {
+                  "measured": 2.17,
+                  "forecast": 2.988,
+                  "status": "warning"
+                }
+              },
+              "lambdalabs/tacotron2_ljs625_bs256": {
+                "a100_sxm_80": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "a100_pcie_80": {
+                  "measured": 1.013,
+                  "forecast": 1.113,
+                  "status": "good"
+                },
+                "h100_pcie": {
+                  "measured": 0.939,
+                  "forecast": 0.771,
+                  "status": "warning"
+                },
+                "h100_sxm": {
+                  "measured": 0.733,
+                  "forecast": 0.563,
+                  "status": "warning"
+                }
+              },
+              "lambdalabs/tacotron2_ljs625_bs88": {
+                "rtx_4090": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_3090": {
+                  "measured": 1.306,
+                  "forecast": 2.571,
+                  "status": "critical"
+                }
+              },
+              "lambdalabs/transformer_xl_base_wt103_bs104": {
+                "a100_sxm_80": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "a100_pcie_80": {
+                  "measured": 1.035,
+                  "forecast": 1.113,
+                  "status": "good"
+                },
+                "h100_pcie": {
+                  "measured": 0.923,
+                  "forecast": 0.771,
+                  "status": "warning"
+                },
+                "h100_sxm": {
+                  "measured": 0.692,
+                  "forecast": 0.602,
+                  "status": "good"
+                }
+              },
+              "lambdalabs/transformer_xl_base_wt103_bs24": {
+                "rtx_4090": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_3090": {
+                  "measured": 1.768,
+                  "forecast": 2.571,
+                  "status": "warning"
+                },
+                "a10": {
+                  "measured": 2.483,
+                  "forecast": 1.63,
+                  "status": "critical"
+                }
+              },
+              "lambdalabs/transformer_xl_base_wt103_bs64": {
+                "rtx_6000_ada": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_a6000": {
+                  "measured": 1.412,
+                  "forecast": 1.97,
+                  "status": "warning"
+                },
+                "qrtx_8000": {
+                  "measured": 2.016,
+                  "forecast": 2.988,
+                  "status": "warning"
+                }
+              },
+              "lambdalabs/transformer_xl_large_wt103_bs32": {
+                "rtx_6000_ada": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_a6000": {
+                  "measured": 1.442,
+                  "forecast": 1.97,
+                  "status": "warning"
+                },
+                "qrtx_8000": {
+                  "measured": 2.044,
+                  "forecast": 2.988,
+                  "status": "warning"
+                }
+              },
+              "lambdalabs/transformer_xl_large_wt103_bs48": {
+                "a100_sxm_80": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "a100_pcie_80": {
+                  "measured": 1.049,
+                  "forecast": 1.113,
+                  "status": "good"
+                },
+                "h100_pcie": {
+                  "measured": 0.806,
+                  "forecast": 0.771,
+                  "status": "good"
+                },
+                "h100_sxm": {
+                  "measured": 0.581,
+                  "forecast": 0.602,
+                  "status": "good"
+                }
+              },
+              "lambdalabs/transformer_xl_large_wt103_bs8": {
+                "rtx_4090": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_3090": {
+                  "measured": 1.855,
+                  "forecast": 2.262,
+                  "status": "warning"
+                },
+                "a10": {
+                  "measured": 2.584,
+                  "forecast": 1.359,
+                  "status": "critical"
+                }
+              },
+              "lambdalabs/waveglow_ljs625_bs18": {
+                "rtx_4090": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_3090": {
+                  "measured": 1.656,
+                  "forecast": 2.571,
+                  "status": "critical"
+                },
+                "a10": {
+                  "measured": 2.001,
+                  "forecast": 1.63,
+                  "status": "warning"
+                }
+              },
+              "lambdalabs/waveglow_ljs625_bs32": {
+                "rtx_6000_ada": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "rtx_a6000": {
+                  "measured": 1.343,
+                  "forecast": 2.127,
+                  "status": "critical"
+                },
+                "qrtx_8000": {
+                  "measured": 3.569,
+                  "forecast": 2.356,
+                  "status": "critical"
+                }
+              },
+              "lambdalabs/waveglow_ljs625_bs48": {
+                "a100_sxm_80": {
+                  "measured": 1.0,
+                  "forecast": 1.0,
+                  "status": "anchor"
+                },
+                "a100_pcie_80": {
+                  "measured": 1.041,
+                  "forecast": 1.0,
+                  "status": "good"
+                },
+                "h100_pcie": {
+                  "measured": 0.888,
+                  "forecast": 0.658,
+                  "status": "warning"
+                },
+                "h100_sxm": {
+                  "measured": 0.537,
+                  "forecast": 0.574,
+                  "status": "good"
+                }
               }
             },
             "uncovered": [
@@ -2338,6 +3646,14 @@
                   "h100_sxm"
                 ],
                 "measured": 3
+              },
+              {
+                "task": "lambdalabs/resnet50_amp_bs448",
+                "missing": [
+                  "rtx_3090",
+                  "a10"
+                ],
+                "measured": 2
               },
               {
                 "task": "lambdalabs/resnet50_amp_bs928",
@@ -2355,8 +3671,23 @@
               "lambdalabs/bert_large_squad_amp_bs112": "a100_sxm_80",
               "lambdalabs/bert_large_squad_amp_bs28": "rtx_4090",
               "lambdalabs/bert_large_squad_amp_bs64": "rtx_6000_ada",
+              "lambdalabs/ncf_ml20m_bs10m": "a100_sxm_80",
+              "lambdalabs/ncf_ml20m_bs4278184": "rtx_4090",
               "lambdalabs/resnet50_amp_bs1280": "a100_sxm_80",
-              "lambdalabs/resnet50_amp_bs928": "rtx_6000_ada"
+              "lambdalabs/resnet50_amp_bs448": "rtx_4090",
+              "lambdalabs/resnet50_amp_bs928": "rtx_6000_ada",
+              "lambdalabs/tacotron2_ljs625_bs148": "rtx_6000_ada",
+              "lambdalabs/tacotron2_ljs625_bs256": "a100_sxm_80",
+              "lambdalabs/tacotron2_ljs625_bs88": "rtx_4090",
+              "lambdalabs/transformer_xl_base_wt103_bs104": "a100_sxm_80",
+              "lambdalabs/transformer_xl_base_wt103_bs24": "rtx_4090",
+              "lambdalabs/transformer_xl_base_wt103_bs64": "rtx_6000_ada",
+              "lambdalabs/transformer_xl_large_wt103_bs32": "rtx_6000_ada",
+              "lambdalabs/transformer_xl_large_wt103_bs48": "a100_sxm_80",
+              "lambdalabs/transformer_xl_large_wt103_bs8": "rtx_4090",
+              "lambdalabs/waveglow_ljs625_bs18": "rtx_4090",
+              "lambdalabs/waveglow_ljs625_bs32": "rtx_6000_ada",
+              "lambdalabs/waveglow_ljs625_bs48": "a100_sxm_80"
             }
           }
         }
