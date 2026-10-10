@@ -1,0 +1,36 @@
+{
+  "task": "lambdalabs/waveglow_ljs625_bs48",
+  "fields": {
+    "workload_type": "tts",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp32",
+    "params_billions": 0.268,
+    "batch_size": 48,
+    "epochs": 2,
+    "dataset_samples": 625,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-10: WaveGlow is a neural vocoder (mel spectrogram -> audio), so `tts`; precision fp32 (autocast disabled: the benchmark's --amp-run is not an argument of train.py); params counted from the layer shapes = upsampling ConvTranspose1d 6 553 680 + 12 invertible 1x1 convolutions 464 + 12 WN blocks (8 layers, 512 channels, weight-normalised) 261 740 616 = 268 294 760; dataset_samples = lines of ljs_audio_text_train_subset_625_filelist.txt (one 8000-sample segment per clip and epoch; validation adds 100 clips per epoch)"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column waveglow (training throughput, audio samples/s), single-GPU rows run with batch 48 (pytorch/pytorch-train-bs-fp16.csv; config_pytorch_80GB.sh): 'A100 80GB SXM4' 244438; 'A100 80GB PCIe' 234859; 'H100 80GB PCIe Gen5' 273768, 'LambdaCloud H100 80GB PCIe Gen5' 276658; 'H100 80GB SXM5' 393500, 'Dell H100 80GB SXM5' 470288, 'DellTexas H100 80GB SXM5' 469056, 'SMC H100 80GB SXM5' 464002, '1CC H100 80GB SXM5' 470285, 'RAIDZ1 H100 80GB SXM5' 469508. The set is named fp16 after the CSV; the run computes in fp32 (see the task's docstring)",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "vram_gb_at_most": 80,
+      "vram_gb_at_most_note": "the run completed with batch 48 on 80 GB cards, so the peak is at most 80 GB (the 48 GB cards were run with batch 32)",
+      "anchor_gpu": "a100_sxm_80",
+      "compute_ratio": {
+        "a100_sxm_80": 1.0,
+        "a100_pcie_80": 1.041,
+        "h100_pcie": 0.888,
+        "h100_sxm": 0.537
+      },
+      "compute_ratio_note": "throughput[A100 80GB SXM4] / throughput[GPU]; rows of one GPU (different hosts) pooled by geometric mean (H100 PCIe 275 209, H100 SXM5 455 173 samples/s; the H100 SXM5 hosts range from 393 500 to 470 288). The throughput is the mean of per-step rates of the last epoch, timed after the batch is loaded: data loading is outside it"
+    }
+  ]
+}
