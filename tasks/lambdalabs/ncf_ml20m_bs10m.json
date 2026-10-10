@@ -1,0 +1,39 @@
+{
+  "task": "lambdalabs/ncf_ml20m_bs10m",
+  "fields": {
+    "workload_type": "training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp32",
+    "params_billions": 0.0318,
+    "batch_size": 10000000,
+    "epochs": 2,
+    "dataset_samples": 19861770,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-10: a recommender (embeddings + MLP) fits no leaf workload, so `training`; precision fp32 (the benchmark's FP16 set passes no --amp); params = (138 493 users + 26 744 items) x (64 + 128) embedding weights + MLP and final layers = 31.83 M; dataset_samples = MovieLens-20M ratings minus one test rating per user (20 000 263 - 138 493), each epoch adds 4 negatives per positive"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column ncf (training throughput, samples/s), single-GPU rows run with batch 10 000 000 (pytorch/pytorch-train-bs-fp16.csv; config_pytorch_80GB.sh and config_pytorch_48GB.sh, no ncf batch fix in the GPU configs): 'A100 80GB SXM4' 30787381; 'A100 80GB PCIe' 29393923; 'H100 80GB PCIe Gen5' 34483571, 'LambdaCloud H100 80GB PCIe Gen5' 34259182; 'H100 80GB SXM5' 52418903, 'Dell H100 80GB SXM5' 70240500, 'DellTexas H100 80GB SXM5' 70236923, 'SMC H100 80GB SXM5' 70202724, '1CC H100 80GB SXM5' 70271974, 'RAIDZ1 H100 80GB SXM5' 70284958; 'RTX 6000 Ada' 33148978; 'RTX A6000' 25357954; 'Quadro RTX 8000' 19801310",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "vram_gb_at_most": 48,
+      "vram_gb_at_most_note": "the run completed with batch 10 000 000 on 48 GB cards (RTX 6000 Ada, RTX A6000, Quadro RTX 8000), so the peak is at most 48 GB",
+      "anchor_gpu": "a100_sxm_80",
+      "compute_ratio": {
+        "a100_sxm_80": 1.0,
+        "a100_pcie_80": 1.047,
+        "h100_pcie": 0.896,
+        "h100_sxm": 0.46,
+        "rtx_6000_ada": 0.929,
+        "rtx_a6000": 1.214,
+        "qrtx_8000": 1.555
+      },
+      "compute_ratio_note": "throughput[A100 80GB SXM4] / throughput[GPU]; rows of one GPU (different hosts) pooled by geometric mean (H100 PCIe 34.37 M, H100 SXM5 66.90 M samples/s; the H100 SXM5 hosts range from 52.4 M to 70.3 M)"
+    }
+  ]
+}
