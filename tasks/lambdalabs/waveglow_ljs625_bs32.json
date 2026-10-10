@@ -1,0 +1,35 @@
+{
+  "task": "lambdalabs/waveglow_ljs625_bs32",
+  "fields": {
+    "workload_type": "tts",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp32",
+    "params_billions": 0.268,
+    "batch_size": 32,
+    "epochs": 2,
+    "dataset_samples": 625,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-10: WaveGlow is a neural vocoder (mel spectrogram -> audio), so `tts`; precision fp32 (autocast disabled: the benchmark's --amp-run is not an argument of train.py); params counted from the layer shapes = upsampling ConvTranspose1d 6 553 680 + 12 invertible 1x1 convolutions 464 + 12 WN blocks (8 layers, 512 channels, weight-normalised) 261 740 616 = 268 294 760; dataset_samples = lines of ljs_audio_text_train_subset_625_filelist.txt (one 8000-sample segment per clip and epoch; validation adds 100 clips per epoch)"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column waveglow (training throughput, audio samples/s), single-GPU rows run with batch 32 (pytorch/pytorch-train-bs-fp16.csv; config_pytorch_48GB.sh): 'RTX 6000 Ada' 156904; 'RTX A6000' 116866; 'Quadro RTX 8000' 43964. The set is named fp16 after the CSV; the run computes in fp32 (see the task's docstring)",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "vram_gb_at_most": 48,
+      "vram_gb_at_most_note": "the run completed with batch 32 on 48 GB cards, so the peak is at most 48 GB (the 24 GB cards were run with batch 18)",
+      "anchor_gpu": "rtx_6000_ada",
+      "compute_ratio": {
+        "rtx_6000_ada": 1.0,
+        "rtx_a6000": 1.343,
+        "qrtx_8000": 3.569
+      },
+      "compute_ratio_note": "throughput[RTX 6000 Ada] / throughput[GPU], one row per GPU. The throughput is the mean of per-step rates of the last epoch, timed after the batch is loaded: data loading is outside it"
+    }
+  ]
+}

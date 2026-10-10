@@ -1,0 +1,35 @@
+{
+  "task": "lambdalabs/waveglow_ljs625_bs18",
+  "fields": {
+    "workload_type": "tts",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp32",
+    "params_billions": 0.268,
+    "batch_size": 18,
+    "epochs": 2,
+    "dataset_samples": 625,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-10: WaveGlow is a neural vocoder (mel spectrogram -> audio), so `tts`; precision fp32 (autocast disabled: the benchmark's --amp-run is not an argument of train.py); params counted from the layer shapes = upsampling ConvTranspose1d 6 553 680 + 12 invertible 1x1 convolutions 464 + 12 WN blocks (8 layers, 512 channels, weight-normalised) 261 740 616 = 268 294 760; dataset_samples = lines of ljs_audio_text_train_subset_625_filelist.txt (one 8000-sample segment per clip and epoch; validation adds 100 clips per epoch)"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column waveglow (training throughput, audio samples/s), single-GPU rows run with batch 18 (pytorch/pytorch-train-bs-fp16.csv; config_pytorch_24GB.sh): 'RTX 4090' 160816; 'RTX 3090' 97100; 'LambdaCloud A10' 80357. The set is named fp16 after the CSV; the run computes in fp32 (see the task's docstring)",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "vram_gb_at_most": 24,
+      "vram_gb_at_most_note": "the run completed with batch 18 on 24 GB cards, so the peak is at most 24 GB",
+      "anchor_gpu": "rtx_4090",
+      "compute_ratio": {
+        "rtx_4090": 1.0,
+        "rtx_3090": 1.656,
+        "a10": 2.001
+      },
+      "compute_ratio_note": "throughput[RTX 4090] / throughput[GPU], one row per GPU. The throughput is the mean of per-step rates of the last epoch, timed after the batch is loaded: data loading is outside it"
+    }
+  ]
+}

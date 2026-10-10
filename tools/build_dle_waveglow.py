@@ -41,6 +41,8 @@ EDITS = {"waveglow/data_function.py": [("layers.TacotronSTFT(", "TacotronSTFT(")
 # Samples: (name, batch size, GPU config of the benchmark, cards in the title).
 SAMPLES = [
     ("waveglow_ljs625_bs48", 48, "config_pytorch_80GB.sh", "A100 / H100 80 GB"),
+    ("waveglow_ljs625_bs32", 32, "config_pytorch_48GB.sh", "RTX 6000 Ada, RTX A6000, Quadro RTX 8000"),
+    ("waveglow_ljs625_bs18", 18, "config_pytorch_24GB.sh", "RTX 4090, RTX 3090, A10"),
 ]
 
 IMPORTS = """\
@@ -117,7 +119,7 @@ the source (paths relative to Tacotron2/ at 667536cc):
 - data: MelAudioLoader over the 625-clip file list, a random 8000-sample
   segment per clip and its mel spectrogram, audio defaults of train.py:125-138;
   DataLoader with 8 workers, shuffled, the default collate, the last partial
-  batch dropped (train.py:431-443, data_functions.py:39-40): 13 steps per epoch at batch 48;
+  batch dropped (train.py:431-443, data_functions.py:39-40): @STEPS@ steps per epoch at batch @BATCH@;
 - step: zero_grad, batch to the GPU, forward and loss under
   autocast(enabled=False), NaN check, backward, gradient-norm clip at 65504,
   optimizer step, zero_grad(set_to_none=True) (train.py:480-517);
@@ -325,7 +327,7 @@ def fill(text: str, **kw: object) -> str:
 
 def build(dle: Path, name: str, batch: int, cfg: str) -> None:
     func = "train_waveglow"
-    kw = dict(NAME=name, BATCH=batch, CFG=cfg, FUNC=func)
+    kw = dict(NAME=name, BATCH=batch, CFG=cfg, FUNC=func, STEPS=625 // batch)
     code = verbatim(dle)
     sig = f"def {func}(batch_size: int = {batch}, epochs: int = 2, segment_length: int = 8000):\n"
     neutral = (fill(DOC, **kw) + "\n" + IMPORTS
