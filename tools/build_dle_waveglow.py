@@ -293,7 +293,7 @@ BODY = '''\
 '''
 
 
-def verbatim(dle: Path, parts: list = PARTS, edits: dict = EDITS) -> str:
+def verbatim(dle: Path, parts: list = PARTS, edits: dict = EDITS, src: str = SRC) -> str:
     """The copied sections, each headed by file and lines; a licence header
     is emitted once, before the first section of a file that carries it.
 
@@ -307,11 +307,11 @@ def verbatim(dle: Path, parts: list = PARTS, edits: dict = EDITS) -> str:
             out.append(names)
             continue
         if rel == "licence":
-            text = (dle / SRC / names).read_text().strip()
-            out.append(f"# --- licence: {SRC}/{names} ---\n"
+            text = (dle / src / names).read_text().strip()
+            out.append(f"# --- licence: {src}/{names} ---\n"
                        + "\n".join(("# " + line).rstrip() for line in text.splitlines()) + "\n")
             continue
-        text = (dle / SRC / rel).read_text()
+        text = (dle / src / rel).read_text()
         lines = text.splitlines()
         tree = ast.parse(text)
         imports = [n for n in tree.body if isinstance(n, (ast.Import, ast.ImportFrom))]
@@ -319,7 +319,7 @@ def verbatim(dle: Path, parts: list = PARTS, edits: dict = EDITS) -> str:
         header = "\n".join(lines[:first.lineno - 1]).strip()
         if " ".join(header.split()) not in seen:
             seen.add(" ".join(header.split()))
-            out.append(f"# --- licence header: {SRC}/{rel}:1-{first.lineno - 1} ---\n{header}\n")
+            out.append(f"# --- licence header: {src}/{rel}:1-{first.lineno - 1} ---\n{header}\n")
         defs = {n.name: n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))}
         defs.update({n.targets[0].id: n for n in tree.body
                      if isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Name)})
@@ -336,7 +336,7 @@ def verbatim(dle: Path, parts: list = PARTS, edits: dict = EDITS) -> str:
             seg = "\n".join(lines[start - 1:end]).rstrip()
             for a, b in edits.get(rel, []):
                 seg = seg.replace(a, b)
-            out.append(f"# --- verbatim: {SRC}/{rel}:{start}-{end} ---\n{seg}\n")
+            out.append(f"# --- verbatim: {src}/{rel}:{start}-{end} ---\n{seg}\n")
     return "\n\n".join(out)
 
 

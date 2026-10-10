@@ -1,0 +1,34 @@
+{
+  "task": "lambdalabs/transformer_xl_large_wt103_bs32",
+  "fields": {
+    "workload_type": "ai_training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp16",
+    "params_billions": 0.52,
+    "batch_size": 32,
+    "seq_len": 256,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-10: a transformer language model trained from scratch, so `ai_training`; precision fp16 (autocast and gradient scaler); params counted from the layer shapes = 519 963 095 = embedding 274 160 640 (267 735 tokens x 1024, tied with the output weights) + output bias 267 735 + 18 layers x 13 640 704 + relative-position biases 2 048 (vocabulary 267 735: WikiText-103 training tokens and <eos>, not counted on the stand's machine); seq_len = target length (the memory adds 256 more positions of context); the run is bounded by max_step 40, not by epochs: epochs and dataset_samples are left out"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column transformerxllarge (training throughput, tokens/s), single-GPU rows run with batch 32 (pytorch/pytorch-train-bs-fp16.csv; config_pytorch_48GB.sh): 'RTX 6000 Ada' 16049; 'RTX A6000' 11126; 'Quadro RTX 8000' 7853",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark; fp16 through APEX AMP O2 (the task file uses torch.cuda.amp: see its docstring)",
+      "vram_gb_at_most": 48,
+      "vram_gb_at_most_note": "the run completed with batch 32 on 48 GB cards, so the peak is at most 48 GB (the 24 GB cards were run with batch 8)",
+      "anchor_gpu": "rtx_6000_ada",
+      "compute_ratio": {
+        "rtx_6000_ada": 1.0,
+        "rtx_a6000": 1.442,
+        "qrtx_8000": 2.044
+      },
+      "compute_ratio_note": "throughput[RTX 6000 Ada] / throughput[GPU], one row per GPU. The run is 40 steps: the throughput is one 10-step value (the fourth; the first 3 are dropped as warm-up)"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "task": "lambdalabs/transformer_xl_large_wt103_bs48",
+  "fields": {
+    "workload_type": "ai_training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp16",
+    "params_billions": 0.52,
+    "batch_size": 48,
+    "seq_len": 256,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-10: a transformer language model trained from scratch, so `ai_training`; precision fp16 (autocast and gradient scaler); params counted from the layer shapes = 519 963 095 = embedding 274 160 640 (267 735 tokens x 1024, tied with the output weights) + output bias 267 735 + 18 layers x 13 640 704 + relative-position biases 2 048 (vocabulary 267 735: WikiText-103 training tokens and <eos>, not counted on the stand's machine); seq_len = target length (the memory adds 256 more positions of context); the run is bounded by max_step 400, not by epochs: epochs and dataset_samples are left out"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column transformerxllarge (training throughput, tokens/s), single-GPU rows run with batch 48 (pytorch/pytorch-train-bs-fp16.csv; config_pytorch_80GB.sh): 'A100 80GB SXM4' 17918; 'A100 80GB PCIe' 17082; 'H100 80GB PCIe Gen5' 22586, 'LambdaCloud H100 80GB PCIe Gen5' 21874; 'H100 80GB SXM5' 30841 (the five other H100 80GB SXM5 rows hold 0.0 and are left out)",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark; fp16 through APEX AMP O2 (the task file uses torch.cuda.amp: see its docstring)",
+      "vram_gb_at_most": 80,
+      "vram_gb_at_most_note": "the run completed with batch 48 on 80 GB cards, so the peak is at most 80 GB (the 48 GB cards were run with batch 32)",
+      "anchor_gpu": "a100_sxm_80",
+      "compute_ratio": {
+        "a100_sxm_80": 1.0,
+        "a100_pcie_80": 1.049,
+        "h100_pcie": 0.806,
+        "h100_sxm": 0.581
+      },
+      "compute_ratio_note": "throughput[A100 80GB SXM4] / throughput[GPU]; the two H100 PCIe rows pooled by geometric mean (22227 tokens/s); H100 SXM5 is one host. The throughput is tokens / elapsed time per 10 steps, averaged over 400 steps after the first 3 values"
+    }
+  ]
+}

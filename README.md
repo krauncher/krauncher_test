@@ -125,6 +125,10 @@ Published benchmarks (`tasks/<source>/`, independent measurements):
 | `lambdalabs/tacotron2_ljs625_bs256` | Tacotron 2 training on LJSpeech (625 clips), batch 256, 3 epochs, fp32; model, data and text code verbatim from NVIDIA DeepLearningExamples (BSD 3-Clause; text front end MIT, Apache 2.0); Lambda GPU benchmark (A100 / H100 80 GB) |
 | `lambdalabs/tacotron2_ljs625_bs148` | the same Tacotron 2 training, batch 148, 1 epoch; Lambda GPU benchmark (RTX 6000 Ada, RTX A6000, Quadro RTX 8000) |
 | `lambdalabs/tacotron2_ljs625_bs88` | the same Tacotron 2 training, batch 88, 2 epochs; Lambda GPU benchmark (RTX 4090, RTX 3090) |
+| `lambdalabs/transformer_xl_base_wt103_bs104` | Transformer-XL base training on WikiText-103, batch 104, 400 steps, fp16; two phases (data preparation, training); model, optimizer and data code verbatim from NVIDIA DeepLearningExamples (Apache 2.0); Lambda GPU benchmark (A100 / H100 80 GB) |
+| `lambdalabs/transformer_xl_base_wt103_bs64`, `transformer_xl_base_wt103_bs24` | the same, batch 64, 40 steps (RTX 6000 Ada, RTX A6000, Quadro RTX 8000); batch 24, 400 steps (RTX 4090, RTX 3090, A10) |
+| `lambdalabs/transformer_xl_large_wt103_bs48` | Transformer-XL large training on WikiText-103, batch 48, 400 steps, fp16; Lambda GPU benchmark (A100 / H100 80 GB) |
+| `lambdalabs/transformer_xl_large_wt103_bs32`, `transformer_xl_large_wt103_bs8` | the same, batch 32, 40 steps (RTX 6000 Ada, RTX A6000, Quadro RTX 8000); batch 8, 400 steps (RTX 4090, RTX 3090, A10) |
 | `lambdalabs/bert_large_squad_amp_bs28` | BERT-large fine-tuning on SQuAD v1.1, mixed precision, batch 28, 101 steps; Lambda GPU benchmark (RTX 4090, RTX 3090, A10, 24 GB) |
 
 ## Adding a task
