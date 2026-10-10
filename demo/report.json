@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-10-10T06:59:16+00:00",
+  "created_utc": "2026-10-10T16:33:40+00:00",
   "thresholds": {
     "time_good": 1.1,
     "time_warning": 1.25,
@@ -47,52 +47,52 @@
         "lambdalabs/waveglow_ljs625_bs48"
       ],
       "versions": [
-        "{\"calibration_id\": \"c-d589e2f979e6\", \"client_commit\": \"0e2e207275f808b0e86fe9f0d49122ec993fe2d4\"}"
+        "{\"calibration_id\": \"c-50c95de799e3\", \"client_commit\": \"0e2e207275f808b0e86fe9f0d49122ec993fe2d4\"}"
       ],
       "result_created_utc": {
-        "krauncher_tutorials/bert_batch_inference": "2026-10-09T16:35:26+00:00",
-        "krauncher_tutorials/bert_imdb": "2026-10-09T16:35:27+00:00",
-        "krauncher_tutorials/phi3_inference": "2026-10-09T16:35:28+00:00",
-        "krauncher_tutorials/qwen15_inference": "2026-10-09T16:35:29+00:00",
-        "krauncher_tutorials/qwen25_7b_batched": "2026-10-09T16:35:29+00:00",
-        "krauncher_tutorials/qwen25_7b_gsm8k": "2026-10-09T16:35:30+00:00",
-        "krauncher_tutorials/qwen25_7b_long": "2026-10-09T16:35:31+00:00",
-        "krauncher_tutorials/qwen25_7b_lora_alpaca": "2026-10-09T16:35:32+00:00",
-        "krauncher_tutorials/resnet152_food101": "2026-10-09T16:35:32+00:00",
-        "krauncher_tutorials/vit_batch_inference": "2026-10-09T16:35:33+00:00",
-        "lambdalabs/bert_base_squad_amp_bs192": "2026-10-09T16:53:39+00:00",
-        "lambdalabs/bert_base_squad_amp_bs320": "2026-10-09T16:52:48+00:00",
-        "lambdalabs/bert_base_squad_amp_bs96": "2026-10-09T16:56:19+00:00",
-        "lambdalabs/bert_large_squad_amp_bs112": "2026-10-09T16:57:11+00:00",
-        "lambdalabs/bert_large_squad_amp_bs28": "2026-10-09T16:57:54+00:00",
-        "lambdalabs/bert_large_squad_amp_bs64": "2026-10-09T16:57:53+00:00",
-        "lambdalabs/ncf_ml20m_bs10m": "2026-10-10T06:25:06+00:00",
-        "lambdalabs/ncf_ml20m_bs4278184": "2026-10-10T06:25:59+00:00",
-        "lambdalabs/resnet50_amp_bs1280": "2026-10-09T16:35:34+00:00",
-        "lambdalabs/resnet50_amp_bs448": "2026-10-10T06:22:42+00:00",
-        "lambdalabs/resnet50_amp_bs928": "2026-10-09T16:49:43+00:00",
-        "lambdalabs/tacotron2_ljs625_bs148": "2026-10-10T06:40:28+00:00",
-        "lambdalabs/tacotron2_ljs625_bs256": "2026-10-10T06:40:27+00:00",
-        "lambdalabs/tacotron2_ljs625_bs88": "2026-10-10T06:40:29+00:00",
-        "lambdalabs/transformer_xl_base_wt103_bs104": "2026-10-10T06:54:37+00:00",
-        "lambdalabs/transformer_xl_base_wt103_bs24": "2026-10-10T06:54:42+00:00",
-        "lambdalabs/transformer_xl_base_wt103_bs64": "2026-10-10T06:54:41+00:00",
-        "lambdalabs/transformer_xl_large_wt103_bs32": "2026-10-10T06:54:44+00:00",
-        "lambdalabs/transformer_xl_large_wt103_bs48": "2026-10-10T06:54:43+00:00",
-        "lambdalabs/transformer_xl_large_wt103_bs8": "2026-10-10T06:54:45+00:00",
-        "lambdalabs/waveglow_ljs625_bs18": "2026-10-10T06:36:24+00:00",
-        "lambdalabs/waveglow_ljs625_bs32": "2026-10-10T06:36:23+00:00",
-        "lambdalabs/waveglow_ljs625_bs48": "2026-10-10T06:35:51+00:00"
+        "krauncher_tutorials/bert_batch_inference": "2026-10-10T10:19:52+00:00",
+        "krauncher_tutorials/bert_imdb": "2026-10-10T10:19:53+00:00",
+        "krauncher_tutorials/phi3_inference": "2026-10-10T10:19:54+00:00",
+        "krauncher_tutorials/qwen15_inference": "2026-10-10T10:19:55+00:00",
+        "krauncher_tutorials/qwen25_7b_batched": "2026-10-10T10:19:55+00:00",
+        "krauncher_tutorials/qwen25_7b_gsm8k": "2026-10-10T10:19:56+00:00",
+        "krauncher_tutorials/qwen25_7b_long": "2026-10-10T10:19:57+00:00",
+        "krauncher_tutorials/qwen25_7b_lora_alpaca": "2026-10-10T10:19:58+00:00",
+        "krauncher_tutorials/resnet152_food101": "2026-10-10T10:19:58+00:00",
+        "krauncher_tutorials/vit_batch_inference": "2026-10-10T10:19:59+00:00",
+        "lambdalabs/bert_base_squad_amp_bs192": "2026-10-10T10:20:00+00:00",
+        "lambdalabs/bert_base_squad_amp_bs320": "2026-10-10T10:20:01+00:00",
+        "lambdalabs/bert_base_squad_amp_bs96": "2026-10-10T10:20:01+00:00",
+        "lambdalabs/bert_large_squad_amp_bs112": "2026-10-10T10:20:02+00:00",
+        "lambdalabs/bert_large_squad_amp_bs28": "2026-10-10T10:20:03+00:00",
+        "lambdalabs/bert_large_squad_amp_bs64": "2026-10-10T10:20:04+00:00",
+        "lambdalabs/ncf_ml20m_bs10m": "2026-10-10T10:20:06+00:00",
+        "lambdalabs/ncf_ml20m_bs4278184": "2026-10-10T10:20:08+00:00",
+        "lambdalabs/resnet50_amp_bs1280": "2026-10-10T10:20:09+00:00",
+        "lambdalabs/resnet50_amp_bs448": "2026-10-10T10:20:10+00:00",
+        "lambdalabs/resnet50_amp_bs928": "2026-10-10T10:20:10+00:00",
+        "lambdalabs/tacotron2_ljs625_bs148": "2026-10-10T10:20:11+00:00",
+        "lambdalabs/tacotron2_ljs625_bs256": "2026-10-10T10:20:13+00:00",
+        "lambdalabs/tacotron2_ljs625_bs88": "2026-10-10T10:20:14+00:00",
+        "lambdalabs/transformer_xl_base_wt103_bs104": "2026-10-10T10:20:15+00:00",
+        "lambdalabs/transformer_xl_base_wt103_bs24": "2026-10-10T10:20:17+00:00",
+        "lambdalabs/transformer_xl_base_wt103_bs64": "2026-10-10T10:20:18+00:00",
+        "lambdalabs/transformer_xl_large_wt103_bs32": "2026-10-10T10:20:19+00:00",
+        "lambdalabs/transformer_xl_large_wt103_bs48": "2026-10-10T10:20:21+00:00",
+        "lambdalabs/transformer_xl_large_wt103_bs8": "2026-10-10T10:20:22+00:00",
+        "lambdalabs/waveglow_ljs625_bs18": "2026-10-10T10:20:23+00:00",
+        "lambdalabs/waveglow_ljs625_bs32": "2026-10-10T10:20:24+00:00",
+        "lambdalabs/waveglow_ljs625_bs48": "2026-10-10T10:20:25+00:00"
       },
       "forecast_time": {
-        "median_sec": 0.65,
-        "p90_sec": 1.04,
-        "max_sec": 2.94,
+        "median_sec": 0.63,
+        "p90_sec": 1.19,
+        "max_sec": 2.37,
         "tasks": {
           "krauncher_tutorials/bert_batch_inference": {
-            "analysis_sec": 0.68,
+            "analysis_sec": 0.59,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.76
+            "forecast_sec": 0.67
           },
           "krauncher_tutorials/bert_imdb": {
             "analysis_sec": 0.54,
@@ -127,15 +127,15 @@
           "krauncher_tutorials/qwen25_7b_lora_alpaca": {
             "analysis_sec": 0.55,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.62
+            "forecast_sec": 0.63
           },
           "krauncher_tutorials/resnet152_food101": {
-            "analysis_sec": 0.53,
+            "analysis_sec": 0.54,
             "assay_ladder_sec": 0.04,
             "forecast_sec": 0.65
           },
           "krauncher_tutorials/vit_batch_inference": {
-            "analysis_sec": 0.55,
+            "analysis_sec": 0.54,
             "assay_ladder_sec": 0.04,
             "forecast_sec": 0.62
           },
@@ -166,92 +166,92 @@
           },
           "lambdalabs/bert_large_squad_amp_bs64": {
             "analysis_sec": 0.55,
-            "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.62
+            "assay_ladder_sec": 0.05,
+            "forecast_sec": 0.63
           },
           "lambdalabs/ncf_ml20m_bs10m": {
-            "analysis_sec": 2.77,
+            "analysis_sec": 2.25,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 2.94
+            "forecast_sec": 2.37
           },
           "lambdalabs/ncf_ml20m_bs4278184": {
-            "analysis_sec": 2.72,
+            "analysis_sec": 1.74,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 2.85
+            "forecast_sec": 1.86
           },
           "lambdalabs/resnet50_amp_bs1280": {
             "analysis_sec": 0.54,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.62
+            "forecast_sec": 0.61
           },
           "lambdalabs/resnet50_amp_bs448": {
-            "analysis_sec": 0.57,
-            "assay_ladder_sec": 0.06,
-            "forecast_sec": 0.67
+            "analysis_sec": 0.54,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
           },
           "lambdalabs/resnet50_amp_bs928": {
             "analysis_sec": 0.54,
-            "assay_ladder_sec": 0.05,
-            "forecast_sec": 0.63
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 0.62
           },
           "lambdalabs/tacotron2_ljs625_bs148": {
-            "analysis_sec": 0.9,
+            "analysis_sec": 0.94,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 1.05
+            "forecast_sec": 1.08
           },
           "lambdalabs/tacotron2_ljs625_bs256": {
-            "analysis_sec": 0.9,
+            "analysis_sec": 0.92,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 1.04
+            "forecast_sec": 1.06
           },
           "lambdalabs/tacotron2_ljs625_bs88": {
-            "analysis_sec": 0.9,
+            "analysis_sec": 0.95,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 1.04
+            "forecast_sec": 1.09
           },
           "lambdalabs/transformer_xl_base_wt103_bs104": {
-            "analysis_sec": 0.72,
+            "analysis_sec": 1.04,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.89
+            "forecast_sec": 1.19
           },
           "lambdalabs/transformer_xl_base_wt103_bs24": {
-            "analysis_sec": 0.68,
+            "analysis_sec": 1.1,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.83
+            "forecast_sec": 1.25
           },
           "lambdalabs/transformer_xl_base_wt103_bs64": {
-            "analysis_sec": 0.68,
+            "analysis_sec": 1.02,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.84
+            "forecast_sec": 1.18
           },
           "lambdalabs/transformer_xl_large_wt103_bs32": {
-            "analysis_sec": 0.67,
-            "assay_ladder_sec": 0.09,
-            "forecast_sec": 0.87
+            "analysis_sec": 1.02,
+            "assay_ladder_sec": 0.04,
+            "forecast_sec": 1.17
           },
           "lambdalabs/transformer_xl_large_wt103_bs48": {
-            "analysis_sec": 0.66,
+            "analysis_sec": 1.01,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.82
+            "forecast_sec": 1.17
           },
           "lambdalabs/transformer_xl_large_wt103_bs8": {
-            "analysis_sec": 0.67,
+            "analysis_sec": 1.0,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.82
+            "forecast_sec": 1.16
           },
           "lambdalabs/waveglow_ljs625_bs18": {
-            "analysis_sec": 0.8,
+            "analysis_sec": 0.83,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.93
+            "forecast_sec": 0.96
           },
           "lambdalabs/waveglow_ljs625_bs32": {
-            "analysis_sec": 0.8,
+            "analysis_sec": 0.82,
             "assay_ladder_sec": 0.04,
-            "forecast_sec": 0.93
+            "forecast_sec": 0.95
           },
           "lambdalabs/waveglow_ljs625_bs48": {
-            "analysis_sec": 0.81,
-            "assay_ladder_sec": 0.05,
+            "analysis_sec": 0.83,
+            "assay_ladder_sec": 0.04,
             "forecast_sec": 0.96
           }
         }
@@ -1050,66 +1050,66 @@
             },
             "lambdalabs/tacotron2_ljs625_bs148": {
               "expected": 0.0282,
-              "forecast": 0.112,
-              "status": "critical"
+              "forecast": 0.028193,
+              "status": "good"
             },
             "lambdalabs/tacotron2_ljs625_bs256": {
               "expected": 0.0282,
-              "forecast": 0.112,
-              "status": "critical"
+              "forecast": 0.028193,
+              "status": "good"
             },
             "lambdalabs/tacotron2_ljs625_bs88": {
               "expected": 0.0282,
-              "forecast": 0.112,
-              "status": "critical"
+              "forecast": 0.028193,
+              "status": "good"
             },
             "lambdalabs/transformer_xl_base_wt103_bs104": {
               "expected": 0.192,
-              "forecast": 0.117,
+              "forecast": 0.054601,
               "status": "critical"
             },
             "lambdalabs/transformer_xl_base_wt103_bs24": {
               "expected": 0.192,
-              "forecast": 0.117,
+              "forecast": 0.054601,
               "status": "critical"
             },
             "lambdalabs/transformer_xl_base_wt103_bs64": {
               "expected": 0.192,
-              "forecast": 0.117,
+              "forecast": 0.054601,
               "status": "critical"
             },
             "lambdalabs/transformer_xl_large_wt103_bs32": {
               "expected": 0.52,
-              "forecast": 0.117,
+              "forecast": 0.245535,
               "status": "critical"
             },
             "lambdalabs/transformer_xl_large_wt103_bs48": {
               "expected": 0.52,
-              "forecast": 0.117,
+              "forecast": 0.245535,
               "status": "critical"
             },
             "lambdalabs/transformer_xl_large_wt103_bs8": {
               "expected": 0.52,
-              "forecast": 0.117,
+              "forecast": 0.245535,
               "status": "critical"
             },
             "lambdalabs/waveglow_ljs625_bs18": {
               "expected": 0.268,
-              "forecast": 0.088,
-              "status": "critical"
+              "forecast": 0.268295,
+              "status": "good"
             },
             "lambdalabs/waveglow_ljs625_bs32": {
               "expected": 0.268,
-              "forecast": 0.088,
-              "status": "critical"
+              "forecast": 0.268295,
+              "status": "good"
             },
             "lambdalabs/waveglow_ljs625_bs48": {
               "expected": 0.268,
-              "forecast": 0.088,
-              "status": "critical"
+              "forecast": 0.268295,
+              "status": "good"
             }
           },
-          "match": 19,
+          "match": 25,
           "total": 33
         },
         "batch_size": {
@@ -1524,36 +1524,36 @@
             },
             "lambdalabs/transformer_xl_base_wt103_bs104": {
               "expected": 192,
-              "forecast": null,
-              "status": "critical"
+              "forecast": 192,
+              "status": "good"
             },
             "lambdalabs/transformer_xl_base_wt103_bs24": {
               "expected": 192,
-              "forecast": null,
-              "status": "critical"
+              "forecast": 192,
+              "status": "good"
             },
             "lambdalabs/transformer_xl_base_wt103_bs64": {
               "expected": 192,
-              "forecast": null,
-              "status": "critical"
+              "forecast": 192,
+              "status": "good"
             },
             "lambdalabs/transformer_xl_large_wt103_bs32": {
               "expected": 256,
-              "forecast": null,
-              "status": "critical"
+              "forecast": 256,
+              "status": "good"
             },
             "lambdalabs/transformer_xl_large_wt103_bs48": {
               "expected": 256,
-              "forecast": null,
-              "status": "critical"
+              "forecast": 256,
+              "status": "good"
             },
             "lambdalabs/transformer_xl_large_wt103_bs8": {
               "expected": 256,
-              "forecast": null,
-              "status": "critical"
+              "forecast": 256,
+              "status": "good"
             }
           },
-          "match": 9,
+          "match": 15,
           "total": 15
         },
         "cpu_only": {
@@ -2806,8 +2806,176 @@
             "lambdalabs/waveglow_ljs625_bs32",
             "lambdalabs/waveglow_ljs625_bs48"
           ],
+          "anchor_time": {
+            "centre": 1.027,
+            "typical_deviation": 3.279,
+            "good": 3,
+            "n": 20,
+            "tasks": [
+              {
+                "task": "lambdalabs/bert_base_squad_amp_bs192",
+                "gpu": "rtx_6000_ada",
+                "measured": 75.3,
+                "forecast": 20.4,
+                "ratio": 0.271,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/bert_base_squad_amp_bs320",
+                "gpu": "a100_sxm_80",
+                "measured": 72.2,
+                "forecast": 20.8,
+                "ratio": 0.288,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/bert_base_squad_amp_bs96",
+                "gpu": "rtx_4090",
+                "measured": 32.3,
+                "forecast": 22.8,
+                "ratio": 0.705,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/bert_large_squad_amp_bs112",
+                "gpu": "a100_sxm_80",
+                "measured": 73.7,
+                "forecast": 20.8,
+                "ratio": 0.282,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/bert_large_squad_amp_bs28",
+                "gpu": "rtx_4090",
+                "measured": 30.1,
+                "forecast": 22.8,
+                "ratio": 0.757,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/bert_large_squad_amp_bs64",
+                "gpu": "rtx_6000_ada",
+                "measured": 81.0,
+                "forecast": 20.4,
+                "ratio": 0.252,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/ncf_ml20m_bs10m",
+                "gpu": "a100_sxm_80",
+                "measured": 5.8,
+                "forecast": 2124.1,
+                "ratio": 366.228,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/ncf_ml20m_bs4278184",
+                "gpu": "rtx_4090",
+                "measured": 6.1,
+                "forecast": 156.5,
+                "ratio": 25.652,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/resnet50_amp_bs1280",
+                "gpu": "a100_sxm_80",
+                "measured": 161.8,
+                "forecast": 165.9,
+                "ratio": 1.025,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/resnet50_amp_bs448",
+                "gpu": "rtx_4090",
+                "measured": 68.9,
+                "forecast": 194.5,
+                "ratio": 2.823,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/resnet50_amp_bs928",
+                "gpu": "rtx_6000_ada",
+                "measured": 40.5,
+                "forecast": 44.4,
+                "ratio": 1.096,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_base_wt103_bs104",
+                "gpu": "a100_sxm_80",
+                "measured": 185.4,
+                "forecast": 41.7,
+                "ratio": 0.225,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_base_wt103_bs24",
+                "gpu": "rtx_4090",
+                "measured": 45.6,
+                "forecast": 45.7,
+                "ratio": 1.003,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_base_wt103_bs64",
+                "gpu": "rtx_6000_ada",
+                "measured": 13.4,
+                "forecast": 4.1,
+                "ratio": 0.306,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_large_wt103_bs32",
+                "gpu": "rtx_6000_ada",
+                "measured": 20.4,
+                "forecast": 2.1,
+                "ratio": 0.101,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_large_wt103_bs48",
+                "gpu": "a100_sxm_80",
+                "measured": 274.3,
+                "forecast": 83.3,
+                "ratio": 0.304,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/transformer_xl_large_wt103_bs8",
+                "gpu": "rtx_4090",
+                "measured": 56.5,
+                "forecast": 38.6,
+                "ratio": 0.684,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/waveglow_ljs625_bs18",
+                "gpu": "rtx_4090",
+                "measured": 60.9,
+                "forecast": 227.7,
+                "ratio": 3.739,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/waveglow_ljs625_bs32",
+                "gpu": "rtx_6000_ada",
+                "measured": 62.0,
+                "forecast": 114.7,
+                "ratio": 1.85,
+                "status": "critical"
+              },
+              {
+                "task": "lambdalabs/waveglow_ljs625_bs48",
+                "gpu": "a100_sxm_80",
+                "measured": 40.8,
+                "forecast": 77.9,
+                "ratio": 1.91,
+                "status": "critical"
+              }
+            ]
+          },
           "vram_bound": {
-            "above": 3,
+            "above": 0,
             "n": 23,
             "tasks": [
               {
@@ -2861,102 +3029,102 @@
               {
                 "task": "lambdalabs/resnet50_amp_bs1280",
                 "at_most": 80,
-                "forecast": 130,
-                "status": "critical"
+                "forecast": 66,
+                "status": "good"
               },
               {
                 "task": "lambdalabs/resnet50_amp_bs448",
                 "at_most": 24,
-                "forecast": 46,
-                "status": "critical"
+                "forecast": 24,
+                "status": "good"
               },
               {
                 "task": "lambdalabs/resnet50_amp_bs928",
                 "at_most": 48,
-                "forecast": 94,
-                "status": "critical"
+                "forecast": 46,
+                "status": "good"
               },
               {
                 "task": "lambdalabs/tacotron2_ljs625_bs148",
                 "at_most": 48,
-                "forecast": 22,
+                "forecast": 11,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/tacotron2_ljs625_bs256",
                 "at_most": 80,
-                "forecast": 39,
+                "forecast": 19,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/tacotron2_ljs625_bs88",
                 "at_most": 24,
-                "forecast": 14,
+                "forecast": 6,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/transformer_xl_base_wt103_bs104",
                 "at_most": 80,
-                "forecast": 19,
+                "forecast": 9,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/transformer_xl_base_wt103_bs24",
                 "at_most": 24,
-                "forecast": 6,
+                "forecast": 4,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/transformer_xl_base_wt103_bs64",
                 "at_most": 48,
-                "forecast": 13,
+                "forecast": 6,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/transformer_xl_large_wt103_bs32",
                 "at_most": 48,
-                "forecast": 9,
+                "forecast": 8,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/transformer_xl_large_wt103_bs48",
                 "at_most": 80,
-                "forecast": 11,
+                "forecast": 10,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/transformer_xl_large_wt103_bs8",
                 "at_most": 24,
-                "forecast": 5,
+                "forecast": 6,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/waveglow_ljs625_bs18",
                 "at_most": 24,
-                "forecast": 6,
+                "forecast": 12,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/waveglow_ljs625_bs32",
                 "at_most": 48,
-                "forecast": 9,
+                "forecast": 17,
                 "status": "good"
               },
               {
                 "task": "lambdalabs/waveglow_ljs625_bs48",
                 "at_most": 80,
-                "forecast": 12,
+                "forecast": 22,
                 "status": "good"
               }
             ]
           },
           "ladder": {
-            "pairs": 48,
-            "typical_error": 1.326,
-            "p90_error": 1.71,
+            "pairs": 55,
+            "typical_error": 1.234,
+            "p90_error": 1.691,
             "median_rank_corr": 1.0,
             "pick_slower": 0,
-            "n": 20,
+            "n": 23,
             "tasks": [
               {
                 "task": "lambdalabs/bert_base_squad_amp_bs192",
@@ -3055,11 +3223,47 @@
                 "status": "warning"
               },
               {
+                "task": "lambdalabs/resnet50_amp_bs1280",
+                "gpus": 4,
+                "scored_gpus": 3,
+                "typical_error": 1.098,
+                "p90_error": 1.219,
+                "rank_corr": 1.0,
+                "pick": "h100_sxm",
+                "fastest": "h100_sxm",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
+                "task": "lambdalabs/resnet50_amp_bs448",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.435,
+                "p90_error": 1.449,
+                "rank_corr": 0.5,
+                "pick": "rtx_4090",
+                "fastest": "rtx_4090",
+                "time_regret": 1.0,
+                "status": "warning"
+              },
+              {
+                "task": "lambdalabs/resnet50_amp_bs928",
+                "gpus": 3,
+                "scored_gpus": 2,
+                "typical_error": 1.388,
+                "p90_error": 1.561,
+                "rank_corr": 1.0,
+                "pick": "rtx_6000_ada",
+                "fastest": "rtx_6000_ada",
+                "time_regret": 1.0,
+                "status": "good"
+              },
+              {
                 "task": "lambdalabs/tacotron2_ljs625_bs148",
                 "gpus": 3,
                 "scored_gpus": 2,
-                "typical_error": 1.309,
-                "p90_error": 1.377,
+                "typical_error": 1.138,
+                "p90_error": 1.22,
                 "rank_corr": 1.0,
                 "pick": "rtx_6000_ada",
                 "fastest": "rtx_6000_ada",
@@ -3071,7 +3275,7 @@
                 "gpus": 4,
                 "scored_gpus": 3,
                 "typical_error": 1.217,
-                "p90_error": 1.303,
+                "p90_error": 1.429,
                 "rank_corr": 1.0,
                 "pick": "h100_sxm",
                 "fastest": "h100_sxm",
@@ -3082,8 +3286,8 @@
                 "task": "lambdalabs/tacotron2_ljs625_bs88",
                 "gpus": 2,
                 "scored_gpus": 1,
-                "typical_error": 1.969,
-                "p90_error": 1.969,
+                "typical_error": 1.629,
+                "p90_error": 1.629,
                 "rank_corr": null,
                 "pick": "rtx_4090",
                 "fastest": "rtx_4090",
@@ -3178,8 +3382,8 @@
                 "task": "lambdalabs/waveglow_ljs625_bs32",
                 "gpus": 3,
                 "scored_gpus": 2,
-                "typical_error": 1.549,
-                "p90_error": 1.584,
+                "typical_error": 1.324,
+                "p90_error": 1.467,
                 "rank_corr": 1.0,
                 "pick": "rtx_6000_ada",
                 "fastest": "rtx_6000_ada",
@@ -3190,8 +3394,8 @@
                 "task": "lambdalabs/waveglow_ljs625_bs48",
                 "gpus": 4,
                 "scored_gpus": 3,
-                "typical_error": 1.068,
-                "p90_error": 1.349,
+                "typical_error": 1.121,
+                "p90_error": 1.151,
                 "rank_corr": 1.0,
                 "pick": "h100_sxm",
                 "fastest": "h100_sxm",
@@ -3364,57 +3568,57 @@
               "lambdalabs/resnet50_amp_bs1280": {
                 "a100_sxm_80": {
                   "measured": 1.0,
-                  "forecast": null,
+                  "forecast": 1.0,
                   "status": "anchor"
                 },
                 "a100_pcie_80": {
                   "measured": 1.036,
-                  "forecast": null,
-                  "status": "none"
+                  "forecast": 1.006,
+                  "status": "good"
                 },
                 "h100_pcie": {
                   "measured": 0.851,
-                  "forecast": null,
-                  "status": "none"
+                  "forecast": 0.698,
+                  "status": "warning"
                 },
                 "h100_sxm": {
                   "measured": 0.574,
-                  "forecast": null,
-                  "status": "none"
+                  "forecast": 0.63,
+                  "status": "good"
                 }
               },
               "lambdalabs/resnet50_amp_bs448": {
                 "rtx_4090": {
                   "measured": 1.0,
-                  "forecast": null,
+                  "forecast": 1.0,
                   "status": "anchor"
                 },
                 "rtx_3090": {
                   "measured": 1.438,
-                  "forecast": null,
-                  "status": "none"
+                  "forecast": 2.043,
+                  "status": "warning"
                 },
                 "a10": {
                   "measured": 2.039,
-                  "forecast": null,
-                  "status": "none"
+                  "forecast": 1.408,
+                  "status": "warning"
                 }
               },
               "lambdalabs/resnet50_amp_bs928": {
                 "rtx_6000_ada": {
                   "measured": 1.0,
-                  "forecast": null,
+                  "forecast": 1.0,
                   "status": "anchor"
                 },
                 "rtx_a6000": {
                   "measured": 1.251,
-                  "forecast": null,
-                  "status": "none"
+                  "forecast": 1.953,
+                  "status": "critical"
                 },
                 "qrtx_8000": {
                   "measured": 1.76,
-                  "forecast": null,
-                  "status": "none"
+                  "forecast": 2.172,
+                  "status": "warning"
                 }
               },
               "lambdalabs/tacotron2_ljs625_bs148": {
@@ -3425,13 +3629,13 @@
                 },
                 "rtx_a6000": {
                   "measured": 1.582,
-                  "forecast": 1.97,
+                  "forecast": 1.93,
                   "status": "warning"
                 },
                 "qrtx_8000": {
                   "measured": 2.17,
-                  "forecast": 2.988,
-                  "status": "warning"
+                  "forecast": 2.304,
+                  "status": "good"
                 }
               },
               "lambdalabs/tacotron2_ljs625_bs256": {
@@ -3452,7 +3656,7 @@
                 },
                 "h100_sxm": {
                   "measured": 0.733,
-                  "forecast": 0.563,
+                  "forecast": 0.513,
                   "status": "warning"
                 }
               },
@@ -3464,7 +3668,7 @@
                 },
                 "rtx_3090": {
                   "measured": 1.306,
-                  "forecast": 2.571,
+                  "forecast": 2.127,
                   "status": "critical"
                 }
               },
@@ -3605,13 +3809,13 @@
                 },
                 "rtx_a6000": {
                   "measured": 1.343,
-                  "forecast": 2.127,
-                  "status": "critical"
+                  "forecast": 1.97,
+                  "status": "warning"
                 },
                 "qrtx_8000": {
                   "measured": 3.569,
-                  "forecast": 2.356,
-                  "status": "critical"
+                  "forecast": 2.988,
+                  "status": "warning"
                 }
               },
               "lambdalabs/waveglow_ljs625_bs48": {
@@ -3622,48 +3826,22 @@
                 },
                 "a100_pcie_80": {
                   "measured": 1.041,
-                  "forecast": 1.0,
+                  "forecast": 1.113,
                   "status": "good"
                 },
                 "h100_pcie": {
                   "measured": 0.888,
-                  "forecast": 0.658,
+                  "forecast": 0.771,
                   "status": "warning"
                 },
                 "h100_sxm": {
                   "measured": 0.537,
-                  "forecast": 0.574,
+                  "forecast": 0.602,
                   "status": "good"
                 }
               }
             },
-            "uncovered": [
-              {
-                "task": "lambdalabs/resnet50_amp_bs1280",
-                "missing": [
-                  "a100_pcie_80",
-                  "h100_pcie",
-                  "h100_sxm"
-                ],
-                "measured": 3
-              },
-              {
-                "task": "lambdalabs/resnet50_amp_bs448",
-                "missing": [
-                  "rtx_3090",
-                  "a10"
-                ],
-                "measured": 2
-              },
-              {
-                "task": "lambdalabs/resnet50_amp_bs928",
-                "missing": [
-                  "rtx_a6000",
-                  "qrtx_8000"
-                ],
-                "measured": 2
-              }
-            ],
+            "uncovered": [],
             "anchors": {
               "lambdalabs/bert_base_squad_amp_bs192": "rtx_6000_ada",
               "lambdalabs/bert_base_squad_amp_bs320": "a100_sxm_80",

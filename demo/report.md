@@ -1,10 +1,10 @@
 ## krauncher
 
-33 tasks; versions: {"calibration_id": "c-d589e2f979e6", "client_commit": "0e2e207275f808b0e86fe9f0d49122ec993fe2d4"}
+33 tasks; versions: {"calibration_id": "c-50c95de799e3", "client_commit": "0e2e207275f808b0e86fe9f0d49122ec993fe2d4"}
 
 ### Forecast time
 
-median 0.65 s, p90 1.04 s, max 2.94 s
+median 0.63 s, p90 1.19 s, max 2.37 s
 
 ### Classification / assay fields
 
@@ -14,11 +14,11 @@ median 0.65 s, p90 1.04 s, max 2.94 s
 | mode | 33/33 | - |
 | framework | 33/33 | - |
 | precision | 33/33 | - |
-| params_billions | 19/33 | lambdalabs/ncf_ml20m_bs10m, lambdalabs/ncf_ml20m_bs4278184, lambdalabs/tacotron2_ljs625_bs148, lambdalabs/tacotron2_ljs625_bs256, lambdalabs/tacotron2_ljs625_bs88, lambdalabs/transformer_xl_base_wt103_bs104, lambdalabs/transformer_xl_base_wt103_bs24, lambdalabs/transformer_xl_base_wt103_bs64, lambdalabs/transformer_xl_large_wt103_bs32, lambdalabs/transformer_xl_large_wt103_bs48, lambdalabs/transformer_xl_large_wt103_bs8, lambdalabs/waveglow_ljs625_bs18, lambdalabs/waveglow_ljs625_bs32, lambdalabs/waveglow_ljs625_bs48 |
+| params_billions | 25/33 | lambdalabs/ncf_ml20m_bs10m, lambdalabs/ncf_ml20m_bs4278184, lambdalabs/transformer_xl_base_wt103_bs104, lambdalabs/transformer_xl_base_wt103_bs24, lambdalabs/transformer_xl_base_wt103_bs64, lambdalabs/transformer_xl_large_wt103_bs32, lambdalabs/transformer_xl_large_wt103_bs48, lambdalabs/transformer_xl_large_wt103_bs8 |
 | batch_size | 28/33 | krauncher_tutorials/phi3_inference, krauncher_tutorials/qwen15_inference, krauncher_tutorials/qwen25_7b_batched, krauncher_tutorials/qwen25_7b_gsm8k, krauncher_tutorials/qwen25_7b_long |
 | epochs | 14/14 | - |
 | dataset_samples | 13/22 | krauncher_tutorials/resnet152_food101, lambdalabs/ncf_ml20m_bs10m, lambdalabs/ncf_ml20m_bs4278184, lambdalabs/tacotron2_ljs625_bs148, lambdalabs/tacotron2_ljs625_bs256, lambdalabs/tacotron2_ljs625_bs88, lambdalabs/waveglow_ljs625_bs18, lambdalabs/waveglow_ljs625_bs32, lambdalabs/waveglow_ljs625_bs48 |
-| seq_len | 9/15 | lambdalabs/transformer_xl_base_wt103_bs104, lambdalabs/transformer_xl_base_wt103_bs24, lambdalabs/transformer_xl_base_wt103_bs64, lambdalabs/transformer_xl_large_wt103_bs32, lambdalabs/transformer_xl_large_wt103_bs48, lambdalabs/transformer_xl_large_wt103_bs8 |
+| seq_len | 15/15 | - |
 | cpu_only | 33/33 | - |
 
 ### Measurements: krauncher-calibration-2026 (independent: False; 10 tasks)
@@ -80,13 +80,40 @@ measured GPUs without a forecast: krauncher_tutorials/qwen25_7b_lora_alpaca 2/11
 
 ### Measurements: lambda-dlb-v1-fp16 (independent: True; 23 tasks)
 
+#### Compute time on the anchor GPU
+
+centre x1.027, typical deviation x3.279, within x1.1: 3/20
+
+| task | GPU | measured, s | forecast, s | forecast / measured | status |
+|---|---|---|---|---|---|
+| lambdalabs/bert_base_squad_amp_bs192 | rtx_6000_ada | 75.3 | 20.4 | x0.271 | critical |
+| lambdalabs/bert_base_squad_amp_bs320 | a100_sxm_80 | 72.2 | 20.8 | x0.288 | critical |
+| lambdalabs/bert_base_squad_amp_bs96 | rtx_4090 | 32.3 | 22.8 | x0.705 | critical |
+| lambdalabs/bert_large_squad_amp_bs112 | a100_sxm_80 | 73.7 | 20.8 | x0.282 | critical |
+| lambdalabs/bert_large_squad_amp_bs28 | rtx_4090 | 30.1 | 22.8 | x0.757 | critical |
+| lambdalabs/bert_large_squad_amp_bs64 | rtx_6000_ada | 81.0 | 20.4 | x0.252 | critical |
+| lambdalabs/ncf_ml20m_bs10m | a100_sxm_80 | 5.8 | 2124.1 | x366.228 | critical |
+| lambdalabs/ncf_ml20m_bs4278184 | rtx_4090 | 6.1 | 156.5 | x25.652 | critical |
+| lambdalabs/resnet50_amp_bs1280 | a100_sxm_80 | 161.8 | 165.9 | x1.025 | good |
+| lambdalabs/resnet50_amp_bs448 | rtx_4090 | 68.9 | 194.5 | x2.823 | critical |
+| lambdalabs/resnet50_amp_bs928 | rtx_6000_ada | 40.5 | 44.4 | x1.096 | good |
+| lambdalabs/transformer_xl_base_wt103_bs104 | a100_sxm_80 | 185.4 | 41.7 | x0.225 | critical |
+| lambdalabs/transformer_xl_base_wt103_bs24 | rtx_4090 | 45.6 | 45.7 | x1.003 | good |
+| lambdalabs/transformer_xl_base_wt103_bs64 | rtx_6000_ada | 13.4 | 4.1 | x0.306 | critical |
+| lambdalabs/transformer_xl_large_wt103_bs32 | rtx_6000_ada | 20.4 | 2.1 | x0.101 | critical |
+| lambdalabs/transformer_xl_large_wt103_bs48 | a100_sxm_80 | 274.3 | 83.3 | x0.304 | critical |
+| lambdalabs/transformer_xl_large_wt103_bs8 | rtx_4090 | 56.5 | 38.6 | x0.684 | critical |
+| lambdalabs/waveglow_ljs625_bs18 | rtx_4090 | 60.9 | 227.7 | x3.739 | critical |
+| lambdalabs/waveglow_ljs625_bs32 | rtx_6000_ada | 62.0 | 114.7 | x1.85 | critical |
+| lambdalabs/waveglow_ljs625_bs48 | a100_sxm_80 | 40.8 | 77.9 | x1.91 | critical |
+
 #### VRAM upper bound
 
-forecast above the measured bound in 3/23 tasks; lambdalabs/resnet50_amp_bs1280: 130 GB > 80 GB; lambdalabs/resnet50_amp_bs448: 46 GB > 24 GB; lambdalabs/resnet50_amp_bs928: 94 GB > 48 GB
+forecast above the measured bound in 0/23 tasks
 
 #### Ladder (compute_ratio)
 
-48 (task, GPU) pairs: typical error x1.326, p90 x1.71; median rank correlation 1.0; pick slower than the fastest in 0/20 tasks
+55 (task, GPU) pairs: typical error x1.234, p90 x1.691; median rank correlation 1.0; pick slower than the fastest in 0/23 tasks
 
 | task | GPUs | typical error | p90 | rank corr | picked | fastest | time regret | status |
 |---|---|---|---|---|---|---|---|---|
@@ -98,9 +125,12 @@ forecast above the measured bound in 3/23 tasks; lambdalabs/resnet50_amp_bs1280:
 | lambdalabs/bert_large_squad_amp_bs64 | 3 | x1.791 | x1.891 | 1.0 | rtx_6000_ada | rtx_6000_ada | x1.0 | good |
 | lambdalabs/ncf_ml20m_bs10m | 7 | x1.285 | x1.691 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
 | lambdalabs/ncf_ml20m_bs4278184 | 3 | x1.615 | x1.876 | 0.5 | rtx_4090 | rtx_4090 | x1.0 | warning |
-| lambdalabs/tacotron2_ljs625_bs148 | 3 | x1.309 | x1.377 | 1.0 | rtx_6000_ada | rtx_6000_ada | x1.0 | good |
-| lambdalabs/tacotron2_ljs625_bs256 | 4 | x1.217 | x1.303 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
-| lambdalabs/tacotron2_ljs625_bs88 | 2 | x1.969 | x1.969 | None | rtx_4090 | rtx_4090 | x1.0 | good |
+| lambdalabs/resnet50_amp_bs1280 | 4 | x1.098 | x1.219 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
+| lambdalabs/resnet50_amp_bs448 | 3 | x1.435 | x1.449 | 0.5 | rtx_4090 | rtx_4090 | x1.0 | warning |
+| lambdalabs/resnet50_amp_bs928 | 3 | x1.388 | x1.561 | 1.0 | rtx_6000_ada | rtx_6000_ada | x1.0 | good |
+| lambdalabs/tacotron2_ljs625_bs148 | 3 | x1.138 | x1.22 | 1.0 | rtx_6000_ada | rtx_6000_ada | x1.0 | good |
+| lambdalabs/tacotron2_ljs625_bs256 | 4 | x1.217 | x1.429 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
+| lambdalabs/tacotron2_ljs625_bs88 | 2 | x1.629 | x1.629 | None | rtx_4090 | rtx_4090 | x1.0 | good |
 | lambdalabs/transformer_xl_base_wt103_bs104 | 4 | x1.15 | x1.196 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
 | lambdalabs/transformer_xl_base_wt103_bs24 | 3 | x1.488 | x1.523 | 0.5 | rtx_4090 | rtx_4090 | x1.0 | warning |
 | lambdalabs/transformer_xl_base_wt103_bs64 | 3 | x1.438 | x1.482 | 1.0 | rtx_6000_ada | rtx_6000_ada | x1.0 | good |
@@ -108,10 +138,6 @@ forecast above the measured bound in 3/23 tasks; lambdalabs/resnet50_amp_bs1280:
 | lambdalabs/transformer_xl_large_wt103_bs48 | 4 | x1.045 | x1.061 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
 | lambdalabs/transformer_xl_large_wt103_bs8 | 3 | x1.523 | x1.902 | 0.5 | rtx_4090 | rtx_4090 | x1.0 | warning |
 | lambdalabs/waveglow_ljs625_bs18 | 3 | x1.38 | x1.553 | 0.5 | rtx_4090 | rtx_4090 | x1.0 | warning |
-| lambdalabs/waveglow_ljs625_bs32 | 3 | x1.549 | x1.584 | 1.0 | rtx_6000_ada | rtx_6000_ada | x1.0 | good |
-| lambdalabs/waveglow_ljs625_bs48 | 4 | x1.068 | x1.349 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
-
-#### Ladder coverage
-
-measured GPUs without a forecast: lambdalabs/resnet50_amp_bs1280 3/3; lambdalabs/resnet50_amp_bs448 2/2; lambdalabs/resnet50_amp_bs928 2/2
+| lambdalabs/waveglow_ljs625_bs32 | 3 | x1.324 | x1.467 | 1.0 | rtx_6000_ada | rtx_6000_ada | x1.0 | good |
+| lambdalabs/waveglow_ljs625_bs48 | 4 | x1.121 | x1.151 | 1.0 | h100_sxm | h100_sxm | x1.0 | good |
 
