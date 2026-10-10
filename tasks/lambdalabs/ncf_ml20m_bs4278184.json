@@ -1,0 +1,35 @@
+{
+  "task": "lambdalabs/ncf_ml20m_bs4278184",
+  "fields": {
+    "workload_type": "training",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp32",
+    "params_billions": 0.0318,
+    "batch_size": 4278184,
+    "epochs": 2,
+    "dataset_samples": 19861770,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-10: a recommender (embeddings + MLP) fits no leaf workload, so `training`; precision fp32 (the benchmark's FP16 set passes no --amp); params = (138 493 users + 26 744 items) x (64 + 128) embedding weights + MLP and final layers = 31.83 M; dataset_samples = MovieLens-20M ratings minus one test rating per user (20 000 263 - 138 493), each epoch adds 4 negatives per positive"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column ncf (training throughput, samples/s), single-GPU rows run with batch 4 278 184 (pytorch/pytorch-train-bs-fp16.csv; config_pytorch_24GB.sh, no ncf batch fix in the GPU configs): 'RTX 4090' 32192491; 'RTX 3090' 25118176; 'LambdaCloud A10' 15343208",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "vram_gb_at_most": 24,
+      "vram_gb_at_most_note": "the run completed with batch 4 278 184 on 24 GB cards (RTX 4090, RTX 3090, A10), so the peak is at most 24 GB",
+      "anchor_gpu": "rtx_4090",
+      "compute_ratio": {
+        "rtx_4090": 1.0,
+        "rtx_3090": 1.282,
+        "a10": 2.098
+      },
+      "compute_ratio_note": "throughput[RTX 4090] / throughput[GPU]; one row per GPU"
+    }
+  ]
+}
