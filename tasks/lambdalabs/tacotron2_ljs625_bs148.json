@@ -1,0 +1,35 @@
+{
+  "task": "lambdalabs/tacotron2_ljs625_bs148",
+  "fields": {
+    "workload_type": "tts",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp32",
+    "params_billions": 0.0282,
+    "batch_size": 148,
+    "epochs": 1,
+    "dataset_samples": 625,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-10: Tacotron 2 is a text-to-mel-spectrogram model, so `tts`; precision fp32 (autocast disabled: the benchmark's --amp-run is not an argument of train.py); params counted from the layer shapes = embedding 75 776 (148 symbols x 512) + encoder 5 513 728 + decoder 18 255 505 + postnet 4 348 144 = 28 193 153; dataset_samples = lines of ljs_audio_text_train_subset_625_filelist.txt (whole clips; validation adds 100 clips per epoch)"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column tacotron2 (training throughput, mel frames/s), single-GPU rows run with batch 148 (pytorch/pytorch-train-bs-fp16.csv; config_pytorch_48GB.sh): 'RTX 6000 Ada' 40331; 'RTX A6000' 25496; 'Quadro RTX 8000' 18587. The set is named fp16 after the CSV; the run computes in fp32 (see the task's docstring)",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "vram_gb_at_most": 48,
+      "vram_gb_at_most_note": "the run completed with batch 148 on 48 GB cards, so the peak is at most 48 GB (the 24 GB cards were run with batch 88)",
+      "anchor_gpu": "rtx_6000_ada",
+      "compute_ratio": {
+        "rtx_6000_ada": 1.0,
+        "rtx_a6000": 1.582,
+        "qrtx_8000": 2.17
+      },
+      "compute_ratio_note": "throughput[RTX 6000 Ada] / throughput[GPU], one row per GPU. The run is 4 steps (1 epoch, 625 clips, batch 148, last partial batch dropped): the rate is a mean of 4 steps. The throughput is the mean of per-step rates of the last epoch, timed after the batch is loaded: data loading is outside it"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "task": "lambdalabs/tacotron2_ljs625_bs256",
+  "fields": {
+    "workload_type": "tts",
+    "mode": "training",
+    "framework": "pytorch",
+    "precision": "fp32",
+    "params_billions": 0.0282,
+    "batch_size": 256,
+    "epochs": 3,
+    "dataset_samples": 625,
+    "cpu_only": false
+  },
+  "sources": {
+    "classification": "labelled from the task code, 2026-10-10: Tacotron 2 is a text-to-mel-spectrogram model, so `tts`; precision fp32 (autocast disabled: the benchmark's --amp-run is not an argument of train.py); params counted from the layer shapes = embedding 75 776 (148 symbols x 512) + encoder 5 513 728 + decoder 18 255 505 + postnet 4 348 144 = 28 193 153; dataset_samples = lines of ljs_audio_text_train_subset_625_filelist.txt (whole clips; validation adds 100 clips per epoch)"
+  },
+  "measurements": [
+    {
+      "id": "lambda-dlb-v1-fp16",
+      "independent": true,
+      "source": "Lambda, github.com/lambdal/deeplearning-benchmark, commit aa5addb6 (2025-12-17), pytorch/pytorch-train-throughput-fp16.csv, column tacotron2 (training throughput, mel frames/s), single-GPU rows run with batch 256 (pytorch/pytorch-train-bs-fp16.csv; config_pytorch_80GB.sh): 'A100 80GB SXM4' 59716; 'A100 80GB PCIe' 58956; 'H100 80GB PCIe Gen5' 63991, 'LambdaCloud H100 80GB PCIe Gen5' 63200; 'H100 80GB SXM5' 78108, 'Dell H100 80GB SXM5' 87324, 'DellTexas H100 80GB SXM5' 77810, 'SMC H100 80GB SXM5' 71709, '1CC H100 80GB SXM5' 86757, 'RAIDZ1 H100 80GB SXM5' 88345. The set is named fp16 after the CSV; the run computes in fp32 (see the task's docstring)",
+      "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
+      "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
+      "vram_gb_at_most": 80,
+      "vram_gb_at_most_note": "the run completed with batch 256 on 80 GB cards, so the peak is at most 80 GB (the 48 GB cards were run with batch 148)",
+      "anchor_gpu": "a100_sxm_80",
+      "compute_ratio": {
+        "a100_sxm_80": 1.0,
+        "a100_pcie_80": 1.013,
+        "h100_pcie": 0.939,
+        "h100_sxm": 0.733
+      },
+      "compute_ratio_note": "throughput[A100 80GB SXM4] / throughput[GPU]; rows of one GPU (different hosts) pooled by geometric mean (H100 PCIe 63594, H100 SXM5 81437 frames/s; the H100 SXM5 hosts range from 71 709 to 88 345). The run is 2 steps per epoch (625 clips, batch 256, last partial batch dropped): the rate is a mean of 2 steps. The throughput is the mean of per-step rates of the last epoch, timed after the batch is loaded: data loading is outside it"
+    }
+  ]
+}

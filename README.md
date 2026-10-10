@@ -122,6 +122,9 @@ Published benchmarks (`tasks/<source>/`, independent measurements):
 | `lambdalabs/waveglow_ljs625_bs48` | WaveGlow training on LJSpeech (625 clips, 8000-sample segments), batch 48, 2 epochs, fp32; model and data code verbatim from NVIDIA DeepLearningExamples (BSD 3-Clause); Lambda GPU benchmark (A100 / H100 80 GB) |
 | `lambdalabs/waveglow_ljs625_bs32` | the same WaveGlow training, batch 32; Lambda GPU benchmark (RTX 6000 Ada, RTX A6000, Quadro RTX 8000) |
 | `lambdalabs/waveglow_ljs625_bs18` | the same WaveGlow training, batch 18; Lambda GPU benchmark (RTX 4090, RTX 3090, A10, 24 GB) |
+| `lambdalabs/tacotron2_ljs625_bs256` | Tacotron 2 training on LJSpeech (625 clips), batch 256, 3 epochs, fp32; model, data and text code verbatim from NVIDIA DeepLearningExamples (BSD 3-Clause; text front end MIT, Apache 2.0); Lambda GPU benchmark (A100 / H100 80 GB) |
+| `lambdalabs/tacotron2_ljs625_bs148` | the same Tacotron 2 training, batch 148, 1 epoch; Lambda GPU benchmark (RTX 6000 Ada, RTX A6000, Quadro RTX 8000) |
+| `lambdalabs/tacotron2_ljs625_bs88` | the same Tacotron 2 training, batch 88, 2 epochs; Lambda GPU benchmark (RTX 4090, RTX 3090) |
 | `lambdalabs/bert_large_squad_amp_bs28` | BERT-large fine-tuning on SQuAD v1.1, mixed precision, batch 28, 101 steps; Lambda GPU benchmark (RTX 4090, RTX 3090, A10, 24 GB) |
 
 ## Adding a task

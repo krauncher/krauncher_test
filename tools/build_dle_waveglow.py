@@ -153,13 +153,13 @@ two file lists come through a registered data source (/data) instead of a
 download; the DataLoader workers are forked (the dataset class is local to
 the function and cannot be pickled). FUNC is the task, OPTIONS the arguments
 of its @client.task decorator, KWARGS the arguments of the call.
-tools/build_dle_waveglow.py rebuilds this file from a checkout of the source.
+tools/@BUILDER@ rebuilds this file from a checkout of the source.
 """
 
 OPTIONS = dict(
     timeout=3600,
     data="ljspeech-11-dle",
-    pip=["librosa"],
+    pip=[@PIP@],
 )
 
 # Data source the task reads (OPTIONS["data"]), registered on the account when
@@ -173,7 +173,7 @@ DATA_SOURCES = [
     ], size_gb=2.6),
 ]
 
-KWARGS = dict(batch_size=@BATCH@, epochs=2, segment_length=8000)
+KWARGS = dict(@KWARGS@)
 '''
 
 DATA_NEUTRAL = '''\
@@ -293,28 +293,50 @@ BODY = '''\
 '''
 
 
-def verbatim(dle: Path) -> str:
+def verbatim(dle: Path, parts: list = PARTS, edits: dict = EDITS) -> str:
     """The copied sections, each headed by file and lines; a licence header
-    is emitted once, before the first section of a file that carries it."""
+    is emitted once, before the first section of a file that carries it.
+
+    A part is (file, names): top-level definitions or assignments copied
+    verbatim; (file, None): everything after the file's imports; ("licence",
+    file): a licence file, commented; ("glue", text): text of this builder.
+    """
     out, seen = [], set()
-    for rel, names in PARTS:
+    for rel, names in parts:
+        if rel == "glue":
+            out.append(names)
+            continue
+        if rel == "licence":
+            text = (dle / SRC / names).read_text().strip()
+            out.append(f"# --- licence: {SRC}/{names} ---\n"
+                       + "\n".join(("# " + line).rstrip() for line in text.splitlines()) + "\n")
+            continue
         text = (dle / SRC / rel).read_text()
         lines = text.splitlines()
         tree = ast.parse(text)
-        first = next(n for n in tree.body if isinstance(n, (ast.Import, ast.ImportFrom)))
+        imports = [n for n in tree.body if isinstance(n, (ast.Import, ast.ImportFrom))]
+        first = imports[0]
         header = "\n".join(lines[:first.lineno - 1]).strip()
         if " ".join(header.split()) not in seen:
             seen.add(" ".join(header.split()))
             out.append(f"# --- licence header: {SRC}/{rel}:1-{first.lineno - 1} ---\n{header}\n")
         defs = {n.name: n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))}
-        for name in names:
+        defs.update({n.targets[0].id: n for n in tree.body
+                     if isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Name)})
+        spans = []
+        for name in names or []:
             n = defs[name]
-            start = min([n.lineno] + [d.lineno for d in n.decorator_list])
-            seg = "\n".join(lines[start - 1:n.end_lineno])
-            for a, b in EDITS.get(rel, []):
-                assert a in seg or name != "MelAudioLoader"
+            spans.append((min([n.lineno] + [d.lineno for d in getattr(n, "decorator_list", [])]), n.end_lineno))
+        if names is None:
+            start = imports[-1].end_lineno + 1
+            while not lines[start - 1].strip():
+                start += 1
+            spans.append((start, len(lines)))
+        for start, end in spans:
+            seg = "\n".join(lines[start - 1:end]).rstrip()
+            for a, b in edits.get(rel, []):
                 seg = seg.replace(a, b)
-            out.append(f"# --- verbatim: {SRC}/{rel}:{start}-{n.end_lineno} ---\n{seg}\n")
+            out.append(f"# --- verbatim: {SRC}/{rel}:{start}-{end} ---\n{seg}\n")
     return "\n\n".join(out)
 
 
@@ -325,21 +347,27 @@ def fill(text: str, **kw: object) -> str:
     return text
 
 
-def build(dle: Path, name: str, batch: int, cfg: str) -> None:
-    func = "train_waveglow"
-    kw = dict(NAME=name, BATCH=batch, CFG=cfg, FUNC=func, STEPS=625 // batch)
-    code = verbatim(dle)
-    sig = f"def {func}(batch_size: int = {batch}, epochs: int = 2, segment_length: int = 8000):\n"
-    neutral = (fill(DOC, **kw) + "\n" + IMPORTS
-               + f'\nKWARGS = {{"batch_size": {batch}, "epochs": 2, "segment_length": 8000}}\n\n\n'
-               + code + "\n\n" + sig + fill(DATA_NEUTRAL, **kw) + "\n" + fill(BODY, **kw)
+def compose(name: str, func: str, params: dict, code: str, imports: str, doc: str, body: str, **kw: object) -> None:
+    """Write the neutral task and the Krauncher variant of one sample."""
+    kw.update(NAME=name, FUNC=func, KWARGS=", ".join(f"{k}={v}" for k, v in params.items()))
+    sig = f"def {func}(" + ", ".join(f"{k}: int = {v}" for k, v in params.items()) + "):\n"
+    kwargs = "{" + ", ".join(f'"{k}": {v}' for k, v in params.items()) + "}"
+    neutral = (fill(doc, **kw) + "\n" + imports
+               + f"\nKWARGS = {kwargs}\n\n\n"
+               + code + "\n\n" + sig + fill(DATA_NEUTRAL, **kw) + "\n" + fill(body, **kw)
                + f'\n\nif __name__ == "__main__":\n    print({func}(**KWARGS))\n')
     variant = (fill(VARIANT_DOC, **kw) + "\n\n" + sig
-               + textwrap.indent(IMPORTS + "\n" + code, "    ", lambda line: bool(line.strip()))
-               + "\n" + fill(DATA_KRAUNCHER, **kw) + "\n" + fill(BODY, **kw)
+               + textwrap.indent(imports + "\n" + code, "    ", lambda line: bool(line.strip()))
+               + "\n" + fill(DATA_KRAUNCHER, **kw) + "\n" + fill(body, **kw)
                + f"\n\nFUNC = {func}\n")
     (ROOT / "tasks" / "lambdalabs" / f"{name}.py").write_text(neutral)
     (ROOT / "variants" / "krauncher" / "lambdalabs" / f"{name}.py").write_text(variant)
+
+
+def build(dle: Path, name: str, batch: int, cfg: str) -> None:
+    compose(name, "train_waveglow", {"batch_size": batch, "epochs": 2, "segment_length": 8000},
+            verbatim(dle), IMPORTS, DOC, BODY, BATCH=batch, CFG=cfg, STEPS=625 // batch,
+            PIP='"librosa"', BUILDER="build_dle_waveglow.py")
 
 
 if __name__ == "__main__":
