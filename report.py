@@ -32,7 +32,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import scoring
-from scoring import MEASURED, REFERENCE_GPU, ladder_pairs, matches, ratio_status, time_status, vram_status
+from scoring import (MEASURED, REFERENCE_GPU, TIME_GOOD, anchor_time, ladder_pairs, matches, ratio_status,
+                     time_status, vram_status)
 
 ROOT = Path(__file__).parent
 
@@ -155,6 +156,20 @@ def analyze(results: dict, descs: dict, measurement: str | None = None) -> dict:
                                         "inside_spread": sum(x["inside_spread"] for x in rows),
                                         "n": len(rows), "tasks": rows}
 
+            # 2b. compute time on the anchor GPU (work / published throughput)
+            rows = []
+            for t in have:
+                at = anchor_time(meas(t), rs[t]["fields"])
+                if at:
+                    rows.append({"task": t, "gpu": meas(t).get("anchor_gpu") or REFERENCE_GPU,
+                                 "measured": _r(at[0], 1), "forecast": _r(at[1], 1),
+                                 "ratio": _r(at[1] / at[0]), "status": time_status(at[1], at[0])})
+            if rows:
+                ms["anchor_time"] = {"centre": _r(_gm([x["ratio"] for x in rows])),
+                                     "typical_deviation": _typ([x["ratio"] for x in rows]),
+                                     "good": sum(1 for x in rows if x["status"] == "good"),
+                                     "n": len(rows), "tasks": rows}
+
             # 3. VRAM: measured peak, and measured upper bounds
             rows = []
             for t in have:
@@ -244,6 +259,15 @@ def render_md(rep: dict) -> str:
         for m in s["measurements"]:
             L += [f"### Measurements: {m['id']} (independent: {', '.join(map(str, m['independent']))}; "
                   f"{len(m['tasks'])} tasks)", ""]
+            if "anchor_time" in m:
+                x = m["anchor_time"]
+                L += ["#### Compute time on the anchor GPU", "",
+                      f"centre x{x['centre']}, typical deviation x{x['typical_deviation']}, "
+                      f"within x{TIME_GOOD}: {x['good']}/{x['n']}", "",
+                      "| task | GPU | measured, s | forecast, s | forecast / measured | status |", "|---|---|---|---|---|---|"]
+                L += [f"| {r['task']} | {r['gpu']} | {r['measured']} | {r['forecast']} | x{r['ratio']} | {r['status']} |"
+                      for r in x["tasks"]]
+                L.append("")
             for key, title, unit in (("reference_time", "Reference-card time", "s"), ("vram", "VRAM", "GB")):
                 if key not in m:
                     continue
@@ -384,6 +408,11 @@ def render_html(rep: dict) -> str:
                 tiles.append(_tile("Time, typical deviation", _x(rt["typical_deviation"]),
                                    f"{tag} · in spread {rt['inside_spread']}/{rt['n']}",
                                    _band(rt["typical_deviation"], th["time_good"], th["time_warning"])))
+            if "anchor_time" in m:
+                at = m["anchor_time"]
+                tiles.append(_tile("Compute time, typical deviation", _x(at["typical_deviation"]),
+                                   f"{tag} · centre {_x(at['centre'])} · {at['n']} tasks",
+                                   _band(at["typical_deviation"], th["time_good"], th["time_warning"])))
             if "vram" in m:
                 v = m["vram"]
                 tiles.append(_tile("VRAM below the measured peak", f"{v['below_peak']}/{v['n']}",
@@ -440,6 +469,15 @@ def render_html(rep: dict) -> str:
                                 f"x{x['spread_factor']:.3g}",
                                 _st("good", "yes") if x["inside_spread"] else _st("critical", "no")]
                                for x in rt["tasks"]], frozenset({1, 2, 3, 5})))
+            if "anchor_time" in m:
+                at = m["anchor_time"]
+                P.append(f'<p class="note">Compute time on the anchor GPU (measured: the work of the task / the '
+                         f'published throughput; forecast: compute time on the reference card x the forecast ratio '
+                         f'of the anchor): centre {_x(at["centre"])}, typical deviation '
+                         f'{_x(at["typical_deviation"])}, within x{th["time_good"]}: {at["good"]}/{at["n"]}.</p>')
+                P.append(_tbl(["task", "GPU", "measured, s", "forecast, s", "forecast / measured", "status"],
+                              [[e(x["task"]), e(x["gpu"]), str(x["measured"]), str(x["forecast"]), _x(x["ratio"]),
+                                _st(x["status"])] for x in at["tasks"]], frozenset({2, 3, 4})))
             if "vram" in m or "vram_bound" in m:
                 rows = [[e(x["task"]), str(x["measured"]), str(x["forecast"]), _x(x["ratio"]),
                          _st(x["status"], "below the peak" if x["status"] == "critical"

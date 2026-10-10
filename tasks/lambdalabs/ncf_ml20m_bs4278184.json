@@ -24,6 +24,8 @@
       "vram_gb_at_most": 24,
       "vram_gb_at_most_note": "the run completed with batch 4 278 184 on 24 GB cards (RTX 4090, RTX 3090, A10), so the peak is at most 24 GB",
       "anchor_gpu": "rtx_4090",
+      "anchor_compute_sec": 6.1,
+      "anchor_compute_sec_note": "training work / published throughput of 'RTX 4090': 2 epochs x 23 batches (99 308 850 samples per epoch: 19 861 770 positives  4 negatives each; last partial batch dropped) x batch 4278184 = 196 796 464 samples; / 32 192 491 samples/s. The benchmark's throughput covers the training steps: start-up, data download and validation are outside it",
       "compute_ratio": {
         "rtx_4090": 1.0,
         "rtx_3090": 1.282,

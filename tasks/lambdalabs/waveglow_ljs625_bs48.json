@@ -24,6 +24,8 @@
       "vram_gb_at_most": 80,
       "vram_gb_at_most_note": "the run completed with batch 48 on 80 GB cards, so the peak is at most 80 GB (the 48 GB cards were run with batch 32)",
       "anchor_gpu": "a100_sxm_80",
+      "anchor_compute_sec": 40.8,
+      "anchor_compute_sec_note": "training work / published throughput of 'A100 80GB SXM4': 2 epochs x 13 steps x batch 48 x 8000 samples = 9 984 000 audio samples; / 244 438 audio samples/s. The benchmark's throughput covers the training steps: start-up, data download and validation are outside it",
       "compute_ratio": {
         "a100_sxm_80": 1.0,
         "a100_pcie_80": 1.041,

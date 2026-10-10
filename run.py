@@ -18,7 +18,7 @@ from pathlib import Path
 
 from adapters import ADAPTERS
 from models import Forecast, Task
-from scoring import MEASURED, ladder_pairs, matches
+from scoring import MEASURED, REFERENCE_GPU, anchor_time, ladder_pairs, matches
 
 ROOT = Path(__file__).parent
 
@@ -33,6 +33,7 @@ def compare(fc: Forecast, task: Task, caps: set[str], mid: str | None = None) ->
         "fields": {f: [w, g, matches(f, w, g)] for f, (w, g) in pairs.items()},
         "passport": {f: [meas.get(f), got.get(f)] for f in ("reference_sec", "min_vram_gb") if f in caps},
         "vram_at_most": [meas.get("vram_gb_at_most"), got.get("min_vram_gb")],
+        "anchor_time": anchor_time(meas, got),
         "compute_ratio": {g: list(v) for g, v in ladder_pairs(meas, got.get("compute_ratio")).items()},
     }
 
@@ -56,6 +57,9 @@ async def main(name: str, service: str, mid: str | None) -> None:
         print(f"{'vram_gb_at_most':<22}{bound:>16}{'-' if vram is None else vram:>16}  "
               f"{'ok' if vram is not None and vram <= bound else 'OVER'}")
     anchor = task.measured(mid).get("anchor_gpu")
+    if cmp["anchor_time"]:
+        m, f = cmp["anchor_time"]
+        print(f"{'compute_sec on ' + (anchor or REFERENCE_GPU):<30}{m:>8.1f}{f:>16.1f}  x{f / m:.2f}")
     print("compute_ratio" + (f" (relative to {anchor})" if anchor else ""))
     for g, (r, a) in cmp["compute_ratio"].items():
         print(f"  {g:<20}{r:>16.3f}{'-' if a is None else f'{a:.3f}':>16}")

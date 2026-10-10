@@ -40,6 +40,10 @@ def stand_fields(assay: dict, ladder: dict) -> dict:
         "cpu_only": assay["requirements"]["cpu_only"],
         "min_vram_gb": assay["requirements"]["min_vram_gb"],
         "reference_sec": assay["work"]["reference_sec"],
+        # compute phase alone on the reference card (setup, downloads and the
+        # warm-up floor are other phases): the part a per-GPU ratio scales
+        "compute_sec": assay["work"]["reference_sec"] * assay["work"]["phases_cu"]["compute"]
+                       / assay["work"]["reference_cu"],
         "spread_factor": assay["work"]["spread"]["factor"],
         "compute_ratio": {r["gpu_id"]: r["compute_ratio"] for r in ladder["rows"]},
     }
@@ -51,7 +55,7 @@ class KrauncherAdapter(ServiceInterface):
     def capabilities(self) -> set[str]:
         return {"workload_type", "mode", "framework", "precision", "model_name",
                 "params_billions", "batch_size", "epochs", "dataset_samples", "seq_len",
-                "cpu_only", "min_vram_gb", "reference_sec", "spread_factor", "compute_ratio"}
+                "cpu_only", "min_vram_gb", "reference_sec", "compute_sec", "spread_factor", "compute_ratio"}
 
     async def forecast(self, task: Task) -> Forecast:
         mod = task.variant(self.name)

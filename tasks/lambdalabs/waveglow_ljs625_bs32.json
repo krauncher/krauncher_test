@@ -24,6 +24,8 @@
       "vram_gb_at_most": 48,
       "vram_gb_at_most_note": "the run completed with batch 32 on 48 GB cards, so the peak is at most 48 GB (the 24 GB cards were run with batch 18)",
       "anchor_gpu": "rtx_6000_ada",
+      "anchor_compute_sec": 62.0,
+      "anchor_compute_sec_note": "training work / published throughput of 'RTX 6000 Ada': 2 epochs x 19 steps x batch 32 x 8000 samples = 9 728 000 audio samples; / 156 904 audio samples/s. The benchmark's throughput covers the training steps: start-up, data download and validation are outside it",
       "compute_ratio": {
         "rtx_6000_ada": 1.0,
         "rtx_a6000": 1.343,

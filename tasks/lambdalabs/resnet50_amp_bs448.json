@@ -21,6 +21,8 @@
       "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
       "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
       "anchor_gpu": "rtx_4090",
+      "anchor_compute_sec": 68.9,
+      "anchor_compute_sec_note": "training work / published throughput of 'RTX 4090': 2 epochs x 100 iterations x batch 448 = 89 600 images; / 1 301 images/s. The benchmark's throughput covers the training steps: start-up, data download and validation are outside it",
       "compute_ratio": {
         "rtx_4090": 1.0,
         "rtx_3090": 1.438,

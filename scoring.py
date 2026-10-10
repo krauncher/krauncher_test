@@ -8,7 +8,7 @@ _NORM = {"precision": lambda v: v or "fp32"}   # no precision in the code is fp3
 REFERENCE_GPU = "rtx_6000_blackwell"
 
 # Measured values and the ladder: scored by their error, not pass / fail.
-MEASURED = ("reference_sec", "min_vram_gb", "compute_ratio")
+MEASURED = ("reference_sec", "min_vram_gb", "compute_ratio", "anchor_compute_sec")
 
 
 def matches(field: str, want, got) -> bool:
@@ -35,6 +35,21 @@ def ladder_pairs(meas: dict, got: dict | None) -> dict[str, tuple[float, float |
             return {g: (r, None) for g, r in exp.items()}
         return {g: (r, got[g] / got[anchor] if g in got else None) for g, r in exp.items()}
     return {g: (r, got.get(g)) for g, r in exp.items()}
+
+
+def anchor_time(meas: dict, got: dict) -> tuple[float, float] | None:
+    """(measured, forecast) compute time on the set's anchor GPU, seconds.
+
+    Measured: `anchor_compute_sec` of the set (a published benchmark gives it
+    as work / throughput). Forecast: the service's compute time on the
+    reference card times its own ratio for the anchor GPU. None when either
+    side is missing.
+    """
+    m, anchor = meas.get("anchor_compute_sec"), meas.get("anchor_gpu") or REFERENCE_GPU
+    ref, ratio = got.get("compute_sec"), (got.get("compute_ratio") or {}).get(anchor)
+    if not m or not ref or not ratio:
+        return None
+    return m, ref * ratio
 
 
 # Status of a forecast value against what was measured: "good" (accurate),

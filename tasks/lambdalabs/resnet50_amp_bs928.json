@@ -21,6 +21,8 @@
       "date": "measurement dates are not in the CSV; repository snapshot 2025-12-17",
       "hardware": "Lambda's systems as named in the rows; NVIDIA NGC PyTorch container (version not recorded per row), LambdaLabsML/DeepLearningExamples branch lambda/benchmark",
       "anchor_gpu": "rtx_6000_ada",
+      "anchor_compute_sec": 40.5,
+      "anchor_compute_sec_note": "training work / published throughput of 'RTX 6000 Ada': 1 epochs x 50 iterations x batch 928 = 46 400 images; / 1 146 images/s. The benchmark's throughput covers the training steps: start-up, data download and validation are outside it",
       "compute_ratio": {
         "rtx_6000_ada": 1.0,
         "rtx_a6000": 1.251,

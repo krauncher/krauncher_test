@@ -23,6 +23,8 @@
       "vram_gb_at_most": 48,
       "vram_gb_at_most_note": "the run completed with batch 64 on 48 GB cards, so the peak is at most 48 GB (the 24 GB cards were run with batch 24)",
       "anchor_gpu": "rtx_6000_ada",
+      "anchor_compute_sec": 13.4,
+      "anchor_compute_sec_note": "training work / published throughput of 'RTX 6000 Ada': 40 steps x batch 64 x target length 192 = 491 520 tokens; / 36 745 tokens/s. The benchmark's throughput covers the training steps: start-up, data download and validation are outside it",
       "compute_ratio": {
         "rtx_6000_ada": 1.0,
         "rtx_a6000": 1.412,

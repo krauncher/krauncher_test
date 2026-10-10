@@ -24,6 +24,8 @@
       "vram_gb_at_most": 24,
       "vram_gb_at_most_note": "the run completed with batch 18 on 24 GB cards, so the peak is at most 24 GB",
       "anchor_gpu": "rtx_4090",
+      "anchor_compute_sec": 60.9,
+      "anchor_compute_sec_note": "training work / published throughput of 'RTX 4090': 2 epochs x 34 steps x batch 18 x 8000 samples = 9 792 000 audio samples; / 160 816 audio samples/s. The benchmark's throughput covers the training steps: start-up, data download and validation are outside it",
       "compute_ratio": {
         "rtx_4090": 1.0,
         "rtx_3090": 1.656,

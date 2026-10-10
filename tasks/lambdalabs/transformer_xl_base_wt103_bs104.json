@@ -23,6 +23,8 @@
       "vram_gb_at_most": 80,
       "vram_gb_at_most_note": "the run completed with batch 104 on 80 GB cards, so the peak is at most 80 GB (the 48 GB cards were run with batch 64)",
       "anchor_gpu": "a100_sxm_80",
+      "anchor_compute_sec": 185.4,
+      "anchor_compute_sec_note": "training work / published throughput of 'A100 80GB SXM4': 400 steps x batch 104 x target length 192 = 7 987 200 tokens; / 43 078 tokens/s. The benchmark's throughput covers the training steps: start-up, data download and validation are outside it",
       "compute_ratio": {
         "a100_sxm_80": 1.0,
         "a100_pcie_80": 1.035,
